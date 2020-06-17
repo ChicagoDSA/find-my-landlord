@@ -1,14 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
- 	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="">
-		<meta name="author" content="">
-		<title>Title</title>
-		<link rel="stylesheet" href="style.css">
+<html>
+	<head>
+		<meta charset='utf-8' />
+		<title>Create interactive hover effects with Mapbox GL JS</title>
+		<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+		<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
+		<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet' />
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+			}
+
+			#map {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				width: 100%;
+			}
+		</style>
 	</head>
+
 	<body>
+  	<div id='map'></div>
+	<script>
+		mapboxgl.accessToken = 'pk.eyJ1IjoibHVjaWVubGl6bGVwaW9yeiIsImEiOiJjaWluY3lweWUwMWU5dHBrcHlsYnpscjF5In0.siT3_mzRABrCBeG4iGCEYQ';
+		var map = new mapboxgl.Map({
+			container: 'map', // Specify the container ID
+			style: 'mapbox://styles/mapbox/outdoors-v11', // Specify which map style to use
+			center: [-122.44121, 37.76132], // Specify the starting position [lng, lat]
+			zoom: 3.5 // Specify the starting zoom
+		});
+	</script>
 	</body>
-</html>
+</html>      

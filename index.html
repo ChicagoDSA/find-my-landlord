@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset='utf-8' />
+		<meta charset="utf-8" />
 		<title>Cook County Rental Property Owners</title>
-		<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-		<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
+		<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+		<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js"></script>
 		<link rel="shortcut icon" href="favicon.ico">
-		<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet' />
+		<link href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css" rel="stylesheet" />
 		<style>
 			body {
 				margin: 0;
@@ -23,14 +23,14 @@
 	</head>
 
 	<body>
-  	<div id='map'></div>
+  	<div id="map"></div>
 	<script>
-		mapboxgl.accessToken = 'pk.eyJ1IjoibHVjaWVubGl6bGVwaW9yeiIsImEiOiJjaWluY3lweWUwMWU5dHBrcHlsYnpscjF5In0.siT3_mzRABrCBeG4iGCEYQ';
+		mapboxgl.accessToken = "pk.eyJ1IjoibHVjaWVubGl6bGVwaW9yeiIsImEiOiJjaWluY3lweWUwMWU5dHBrcHlsYnpscjF5In0.siT3_mzRABrCBeG4iGCEYQ";
 		var map = new mapboxgl.Map({
-			container: 'map', // Specify the container ID
-			style: 'mapbox://styles/mapbox/outdoors-v11', // Specify which map style to use
-			center: [-122.44121, 37.76132], // Specify the starting position [lng, lat]
-			zoom: 3.5 // Specify the starting zoom
+			container: "map",
+			style: "mapbox://styles/mapbox/dark-v10",
+			center: [41.881302, -87.695787],
+			zoom: 12
 		});
 	</script>
 	</body>

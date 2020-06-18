@@ -10,7 +10,7 @@ body {
 	width: 100%;
 }
 
-.legend {
+#legend {
 	background-color: #fff;
 	border-radius: 3px;
 	bottom: 50px;
@@ -22,11 +22,11 @@ body {
 	z-index: 1;
 }
  
-.legend h4 {
+#legend h4 {
 	margin: 0 0 10px;
 }
  
-.legend div span {
+#legend div span {
 	border-radius: 50%;
 	display: inline-block;
 	height: 10px;

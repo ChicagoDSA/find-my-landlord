@@ -1,0 +1,133 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Address": "133 Rockford Avenue, Forest Park, IL, USA",
+        "Owned": "71",
+        "Owner": "Greenplan Management"
+      },
+      "geometry": {
+        "coordinates": [
+          -87.813581,
+          41.883988
+        ],
+        "type": "Point"
+      },
+      "id": "03e0fc2d7f0b74ee5031ab688dd1df82"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Address": "264 South Marion Street, Oak Park, IL, USA",
+        "Owned": "71",
+        "Owner": "Greenplan Management"
+      },
+      "geometry": {
+        "coordinates": [
+          -87.802266,
+          41.88338
+        ],
+        "type": "Point"
+      },
+      "id": "144a3a798b6642c95ef2137b65226292"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Address": "712 North Austin Boulevard, Oak Park, IL, USA",
+        "Owned": "71",
+        "Owner": "Greenplan Management"
+      },
+      "geometry": {
+        "coordinates": [
+          -87.775454,
+          41.893677
+        ],
+        "type": "Point"
+      },
+      "id": "150ef87308d6dc43e8608477c6ac5a15"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Address": "4710 North Damen Avenue, North Side, Chicago, IL, USA",
+        "Owned": "71",
+        "Owner": "Silver Property Group"
+      },
+      "geometry": {
+        "coordinates": [
+          -87.679407,
+          41.967328
+        ],
+        "type": "Point"
+      },
+      "id": "3fad58f733514a85d0f3bab740265a5d"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Address": "37 Rockford Avenue, Forest Park, IL, USA",
+        "Owned": "71",
+        "Owner": "Greenplan Management"
+      },
+      "geometry": {
+        "coordinates": [
+          -87.813597,
+          41.885449
+        ],
+        "type": "Point"
+      },
+      "id": "7f4e693746cf84fb13bcce098bf28908"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Address": "1444 West Morse Avenue, North Side, Chicago, IL, USA",
+        "Owned": "71",
+        "Owner": "Silver Property Group"
+      },
+      "geometry": {
+        "coordinates": [
+          -87.667649,
+          428119
+        ],
+        "type": "Point"
+      },
+      "id": "a289ea09c0e5c7b8e0bd09e3e41ded60"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Address": "600 East 50th Place, Near South Side, Chicago, IL, USA",
+        "Owned": "388",
+        "Owner": "Pangea Properties"
+      },
+      "geometry": {
+        "coordinates": [
+          -87.611086,
+          41.803284
+        ],
+        "type": "Point"
+      },
+      "id": "d363e564642fe39b48415857fe34d00e"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Address": "634 East 50th Place, Near South Side, Chicago, IL, USA",
+        "Owned": "388",
+        "Owner": "Pangea Properties"
+      },
+      "geometry": {
+        "coordinates": [
+          -87.609835,
+          41.803491
+        ],
+        "type": "Point"
+      },
+      "id": "d8d19f9753dfbd8c34d568385714a7a0"
+    }
+  ],
+  "type": "FeatureCollection"
+}

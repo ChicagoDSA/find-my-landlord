@@ -26,6 +26,46 @@
 			zoom: 11,
 			maxBounds: bounds
 		});
+
+		var popup = new mapboxgl.Popup({
+			closeButton: false
+		});
+
+		map.on("load", function() {
+			map.addSource("points", {
+				type: "geojson",
+				data: "assets/data/features.geojson"
+			});			
+			map.addLayer({
+				"id": "points",
+				"type": "circle",
+				"source": "points",
+				"paint": {
+					"circle-radius": 4,
+					"circle-color": "#ff0000",
+					"circle-stroke-color": "#800000",
+    				"circle-stroke-width": 1,
+				}
+			});
+
+			map.on('mousemove', 'points', function(e) {
+				map.getCanvas().style.cursor = 'pointer';
+
+				var coordinates = e.features[0].geometry.coordinates.slice();
+				var owner = e.features[0].properties.Owner;
+				var owned = Math.round(e.features[0].properties.Owned);
+
+				popup
+				.setLngLat(coordinates)
+				.setHTML("<b>"+owner+"</b>"+"</br>1 of "+owned)
+				.addTo(map);
+			});
+
+			map.on('mouseleave', 'points', function() {
+				map.getCanvas().style.cursor = '';
+				popup.remove();
+			});
+		});
 	</script>
 	</body>
 </html>      

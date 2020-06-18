@@ -27,9 +27,11 @@
 			maxBounds: bounds
 		});
 
+		/*
 		var popup = new mapboxgl.Popup({
 			closeButton: false
 		});
+		*/
 
 		map.on("load", function() {
 			map.addSource("points", {
@@ -48,6 +50,7 @@
 				}
 			});
 
+			/*
 			map.on('mousemove', 'points', function(e) {
 				map.getCanvas().style.cursor = 'pointer';
 
@@ -65,6 +68,7 @@
 				map.getCanvas().style.cursor = '';
 				popup.remove();
 			});
+			*/
 		});
 	</script>
 	</body>

@@ -10,16 +10,32 @@ body {
 	width: 100%;
 }
 
-#legend {
-	background-color: #fff;
-	border-radius: 3px;
-	bottom: 50px;
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-	font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-	padding: 10px;
+#title, #legend {
 	position: absolute;
-	right: 10px;
+	padding: 10px;
+	border-radius: 3px;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 	z-index: 1;
+}
+
+#title {
+	top: 10px;
+	left: 10px;
+	font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	color: #fff;
+	border: 1px solid #660000;
+	background-color: #330000;
+}
+
+#title h2 {
+	margin: 0;
+}
+
+#legend {
+	right: 10px;
+	bottom: 50px;
+	font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	background-color: #fff;
 }
  
 #legend h4 {
@@ -27,10 +43,10 @@ body {
 }
  
 #legend div span {
-	border-radius: 50%;
 	display: inline-block;
+	width: 10px;
 	height: 10px;
 	margin-right: 5px;
-	width: 10px;
 	border: 1px solid #660000;
+	border-radius: 50%;
 }

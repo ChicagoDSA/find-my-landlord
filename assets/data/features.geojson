@@ -4,7 +4,7 @@
       "type": "Feature",
       "properties": {
         "Address": "133 Rockford Avenue, Forest Park, IL, USA",
-        "Owned": "71",
+        "Owned": 71,
         "Owner": "Greenplan Management"
       },
       "geometry": {
@@ -20,7 +20,7 @@
       "type": "Feature",
       "properties": {
         "Address": "264 South Marion Street, Oak Park, IL, USA",
-        "Owned": "71",
+        "Owned": 71,
         "Owner": "Greenplan Management"
       },
       "geometry": {
@@ -36,7 +36,7 @@
       "type": "Feature",
       "properties": {
         "Address": "712 North Austin Boulevard, Oak Park, IL, USA",
-        "Owned": "71",
+        "Owned": 71,
         "Owner": "Greenplan Management"
       },
       "geometry": {
@@ -52,7 +52,7 @@
       "type": "Feature",
       "properties": {
         "Address": "4710 North Damen Avenue, North Side, Chicago, IL, USA",
-        "Owned": "71",
+        "Owned": 71,
         "Owner": "Silver Property Group"
       },
       "geometry": {
@@ -68,7 +68,7 @@
       "type": "Feature",
       "properties": {
         "Address": "37 Rockford Avenue, Forest Park, IL, USA",
-        "Owned": "71",
+        "Owned": 71,
         "Owner": "Greenplan Management"
       },
       "geometry": {
@@ -84,13 +84,13 @@
       "type": "Feature",
       "properties": {
         "Address": "1444 West Morse Avenue, North Side, Chicago, IL, USA",
-        "Owned": "71",
+        "Owned": 71,
         "Owner": "Silver Property Group"
       },
       "geometry": {
         "coordinates": [
           -87.667649,
-          428119
+          42.008119
         ],
         "type": "Point"
       },
@@ -100,7 +100,7 @@
       "type": "Feature",
       "properties": {
         "Address": "600 East 50th Place, Near South Side, Chicago, IL, USA",
-        "Owned": "388",
+        "Owned": 388,
         "Owner": "Pangea Properties"
       },
       "geometry": {
@@ -116,7 +116,7 @@
       "type": "Feature",
       "properties": {
         "Address": "634 East 50th Place, Near South Side, Chicago, IL, USA",
-        "Owned": "388",
+        "Owned": 388,
         "Owner": "Pangea Properties"
       },
       "geometry": {

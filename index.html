@@ -27,6 +27,8 @@
 			maxBounds: bounds
 		});
 
+		map.addControl(new mapboxgl.NavigationControl());
+
 		map.on("load", function() {
 			map.addSource("points", {
 				type: "geojson",

@@ -10,9 +10,10 @@ body {
 	width: 100%;
 }
 
-#title, #legend {
+#title, .filter-ctrl input[type='text'], #legend {
 	position: absolute;
 	padding: 10px;
+	font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
 	border-radius: 3px;
 	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 	z-index: 1;
@@ -21,7 +22,6 @@ body {
 #title {
 	top: 10px;
 	left: 10px;
-	font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
 	color: #fff;
 	border: 1px solid #660000;
 	background-color: #330000;
@@ -31,11 +31,26 @@ body {
 	margin: 0;
 }
 
+.filter-ctrl {
+	position: absolute;
+	top: 60px;
+	left: 10px;
+	padding: 0;
+}
+ 
+.filter-ctrl input[type='text'] {
+	width: 180px;
+	color: rgba(0, 0, 0, 0.5);
+	border: 0;
+}
+
+.filter-ctrl input[type='text'], #legend {
+	background-color: #fff;
+}
+
 #legend {
 	right: 10px;
 	bottom: 50px;
-	font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-	background-color: #fff;
 }
  
 #legend h4 {

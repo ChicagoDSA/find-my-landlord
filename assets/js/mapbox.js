@@ -40,17 +40,20 @@ function renderResults(features) {
 		};
 
 		features.forEach(function(feature) {
-			var prop = feature.properties;
 			var item = document.createElement('div');
 			var building = map.queryRenderedFeatures({ layers: [feature] });
 			console.log("render features"+JSON.stringify(building));
-			var address = "joe";
-			var owner = "hey";
-			var owned = "jack";
+			try { 
+				var address = building[0].properties.Address;
+				var owner = building[0].properties.Owner;
+				var owned = building[0].properties.Owned;
 
-			item.className = "search-result";
-			item.innerHTML = "<h3>"+address+"</h3><p>Owned by: "+owner+"</br>Total properties owned: "+owned+"</p><button type='button'>Download their data</button>";
-			searchResultsList.appendChild(item);
+				item.className = "search-result";
+				item.innerHTML = "<h3>"+address+"</h3><p>Owned by: "+owner+"</br>Total properties owned: "+owned+"</p><button type='button'>Download their data</button>";
+				searchResultsList.appendChild(item);
+			} catch (error) {
+				console.log(error)
+			}
 		});
 	} else if (features.length == 0 && searchInput.value != '') {
 		// No results found

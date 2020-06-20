@@ -1,7 +1,11 @@
+/* Global elements */
+
 body {
 	margin: 0;
 	padding: 0;
 }
+
+/* Map */
 
 #map {
 	position: absolute;
@@ -10,7 +14,9 @@ body {
 	width: 100%;
 }
 
-#title, .search-ctrl input[type='text'], .map-overlay, #legend {
+/* Shared styles */
+
+#title, #search-ctrl input[type='text'], #search-results-container, #legend {
 	position: absolute;
 	padding: 10px;
 	font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -18,6 +24,8 @@ body {
 	box-shadow: 0 1px 2px #1a1a1a;
 	z-index: 1;
 }
+
+/* Site title */
 
 #title {
 	top: 10px;
@@ -31,39 +39,41 @@ body {
 	margin: 0;
 }
 
-.search-ctrl {
+/* Search input */
+
+#search-ctrl {
 	position: absolute;
 	top: 60px;
 	left: 10px;
 	padding: 0;
 }
  
-.search-ctrl input[type='text'] {
+#search-ctrl input[type='text'] {
 	width: 180px;
 	color: #808080;
 	border: 0;
 }
 
-.search-ctrl input[type='text']:focus {
+#search-ctrl input[type='text']:focus {
 	outline: none;
 	box-shadow: 0 0 0 2px #0099ff;
 }
 
-.search-ctrl input[type='text'], #legend {
+#search-ctrl input[type='text'], #legend {
 	background-color: #fff;
 }
 
-.map-overlay {
+/* Search results list */
+
+#search-results-container {
 	top: 110px;
 	left: 10px;
-	width: 180px;
-	padding-top: 40px;
-	max-height: 25%;
-	overflow: scroll;
+	padding: 0;
+	overflow: hidden;
 	background-color: #fff;
 }
 
-#search-result-counter {
+#search-results-counter {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -73,20 +83,30 @@ body {
 	background-color: #000;
 }
 
-#search-result-counter h4 {
+#search-results-counter h4 {
 	margin: 0;
 }
+
+#search-results-list {
+	width: 180px;
+	max-height: 260px;
+	margin-top: 30px;
+	padding: 10px;
+	overflow: scroll;
+}
+
+/* Search results listitem */
 
 .search-result {
 	padding: 10px 0;
 	border-bottom: 1px solid #808080;
 }
 
-.search-result-list .search-result:first-child {
+#search-results-list .search-result:first-child {
 	padding-top: 0;
 }
 
-.search-result-list .search-result:last-child {
+#search-results-list .search-result:last-child {
 	padding-bottom: 0;
 	border-bottom: 0;
 }
@@ -110,6 +130,8 @@ body {
 	margin: 0 0 10px;
 }
 
+/* Map legend */
+
 #legend {
 	right: 10px;
 	bottom: 50px;
@@ -122,4 +144,18 @@ body {
 	margin-right: 5px;
 	border: 1px solid #660000;
 	border-radius: 50%;
+}
+
+/* Responsive */
+
+@media screen and (max-height: 700px) {
+	#search-results-list {
+		max-height: 200px;
+	}
+}
+
+@media screen and (max-height: 600px) {
+	#search-results-list {
+		max-height: 140px;
+	}
 }

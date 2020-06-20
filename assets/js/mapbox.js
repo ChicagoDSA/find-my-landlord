@@ -23,8 +23,6 @@ var searchResultsList = document.getElementById("search-results-list");
 map.addControl(new mapboxgl.NavigationControl());
 
 function renderResults(features) {
-	var empty = document.createElement('div');
-
 	clearSearchResults();
 	
 	if (features.length) {		
@@ -43,7 +41,12 @@ function renderResults(features) {
 			var item = document.createElement('div');
 			var array = '[{"geometry":{"type":"Point","coordinates":[-87.61109590530396,41.80327838120391]},"type":"Feature","properties":{"Address":"600 E 50th Pl","Owned":388,"Owner":"Pangea Properties"},"layer":{"id":"600 e 50th pl","type":"circle","source":"buildings","filter":["==","Address","600 E 50th Pl"],"paint":{"circle-radius":4,"circle-color":{"r":1,"g":0.6,"b":0.6,"a":1},"circle-stroke-color":{"r":0.4,"g":0,"b":0,"a":1},"circle-stroke-width":1},"layout":{}},"source":"buildings","state":{}}]';
 			var building = JSON.parse(array);
-			//var building = map.queryRenderedFeatures({ layers: [feature] });
+
+			var layerArray = map.querySourceFeatures('buildings', {
+				sourceLayer: feature
+			});
+			console.log("layer array"+JSON.stringify(layerArray));
+			
 			var address = building[0].properties.Address;
 			var owner = building[0].properties.Owner;
 			var owned = building[0].properties.Owned;

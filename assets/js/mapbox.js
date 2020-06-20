@@ -69,6 +69,14 @@ map.on("load", function() {
 	searchInput.addEventListener("keyup", function(e) {
 		var value = e.target.value.trim().toLowerCase();
 		console.log(value);
+
+		// Filter visible features that don't match the input value.
+		var filtered = layerIDs.filter(function(layerID) {
+			var name = layerIDs.layerID;
+			return layerID.indexOf(value) > -1;
+		});
+		console.log(filtered);
+
 		layerIDs.forEach(function(layerID) {
 			map.setLayoutProperty(
 				layerID,

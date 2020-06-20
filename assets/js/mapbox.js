@@ -14,7 +14,8 @@ var map = new mapboxgl.Map({
 });
 
 var url = "assets/data/features.geojson";
-var layerIDs = [];
+var matchingAddresses = [];
+var buildings = [];
 var searchInput = document.getElementById("search-input");
 var searchResultsContainer = document.getElementById("search-results-container");
 var searchResultsCounter = document.getElementById("search-results-counter");
@@ -84,11 +85,11 @@ map.on("load", function() {
 
 			json.features.forEach(function(feature) {	
 				var address = feature.properties['Address'];
-				var layerID = address.trim().toLowerCase();
+				var matchingAddress = address.trim().toLowerCase();
 
-				if (!map.getLayer(layerID)) {
+				if (!map.getLayer(matchingAddress)) {
 					map.addLayer({
-						"id": layerID,
+						"id": matchingAddress,
 						"type": "circle",
 						"source": "buildings",
 						"paint": {
@@ -107,8 +108,8 @@ map.on("load", function() {
 						},
 						"filter": ["==", "Address", address]
 					});
-					layerIDs.push(layerID);
-					console.log(layerID);
+					matchingAddresses.push(matchingAddress);
+					console.log("HEY"+JSON.stringify(buildings));
 				}
 			});
 		}
@@ -120,24 +121,23 @@ map.on("load", function() {
 		console.log(value);
 
 		// Create list of search results
-		var results = layerIDs.filter(function(layerID) {
-			var name = layerIDs.layerID;
-			return layerID.indexOf(value) > -1;
+		var results = matchingAddresses.filter(function(matchingAddress) {
+			return matchingAddress.indexOf(value) > -1;
 		});
 		renderResults(results);
 		console.log(results);
 
 		// Show and hide buildings based on results
-		layerIDs.forEach(function(layerID) {
-			if (results.indexOf(layerID) > -1) {
+		matchingAddresses.forEach(function(matchingAddress) {
+			if (results.indexOf(matchingAddress) > -1) {
 				map.setLayoutProperty(
-					layerID,
+					matchingAddress,
 					"visibility",
 					"visible"
 				);
 			} else {
 				map.setLayoutProperty(
-					layerID,
+					matchingAddress,
 					"visibility",
 					"none"
 				);

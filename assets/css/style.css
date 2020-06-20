@@ -16,7 +16,7 @@ body {
 
 /* Shared styles */
 
-#title, #search-ctrl input[type='text'], #search-results-container, #legend {
+#title, #search-input, #search-results-container, #legend {
 	position: absolute;
 	padding: 10px;
 	font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -41,25 +41,23 @@ body {
 
 /* Search input */
 
-#search-ctrl {
+#search-input {
+	display: none;
 	position: absolute;
 	top: 60px;
 	left: 10px;
-	padding: 0;
-}
- 
-#search-ctrl input[type='text'] {
 	width: 180px;
+	padding: 10px;
 	color: #808080;
 	border: 0;
 }
 
-#search-ctrl input[type='text']:focus {
+#search-input :focus {
 	outline: none;
 	box-shadow: 0 0 0 2px #0099ff;
 }
 
-#search-ctrl input[type='text'], #legend {
+#search-input, #legend {
 	background-color: #fff;
 }
 

@@ -15,7 +15,6 @@ var map = new mapboxgl.Map({
 
 var url = "assets/data/features.geojson";
 var matchingAddresses = [];
-var buildings = [];
 var searchInput = document.getElementById("search-input");
 var searchResultsContainer = document.getElementById("search-results-container");
 var searchResultsCounter = document.getElementById("search-results-counter");
@@ -43,8 +42,12 @@ function renderResults(features) {
 		features.forEach(function(feature) {
 			var prop = feature.properties;
 			var item = document.createElement('div');
+			var building = map.queryRenderedFeatures({ layers: [feature] });
+			var address = building[0].properties.Address;
+			var owner = building[0].properties.Owner;
+
 			item.className = "search-result";
-			item.innerHTML = "<h3>634 E 50th Pl</h3><p>Owned by: Pangea Properties</br>Total properties owned: 388</p><button type='button'>Download their data</button>";
+			item.innerHTML = "<h3>"+address+"</h3><p>Owned by: "+owner+"</br>Total properties owned: </p><button type='button'>Download their data</button>";
 			searchResultsList.appendChild(item);
 		});
 	} else if (features.length == 0 && searchInput.value != '') {
@@ -109,9 +112,9 @@ map.on("load", function() {
 						"filter": ["==", "Address", address]
 					});
 					matchingAddresses.push(matchingAddress);
-					console.log("HEY"+JSON.stringify(buildings));
 				}
 			});
+			searchInput.style.display = "block";
 		}
 	};
 	request.send();

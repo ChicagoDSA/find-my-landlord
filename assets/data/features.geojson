@@ -3,7 +3,7 @@
     {
       "type": "Feature",
       "properties": {
-        "Address": "133 Rockford Ave, Forest Park, IL, USA",
+        "Address": "133 Rockford Ave",
         "Owned": 71,
         "Owner": "Greenplan Management"
       },
@@ -19,7 +19,7 @@
     {
       "type": "Feature",
       "properties": {
-        "Address": "264 S Marion St, Oak Park, IL, USA",
+        "Address": "264 S Marion St",
         "Owned": 71,
         "Owner": "Greenplan Management"
       },
@@ -35,7 +35,7 @@
     {
       "type": "Feature",
       "properties": {
-        "Address": "712 N Austin Blvd, Oak Park, IL, USA",
+        "Address": "712 N Austin Blvd",
         "Owned": 71,
         "Owner": "Greenplan Management"
       },
@@ -51,7 +51,7 @@
     {
       "type": "Feature",
       "properties": {
-        "Address": "4710 N Damen Ave, North Side, Chicago, IL, USA",
+        "Address": "4710 N Damen Ave",
         "Owned": 71,
         "Owner": "Silver Property Group"
       },
@@ -67,7 +67,7 @@
     {
       "type": "Feature",
       "properties": {
-        "Address": "37 Rockford Ave, Forest Park, IL, USA",
+        "Address": "37 Rockford Ave",
         "Owned": 71,
         "Owner": "Greenplan Management"
       },
@@ -83,7 +83,7 @@
     {
       "type": "Feature",
       "properties": {
-        "Address": "1444 W Morse Ave, North Side, Chicago, IL, USA",
+        "Address": "1444 W Morse Ave",
         "Owned": 71,
         "Owner": "Silver Property Group"
       },
@@ -99,7 +99,7 @@
     {
       "type": "Feature",
       "properties": {
-        "Address": "600 E 50th Pl, Near South Side, Chicago, IL, USA",
+        "Address": "600 E 50th Pl",
         "Owned": 388,
         "Owner": "Pangea Properties"
       },
@@ -115,7 +115,7 @@
     {
       "type": "Feature",
       "properties": {
-        "Address": "634 E 50th Pl, Near South Side, Chicago, IL, USA",
+        "Address": "634 E 50th Pl",
         "Owned": 388,
         "Owner": "Pangea Properties"
       },

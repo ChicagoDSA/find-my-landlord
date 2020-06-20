@@ -46,22 +46,50 @@ body {
 
 .filter-ctrl input[type='text']:focus {
 	outline: none;
-	box-shadow: 0 0 0 2px #660000;
+	box-shadow: 0 0 0 2px #0099ff;
 }
 
 .filter-ctrl input[type='text'], #legend {
 	background-color: #fff;
 }
 
+.map-overlay {
+	position: absolute;
+	top: 110px;
+	left: 10px;
+	width: 180px;
+	padding: 10px;
+	font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	border-radius: 3px;
+	background-color: #fff;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+	z-index: 10;
+}
+
+.map-overlay button {
+	width: 100%;
+	padding: 5px;
+	font-weight: bold;
+	color: #fff;
+	border: 1px solid #660000;
+	border-radius: 3px;
+	background-color: #990000;
+}
+
+.map-overlay button:focus {
+	outline: none;
+	box-shadow: 0 0 0 2px #0099ff;
+}
+
+.map-overlay h3, #legend h4 {
+	margin: 0 0 10px;
+}
+
 #legend {
 	right: 10px;
 	bottom: 50px;
 }
- 
-#legend h4 {
-	margin: 0 0 10px;
-}
- 
+
 #legend div span {
 	display: inline-block;
 	width: 10px;

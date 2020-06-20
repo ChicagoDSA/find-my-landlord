@@ -18,19 +18,29 @@
 			<h2>Cook County Rental Property Owners</h2>
 		</div>
 
-		<div class="filter-ctrl">
+		<div class="search-ctrl">
 			<input
-				id="filter-input"
+				id="search-input"
 				type="text"
-				name="filter"
-				placeholder="Filter by address"
+				name="search"
+				placeholder="Search by address"
 			/>
 		</div>
 
 		<div id="map-overlay" class="map-overlay">
-			<h3>Greenfield Management</h3>
-			<p>Owns 22 properties</p>
-			<button type="button">Download their data</button>
+			<div id="search-result-counter"><h4>2 search results</h4></div>
+			<div class="search-result-list">
+				<div class="search-result">
+					<h3>634 East 50th Place</h3>
+					<p>Owned by: Pangea Properties</br>Total properties owned: 388</p>
+					<button type="button">Download their data</button>
+				</div>
+				<div class="search-result">
+					<h3>600 East 50th Place</h3>
+					<p>Owned by: Pangea Properties</br>Total properties owned: 388</p>
+					<button type="button">Download their data</button>
+				</div>
+			</div>
 		</div>
 
 		<div id="legend">

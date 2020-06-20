@@ -43,11 +43,13 @@ function renderResults(features) {
 			var prop = feature.properties;
 			var item = document.createElement('div');
 			var building = map.queryRenderedFeatures({ layers: [feature] });
-			var address = building[0].properties.Address;
-			var owner = building[0].properties.Owner;
+			console.log("render features"+JSON.stringify(building));
+			var address = "joe";
+			var owner = "hey";
+			var owned = "jack";
 
 			item.className = "search-result";
-			item.innerHTML = "<h3>"+address+"</h3><p>Owned by: "+owner+"</br>Total properties owned: </p><button type='button'>Download their data</button>";
+			item.innerHTML = "<h3>"+address+"</h3><p>Owned by: "+owner+"</br>Total properties owned: "+owned+"</p><button type='button'>Download their data</button>";
 			searchResultsList.appendChild(item);
 		});
 	} else if (features.length == 0 && searchInput.value != '') {
@@ -128,7 +130,7 @@ map.on("load", function() {
 			return matchingAddress.indexOf(value) > -1;
 		});
 		renderResults(results);
-		console.log(results);
+		console.log("search results"+results);
 
 		// Show and hide buildings based on results
 		matchingAddresses.forEach(function(matchingAddress) {

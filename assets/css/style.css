@@ -44,6 +44,11 @@ body {
 	border: 0;
 }
 
+.filter-ctrl input[type='text']:focus {
+	outline: none;
+	box-shadow: 0 0 0 2px #660000;
+}
+
 .filter-ctrl input[type='text'], #legend {
 	background-color: #fff;
 }

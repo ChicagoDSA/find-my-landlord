@@ -70,19 +70,27 @@ map.on("load", function() {
 		var value = e.target.value.trim().toLowerCase();
 		console.log(value);
 
-		// Filter visible features that don't match the input value.
-		var filtered = layerIDs.filter(function(layerID) {
+		// Created list of search results
+		var results = layerIDs.filter(function(layerID) {
 			var name = layerIDs.layerID;
 			return layerID.indexOf(value) > -1;
 		});
-		console.log(filtered);
+		console.log(results);
 
 		layerIDs.forEach(function(layerID) {
-			map.setLayoutProperty(
-				layerID,
-				"visibility",
-				layerID.indexOf(value) > -1 ? "visible" : "none"
-			);
+			if (results.indexOf(layerID) > -1) {
+				map.setLayoutProperty(
+					layerID,
+					"visibility",
+					"visible"
+				);
+			} else {
+				map.setLayoutProperty(
+					layerID,
+					"visibility",
+					"none"
+				);
+			}
 		});
 	});		
 });

@@ -54,19 +54,24 @@ function renderResults(features) {
 	};
 };
 
-function fetchLayer (layer) {
+function fetchLayer (feature) {
+	// Get features
+	var layer = map.queryRenderedFeatures({ layers: [feature] });
+
+	// Check if array has content
 	if (Array.isArray(layer) && layer.length) {
-		console.log("loaded"+JSON.stringify(layer));
+		console.log("loaded");
 		return layer;
 	} else {
-		console.log("not loaded"+JSON.stringify(layer));
-		return null;
+		console.log("not loaded");
 	}
 }
 
 function createListItem(feature) {
-	var layer = fetchLayer(map.queryRenderedFeatures({ layers: [feature] }));
+	// Get layer
+	var layer = fetchLayer(feature);
 
+	// If layer exists, create ListItem
 	if (layer != null) {
 		var item = document.createElement('div');
 		var address = layer[0].properties.Address;

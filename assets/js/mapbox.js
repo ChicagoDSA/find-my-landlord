@@ -37,12 +37,11 @@ function renderResults(features) {
 			searchResultsCounter.innerHTML = "<h4>"+features.length+" search results";
 		};
 
-		console.log("features"+JSON.stringify(features));
-
 		features.forEach(function(feature) {
+			console.log("in for each");
 			var item = document.createElement('div');
 			var layerArray = map.queryRenderedFeatures({ layers: [feature] });
-			console.log("layer array"+layerArray);
+			console.log("layer array"+JSON.stringify(layerArray));
 
 			// Check if array is empty to prevent undefined error
 			if (Array.isArray(layerArray) && layerArray.length) {
@@ -53,6 +52,8 @@ function renderResults(features) {
 				item.className = "search-result";
 				item.innerHTML = "<h3>"+address+"</h3><p>Owned by: "+owner+"</br>Total properties owned: "+owned+"</p><button type='button'>Download their data</button>";
 				searchResultsList.appendChild(item);
+			} else {
+				console.log("empty");
 			};
 		});
 	} else if (features.length == 0 && searchInput.value != '') {
@@ -126,17 +127,18 @@ map.on("load", function() {
 
 	searchInput.addEventListener("keyup", function(e) {
 		var value = e.target.value.trim().toLowerCase();
-		console.log(value);
+		console.log("key up"+value);
 
 		// Create list of search results
 		var results = matchingAddresses.filter(function(matchingAddress) {
 			return matchingAddress.indexOf(value) > -1;
 		});
-		renderResults(results);
 		console.log("search results"+results);
+	
 
 		// Show and hide buildings based on results
 		matchingAddresses.forEach(function(matchingAddress) {
+			console.log("matching");
 			if (results.indexOf(matchingAddress) > -1) {
 				map.setLayoutProperty(
 					matchingAddress,
@@ -151,5 +153,7 @@ map.on("load", function() {
 				);
 			}
 		});	
+
+		renderResults(results);
 	});	
 });

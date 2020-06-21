@@ -41,10 +41,11 @@ function renderResults(features) {
 
 		features.forEach(function(feature) {
 			var item = document.createElement('div');
-			try {
-				var layerArray = map.queryRenderedFeatures({ layers: [feature] });
-				console.log("layer array"+layerArray);
+			var layerArray = map.queryRenderedFeatures({ layers: [feature] });
+			console.log("layer array"+layerArray);
 
+			// Check if array is empty to prevent undefined error
+			if (Array.isArray(layerArray) && layerArray.length) {
 				var address = layerArray[0].properties.Address;
 				var owner = layerArray[0].properties.Owner;
 				var owned = layerArray[0].properties.Owned;
@@ -52,9 +53,7 @@ function renderResults(features) {
 				item.className = "search-result";
 				item.innerHTML = "<h3>"+address+"</h3><p>Owned by: "+owner+"</br>Total properties owned: "+owned+"</p><button type='button'>Download their data</button>";
 				searchResultsList.appendChild(item);
-			} catch (e) {
-				console.log(e);
-			}
+			};
 		});
 	} else if (features.length == 0 && searchInput.value != '') {
 		// No results found
@@ -151,6 +150,6 @@ map.on("load", function() {
 					"none"
 				);
 			}
-		});
+		});	
 	});	
 });

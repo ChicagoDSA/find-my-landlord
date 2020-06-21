@@ -37,24 +37,9 @@ function renderResults(features) {
 			searchResultsCounter.innerHTML = "<h4>"+features.length+" search results";
 		};
 
+		// Add ListItems
 		features.forEach(function(feature) {
-			console.log("in for each");
-			var item = document.createElement('div');
-			var layerArray = map.queryRenderedFeatures({ layers: [feature] });
-			console.log("layer array"+JSON.stringify(layerArray));
-
-			// Check if array is empty to prevent undefined error
-			if (Array.isArray(layerArray) && layerArray.length) {
-				var address = layerArray[0].properties.Address;
-				var owner = layerArray[0].properties.Owner;
-				var owned = layerArray[0].properties.Owned;
-
-				item.className = "search-result";
-				item.innerHTML = "<h3>"+address+"</h3><p>Owned by: "+owner+"</br>Total properties owned: "+owned+"</p><button type='button'>Download their data</button>";
-				searchResultsList.appendChild(item);
-			} else {
-				console.log("empty");
-			};
+			createListItem(feature);
 		});
 	} else if (features.length == 0 && searchInput.value != '') {
 		// No results found
@@ -67,7 +52,24 @@ function renderResults(features) {
 		// Input is empty
 		clearSearchResults();
 	};
-}
+};
+
+function createListItem(feature) {
+	var layerArray = map.queryRenderedFeatures({ layers: [feature] });
+	
+	if (JSON.stringify(layerArray) != "[]") {
+		var item = document.createElement('div');
+		var address = layerArray[0].properties.Address;
+		var owner = layerArray[0].properties.Owner;
+		var owned = layerArray[0].properties.Owned;
+
+		item.className = "search-result";
+		item.innerHTML = "<h3>"+address+"</h3><p>Owned by: "+owner+"</br>Total properties owned: "+owned+"</p><button type='button'>Download their data</button>";
+		searchResultsList.appendChild(item);
+	} else {
+		console.log("feature is empty");
+	}
+};
 
 function clearSearchResults() {
 	// Hide container
@@ -76,7 +78,7 @@ function clearSearchResults() {
 	// Clear counter and list HTML
 	searchResultsCounter.innerHTML = "";
 	searchResultsList.innerHTML = "";
-}
+};
 
 map.on("load", function() {
 	// Load GeoJSON

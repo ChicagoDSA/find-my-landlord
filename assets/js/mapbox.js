@@ -54,25 +54,24 @@ function renderResults(features) {
 	};
 };
 
-function isLayerLoaded (layer) {
+function fetchLayer (layer) {
 	if (Array.isArray(layer) && layer.length) {
 		console.log("loaded"+JSON.stringify(layer));
-		return true;
+		return layer;
 	} else {
 		console.log("not loaded"+JSON.stringify(layer));
-		return false;
+		return null;
 	}
 }
 
 function createListItem(feature) {
-	var layerArray = map.queryRenderedFeatures({ layers: [feature] });
-	var isLoaded = isLayerLoaded(layerArray);
+	var layer = fetchLayer(map.queryRenderedFeatures({ layers: [feature] }));
 
-	if (isLoaded == true) {
+	if (layer != null) {
 		var item = document.createElement('div');
-		var address = layerArray[0].properties.Address;
-		var owner = layerArray[0].properties.Owner;
-		var owned = layerArray[0].properties.Owned;
+		var address = layer[0].properties.Address;
+		var owner = layer[0].properties.Owner;
+		var owned = layer[0].properties.Owned;
 
 		item.className = "search-result";
 		item.innerHTML = "<h3>"+address+"</h3><p>Owned by: "+owner+"</br>Total properties owned: "+owned+"</p><button type='button'>Download their data</button>";

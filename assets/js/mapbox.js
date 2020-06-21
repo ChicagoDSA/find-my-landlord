@@ -37,23 +37,24 @@ function renderResults(features) {
 			searchResultsCounter.innerHTML = "<h4>"+features.length+" search results";
 		};
 
+		console.log("features"+JSON.stringify(features));
+
 		features.forEach(function(feature) {
 			var item = document.createElement('div');
-			var array = '[{"geometry":{"type":"Point","coordinates":[-87.61109590530396,41.80327838120391]},"type":"Feature","properties":{"Address":"600 E 50th Pl","Owned":388,"Owner":"Pangea Properties"},"layer":{"id":"600 e 50th pl","type":"circle","source":"buildings","filter":["==","Address","600 E 50th Pl"],"paint":{"circle-radius":4,"circle-color":{"r":1,"g":0.6,"b":0.6,"a":1},"circle-stroke-color":{"r":0.4,"g":0,"b":0,"a":1},"circle-stroke-width":1},"layout":{}},"source":"buildings","state":{}}]';
-			var building = JSON.parse(array);
+			try {
+				var layerArray = map.queryRenderedFeatures({ layers: [feature] });
+				console.log("layer array"+layerArray);
 
-			var layerArray = map.querySourceFeatures('buildings', {
-				sourceLayer: feature
-			});
-			console.log("layer array"+JSON.stringify(layerArray));
-			
-			var address = building[0].properties.Address;
-			var owner = building[0].properties.Owner;
-			var owned = building[0].properties.Owned;
+				var address = layerArray[0].properties.Address;
+				var owner = layerArray[0].properties.Owner;
+				var owned = layerArray[0].properties.Owned;
 
-			item.className = "search-result";
-			item.innerHTML = "<h3>"+address+"</h3><p>Owned by: "+owner+"</br>Total properties owned: "+owned+"</p><button type='button'>Download their data</button>";
-			searchResultsList.appendChild(item);
+				item.className = "search-result";
+				item.innerHTML = "<h3>"+address+"</h3><p>Owned by: "+owner+"</br>Total properties owned: "+owned+"</p><button type='button'>Download their data</button>";
+				searchResultsList.appendChild(item);
+			} catch (e) {
+				console.log(e);
+			}
 		});
 	} else if (features.length == 0 && searchInput.value != '') {
 		// No results found

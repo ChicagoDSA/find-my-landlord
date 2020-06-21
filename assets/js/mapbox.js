@@ -54,10 +54,21 @@ function renderResults(features) {
 	};
 };
 
+function isLayerLoaded (layer) {
+	if (Array.isArray(layer) && layer.length) {
+		console.log("loaded"+JSON.stringify(layer));
+		return true;
+	} else {
+		console.log("not loaded"+JSON.stringify(layer));
+		return false;
+	}
+}
+
 function createListItem(feature) {
 	var layerArray = map.queryRenderedFeatures({ layers: [feature] });
-	
-	if (JSON.stringify(layerArray) != "[]") {
+	var isLoaded = isLayerLoaded(layerArray);
+
+	if (isLoaded == true) {
 		var item = document.createElement('div');
 		var address = layerArray[0].properties.Address;
 		var owner = layerArray[0].properties.Owner;
@@ -66,8 +77,6 @@ function createListItem(feature) {
 		item.className = "search-result";
 		item.innerHTML = "<h3>"+address+"</h3><p>Owned by: "+owner+"</br>Total properties owned: "+owned+"</p><button type='button'>Download their data</button>";
 		searchResultsList.appendChild(item);
-	} else {
-		console.log("feature is empty");
 	}
 };
 

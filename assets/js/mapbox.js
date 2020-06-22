@@ -64,8 +64,8 @@ function fetchLayer (feature) {
 		return layer;
 	} else {
 		console.log("not loaded");
-	}
-}
+	};
+};
 
 function createListItem(feature) {
 	// Get layer
@@ -81,7 +81,7 @@ function createListItem(feature) {
 		item.className = "search-result";
 		item.innerHTML = "<h3>"+address+"</h3><p>Owned by: "+owner+"</br>Total properties owned: "+owned+"</p><button type='button'>Download their data</button>";
 		searchResultsList.appendChild(item);
-	}
+	};
 };
 
 function clearSearchResults() {
@@ -133,10 +133,10 @@ map.on("load", function() {
 						"filter": ["==", "Address", address]
 					});
 					matchingAddresses.push(matchingAddress);
-				}
+				};
 			});
 			searchInput.style.display = "block";
-		}
+		};
 	};
 	request.send();
 
@@ -150,9 +150,7 @@ map.on("load", function() {
 		});
 		console.log("search results"+results);
 
-		matchingAddresses.forEach(function(matchingAddress, index) {	
-			console.log("INDEX"+index);
-			const filesDone = index >= matchingAddresses.length - 1;		
+		matchingAddresses.forEach(function(matchingAddress) {	
 			if (results.indexOf(matchingAddress) > -1) {
 				console.log("visible");
 				/*
@@ -171,9 +169,8 @@ map.on("load", function() {
 					"none"
 				);
 				*/
-			}
+			};	
 		});
-
 		renderResults(results);
 	});	
 });

@@ -106,7 +106,13 @@ map.on("load", function() {
 						"type": "circle",
 						"source": "buildings",
 						"paint": {
-							"circle-radius": 4,
+							"circle-radius": {
+								"base": 3,
+								"stops": [
+									[12, 3],
+									[22, 180]
+								]
+							},
 							"circle-color": [
 								"step",
 								["get", "Properties Held by Owner"],
@@ -115,9 +121,7 @@ map.on("load", function() {
 								5, "#990000",
 								50, "#ff6666",
 								200, "#ff9999"
-							],
-							"circle-stroke-color": "#660000",
-							"circle-stroke-width": 1,
+							]
 						},
 						"filter": ["==", "Property Address", address]
 					});
@@ -144,7 +148,7 @@ function matchAddresses(e) {
 		// Return feature when trimmed input is found in buildings array
 		return address.indexOf(value) > -1;
 	});
-	console.log("search results ["+results+"]");
+	console.log("search results populated");
 
 	buildings.forEach(function(e) {	
 		var layerID = e.properties["Property Address"];
@@ -156,7 +160,6 @@ function matchAddresses(e) {
 				"visibility",
 				"visible"
 			);
-			console.log("building visible");
 		} else {
 			// Hide it otherwise
 			map.setLayoutProperty(
@@ -164,7 +167,6 @@ function matchAddresses(e) {
 				"visibility",
 				"none"
 			);
-			console.log("building hidden");
 		};	
 	});
 	// Call function once map is rendered
@@ -173,7 +175,6 @@ function matchAddresses(e) {
 	function afterChangeComplete () {
 		// Map isn't loaded, bail out
 		if (!map.loaded()) { 
-			console.log("map isn't loaded");
 			return; 
 		};
 

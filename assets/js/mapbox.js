@@ -151,26 +151,40 @@ map.on("load", function() {
 		console.log("search results"+results);
 
 		matchingAddresses.forEach(function(matchingAddress) {	
+			var layer = map.queryRenderedFeatures({ layers: [matchingAddress] });
+
 			if (results.indexOf(matchingAddress) > -1) {
 				console.log("visible");
-				/*
+				
 				map.setLayoutProperty(
 					matchingAddress,
 					"visibility",
 					"visible"
 				);
-				*/
+				
 			} else {
 				console.log("none");
-				/*
+				
 				map.setLayoutProperty(
 					matchingAddress,
 					"visibility",
 					"none"
 				);
-				*/
+				
 			};	
 		});
-		renderResults(results);
+		// Call function once map is rendered
+		map.on('render', afterChangeComplete);
+
+		function afterChangeComplete () {
+			// Map isn't loaded, bail out
+			if (!map.loaded()) { return }
+
+			// Map is loaded, render list
+			renderResults(results);
+
+			// Remove handler once completed
+			map.off('render', afterChangeComplete);
+		}
 	});	
 });

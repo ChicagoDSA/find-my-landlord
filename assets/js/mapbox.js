@@ -185,6 +185,6 @@ map.on("load", function() {
 
 			// Remove handler once completed
 			map.off('render', afterChangeComplete);
-		}
+		};
 	});	
 });

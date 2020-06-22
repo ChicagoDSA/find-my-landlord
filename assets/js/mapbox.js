@@ -24,7 +24,7 @@ map.addControl(new mapboxgl.NavigationControl());
 
 function renderResults(features) {
 	clearSearchResults();
-	
+
 	if (features.length) {		
 		// Results were found
 		// Show container
@@ -135,56 +135,61 @@ map.on("load", function() {
 					matchingAddresses.push(matchingAddress);
 				};
 			});
+			// Show input once loaded
 			searchInput.style.display = "block";
+
+			// Add listener
+			searchInput.addEventListener("keyup", matchAddresses);
 		};
 	};
 	request.send();
 
-	searchInput.addEventListener("keyup", function(e) {
-		var value = e.target.value.trim().toLowerCase();
-		console.log("key up"+value);
-
-		// Create list of search results
-		var results = matchingAddresses.filter(function(matchingAddress) {
-			return matchingAddress.indexOf(value) > -1;
-		});
-		console.log("search results"+results);
-
-		matchingAddresses.forEach(function(matchingAddress) {	
-			var layer = map.queryRenderedFeatures({ layers: [matchingAddress] });
-
-			if (results.indexOf(matchingAddress) > -1) {
-				console.log("visible");
-				
-				map.setLayoutProperty(
-					matchingAddress,
-					"visibility",
-					"visible"
-				);
-				
-			} else {
-				console.log("none");
-				
-				map.setLayoutProperty(
-					matchingAddress,
-					"visibility",
-					"none"
-				);
-				
-			};	
-		});
-		// Call function once map is rendered
-		map.on('render', afterChangeComplete);
-
-		function afterChangeComplete () {
-			// Map isn't loaded, bail out
-			if (!map.loaded()) { return }
-
-			// Map is loaded, render list
-			renderResults(results);
-
-			// Remove handler once completed
-			map.off('render', afterChangeComplete);
-		};
-	});	
 });
+
+function matchAddresses(e) {
+	var value = e.target.value.trim().toLowerCase();
+	console.log("key up ["+value+"]");
+
+	// Create list of search results
+	var results = matchingAddresses.filter(function(matchingAddress) {
+		return matchingAddress.indexOf(value) > -1;
+	});
+	console.log("search results ["+results+"]");
+
+	matchingAddresses.forEach(function(matchingAddress) {	
+		var layer = map.queryRenderedFeatures({ layers: [matchingAddress] });
+		console.log("rendered features ["+JSON.stringify(layer)+"]");
+
+		if (results.indexOf(matchingAddress) > -1) {
+			console.log("building visible");
+			
+			map.setLayoutProperty(
+				matchingAddress,
+				"visibility",
+				"visible"
+			);
+			
+		} else {
+			console.log("building hidden");
+			
+			map.setLayoutProperty(
+				matchingAddress,
+				"visibility",
+				"none"
+			);
+		};	
+	});
+	// Call function once map is rendered
+	map.on('render', afterChangeComplete);
+
+	function afterChangeComplete () {
+		// Map isn't loaded, bail out
+		if (!map.loaded()) { return };
+
+		// Map is loaded, render list
+		renderResults(results);
+
+		// Remove handler once completed
+		map.off('render', afterChangeComplete);
+	};
+};

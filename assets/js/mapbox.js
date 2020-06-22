@@ -149,25 +149,30 @@ map.on("load", function() {
 			return matchingAddress.indexOf(value) > -1;
 		});
 		console.log("search results"+results);
-	
 
-		// Show and hide buildings based on results
-		matchingAddresses.forEach(function(matchingAddress) {
-			console.log("matching");
+		matchingAddresses.forEach(function(matchingAddress, index) {	
+			console.log("INDEX"+index);
+			const filesDone = index >= matchingAddresses.length - 1;		
 			if (results.indexOf(matchingAddress) > -1) {
+				console.log("visible");
+				/*
 				map.setLayoutProperty(
 					matchingAddress,
 					"visibility",
 					"visible"
 				);
+				*/
 			} else {
+				console.log("none");
+				/*
 				map.setLayoutProperty(
 					matchingAddress,
 					"visibility",
 					"none"
 				);
+				*/
 			}
-		});	
+		});
 
 		renderResults(results);
 	});	

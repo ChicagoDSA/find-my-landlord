@@ -41,24 +41,24 @@ function renderResults(features) {
 		features.forEach(function(feature) {
 			createListItem(feature);
 		});
-	} else if (features.length == 0 && searchInput.value != '') {
+	} else if (features.length == 0 && searchInput.value != "") {
 		// No results found
 		searchResultsContainer.style.display = "block";
 		searchResultsCounter.innerHTML = "<h4>No search results</h4>";
 		searchResultsList.innerHTML = "<p style='margin: 0'>Sorry, we couldn't find that address. Try something like <b>634 E 50th Pl</b>.</p>";
 	};
 
-	if (searchInput.value == '') {
+	if (searchInput.value == "") {
 		// Input is empty
 		clearSearchResults();
 	};
 };
 
 function createListItem(feature) {
-	var item = document.createElement('div');
-	var address = feature.properties.Address;
-	var owner = feature.properties.Owner;
-	var owned = feature.properties.Owned;
+	var item = document.createElement("div");
+	var address = feature.properties["Property Address"];
+	var owner = feature.properties["Owner Name"];
+	var owned = feature.properties["Properties Held by Owner"];
 
 	item.className = "search-result";
 	item.innerHTML = "<h3>"+address+"</h3><p>Owned by: "+owner+"</br>Total properties owned: "+owned+"</p><button type='button'>Download their data</button>";
@@ -98,7 +98,7 @@ map.on("load", function() {
 			});
 
 			json.features.forEach(function(feature) {	
-				var address = feature.properties['Address'];
+				var address = feature.properties["Property Address"];
 
 				if (!map.getLayer(address)) {
 					map.addLayer({
@@ -109,7 +109,7 @@ map.on("load", function() {
 							"circle-radius": 4,
 							"circle-color": [
 								"step",
-								["get", "Owned"],
+								["get", "Properties Held by Owner"],
 								"#000",
 								0, "#ff9900",
 								5, "#990000",
@@ -119,7 +119,7 @@ map.on("load", function() {
 							"circle-stroke-color": "#660000",
 							"circle-stroke-width": 1,
 						},
-						"filter": ["==", "Address", address]
+						"filter": ["==", "Property Address", address]
 					});
 					buildings.push(feature);
 				};
@@ -140,14 +140,14 @@ function matchAddresses(e) {
 	
 	// Create list of search results
 	var results = buildings.filter(function(feature) {
-		var address = feature.properties.Address.trim().toLowerCase();
+		var address = feature.properties["Property Address"].trim().toLowerCase();
 		// Return feature when trimmed input is found in buildings array
 		return address.indexOf(value) > -1;
 	});
 	console.log("search results ["+results+"]");
 
 	buildings.forEach(function(e) {	
-		var layerID = e.properties.Address;
+		var layerID = e.properties["Property Address"];
 
 		// If building is within search results, show it 
 		if (containsObject(e, results)) {
@@ -168,7 +168,7 @@ function matchAddresses(e) {
 		};	
 	});
 	// Call function once map is rendered
-	map.on('render', afterChangeComplete);
+	map.on("render", afterChangeComplete);
 
 	function afterChangeComplete () {
 		// Map isn't loaded, bail out
@@ -181,6 +181,6 @@ function matchAddresses(e) {
 		renderResults(results);
 
 		// Remove handler once completed
-		map.off('render', afterChangeComplete);
+		map.off("render", afterChangeComplete);
 	};
 };

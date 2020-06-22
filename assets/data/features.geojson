@@ -1,133 +1,605 @@
 {
+  "type": "FeatureCollection",
   "features": [
     {
       "type": "Feature",
       "properties": {
-        "Address": "133 Rockford Ave",
-        "Owned": 71,
-        "Owner": "Greenplan Management"
+        "Property Address": "5047 S Saint Lawrence Ave",
+        "Community Area": "Grand Boulevard",
+        "Geocoder Input": "5047 S Saint Lawrence Ave Cook County, IL",
+        "Lat": 41.8026098,
+        "Long": -87.6111598,
+        "Property Index Number": 2010231007,
+        "Owner": "Pp Fin Chicago 35 Llc",
+        "Owner Mail 1": "549 W Randolph St Fl 2",
+        "Owner Mail 2": "Chicago, Il 60661",
+        "Owner Match Code": "P-00001",
+        "Properties Held by Owner": 388,
+        "Owner Name": "Pangea Properties",
+        "Mailing Addresses Associated with Owner Match Code": 12
       },
       "geometry": {
+        "type": "Point",
         "coordinates": [
-          -87.813581,
-          41.883988
-        ],
-        "type": "Point"
-      },
-      "id": "03e0fc2d7f0b74ee5031ab688dd1df82"
+          -87.61116,
+          41.80261
+        ]
+      }
     },
     {
       "type": "Feature",
       "properties": {
-        "Address": "264 S Marion St",
-        "Owned": 71,
-        "Owner": "Greenplan Management"
+        "Property Address": "5046 S Champlain Ave",
+        "Community Area": "Grand Boulevard",
+        "Geocoder Input": "5046 S Champlain Ave Cook County, IL",
+        "Lat": 41.8024739,
+        "Long": -87.610508,
+        "Property Index Number": 2010231008,
+        "Owner": "Pp Fin Chicago 35 Llc",
+        "Owner Mail 1": "549 W Randolph St Fl 2",
+        "Owner Mail 2": "Chicago, Il 60661",
+        "Owner Match Code": "P-00001",
+        "Properties Held by Owner": 388,
+        "Owner Name": "Pangea Properties",
+        "Mailing Addresses Associated with Owner Match Code": 12
       },
       "geometry": {
+        "type": "Point",
         "coordinates": [
-          -87.802266,
-          41.88338
-        ],
-        "type": "Point"
-      },
-      "id": "144a3a798b6642c95ef2137b65226292"
+          -87.610508,
+          41.802474
+        ]
+      }
     },
     {
       "type": "Feature",
       "properties": {
-        "Address": "712 N Austin Blvd",
-        "Owned": 71,
-        "Owner": "Greenplan Management"
+        "Property Address": "634 E 51st St",
+        "Community Area": "Grand Boulevard",
+        "Geocoder Input": "634 E 51st St Cook County, IL",
+        "Lat": 41.802485,
+        "Long": -87.609813,
+        "Property Index Number": 2010232013,
+        "Owner": "Pp Fin Chicago 35 Llc",
+        "Owner Mail 1": "549 W Randolph St Fl 2",
+        "Owner Mail 2": "Chicago, Il 60661",
+        "Owner Match Code": "P-00001",
+        "Properties Held by Owner": 388,
+        "Owner Name": "Pangea Properties",
+        "Mailing Addresses Associated with Owner Match Code": 12
       },
       "geometry": {
+        "type": "Point",
         "coordinates": [
-          -87.775454,
-          41.893677
-        ],
-        "type": "Point"
-      },
-      "id": "150ef87308d6dc43e8608477c6ac5a15"
+          -87.609813,
+          41.802485
+        ]
+      }
     },
     {
       "type": "Feature",
       "properties": {
-        "Address": "4710 N Damen Ave",
-        "Owned": 71,
-        "Owner": "Silver Property Group"
+        "Property Address": "5032 S Saint Lawrence Ave",
+        "Community Area": "Grand Boulevard",
+        "Geocoder Input": "5032 S Saint Lawrence Ave Cook County, IL",
+        "Lat": 41.802911,
+        "Long": -87.611687,
+        "Property Index Number": 2010230005,
+        "Owner": "Pp Fin Chicago 35 Llc",
+        "Owner Mail 1": "549 W Randolph St Fl 2",
+        "Owner Mail 2": "Chicago, Il 60661",
+        "Owner Match Code": "P-00001",
+        "Properties Held by Owner": 388,
+        "Owner Name": "Pangea Properties",
+        "Mailing Addresses Associated with Owner Match Code": 12
       },
       "geometry": {
+        "type": "Point",
         "coordinates": [
-          -87.679407,
-          41.967328
-        ],
-        "type": "Point"
-      },
-      "id": "3fad58f733514a85d0f3bab740265a5d"
+          -87.611687,
+          41.802911
+        ]
+      }
     },
     {
       "type": "Feature",
       "properties": {
-        "Address": "37 Rockford Ave",
-        "Owned": 71,
-        "Owner": "Greenplan Management"
+        "Property Address": "600 E 50th Pl",
+        "Community Area": "Grand Boulevard",
+        "Geocoder Input": "600 E 50th Pl Cook County, IL",
+        "Lat": 41.803363,
+        "Long": -87.610897,
+        "Property Index Number": 2010225007,
+        "Owner": "Pp Fin Chicago 35 Llc",
+        "Owner Mail 1": "549 W Randolph St Fl 2",
+        "Owner Mail 2": "Chicago, Il 60661",
+        "Owner Match Code": "P-00001",
+        "Properties Held by Owner": 388,
+        "Owner Name": "Pangea Properties",
+        "Mailing Addresses Associated with Owner Match Code": 12
       },
       "geometry": {
+        "type": "Point",
         "coordinates": [
-          -87.813597,
-          41.885449
-        ],
-        "type": "Point"
-      },
-      "id": "7f4e693746cf84fb13bcce098bf28908"
+          -87.610897,
+          41.803363
+        ]
+      }
     },
     {
       "type": "Feature",
       "properties": {
-        "Address": "1444 W Morse Ave",
-        "Owned": 71,
-        "Owner": "Silver Property Group"
+        "Property Address": "634 E 50th Pl",
+        "Community Area": "Grand Boulevard",
+        "Geocoder Input": "634 E 50th Pl Cook County, IL",
+        "Lat": 41.803371,
+        "Long": -87.609681,
+        "Property Index Number": 2010226022,
+        "Owner": "Pp Fin Chicago 35 Llc",
+        "Owner Mail 1": "549 W Randolph St Fl 2",
+        "Owner Mail 2": "Chicago, Il 60661",
+        "Owner Match Code": "P-00001",
+        "Properties Held by Owner": 388,
+        "Owner Name": "Pangea Properties",
+        "Mailing Addresses Associated with Owner Match Code": 12
       },
       "geometry": {
+        "type": "Point",
         "coordinates": [
-          -87.667649,
-          42.008119
-        ],
-        "type": "Point"
-      },
-      "id": "a289ea09c0e5c7b8e0bd09e3e41ded60"
+          -87.609681,
+          41.803371
+        ]
+      }
     },
     {
       "type": "Feature",
       "properties": {
-        "Address": "600 E 50th Pl",
-        "Owned": 388,
-        "Owner": "Pangea Properties"
+        "Property Address": "4859 S Prairie Ave",
+        "Community Area": "Grand Boulevard",
+        "Geocoder Input": "4859 S Prairie Ave Cook County, IL",
+        "Lat": 41.8058942,
+        "Long": -87.6190172,
+        "Property Index Number": 2010110017,
+        "Owner": "Pp P21 1 Llc",
+        "Owner Mail 1": "549 W Randolph St Fl 2",
+        "Owner Mail 2": "Chicago, Il 60661",
+        "Owner Match Code": "P-00001",
+        "Properties Held by Owner": 388,
+        "Owner Name": "Pangea Properties",
+        "Mailing Addresses Associated with Owner Match Code": 12
       },
       "geometry": {
+        "type": "Point",
         "coordinates": [
-          -87.611086,
-          41.803284
-        ],
-        "type": "Point"
-      },
-      "id": "d363e564642fe39b48415857fe34d00e"
+          -87.619017,
+          41.805894
+        ]
+      }
     },
     {
       "type": "Feature",
       "properties": {
-        "Address": "634 E 50th Pl",
-        "Owned": 388,
-        "Owner": "Pangea Properties"
+        "Property Address": "221 E 60th St",
+        "Community Area": "Washington Park",
+        "Geocoder Input": "221 E 60th St Cook County, IL",
+        "Lat": 41.785414,
+        "Long": -87.619483,
+        "Property Index Number": 2015309031,
+        "Owner": "Pp P21 1 Llc",
+        "Owner Mail 1": "549 W Randolph St Fl 2",
+        "Owner Mail 2": "Chicago, Il 60661",
+        "Owner Match Code": "P-00001",
+        "Properties Held by Owner": 388,
+        "Owner Name": "Pangea Properties",
+        "Mailing Addresses Associated with Owner Match Code": 12
       },
       "geometry": {
+        "type": "Point",
         "coordinates": [
-          -87.609835,
-          41.803491
-        ],
-        "type": "Point"
+          -87.619483,
+          41.785414
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Property Address": "6033 S Vernon Ave",
+        "Community Area": "Woodlawn",
+        "Geocoder Input": "6033 S Vernon Ave Cook County, IL",
+        "Lat": 41.7847348,
+        "Long": -87.6141464,
+        "Property Index Number": 2015402008,
+        "Owner": "Pp P22 2 Llc",
+        "Owner Mail 1": "549 W Randolph St Fl 2",
+        "Owner Mail 2": "Chicago, Il 60661",
+        "Owner Match Code": "P-00001",
+        "Properties Held by Owner": 388,
+        "Owner Name": "Pangea Properties",
+        "Mailing Addresses Associated with Owner Match Code": 12
       },
-      "id": "d8d19f9753dfbd8c34d568385714a7a0"
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.614146,
+          41.784735
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Property Address": "2610 N Laramie Ave",
+        "Community Area": "Belmont Cragin",
+        "Geocoder Input": "2610 N Laramie Ave Cook County, IL",
+        "Lat": 41.9282246,
+        "Long": -87.7565359,
+        "Property Index Number": 1328315006,
+        "Owner": "Pp Fin Chicago 19 Llc",
+        "Owner Mail 1": "549 W Randolph St Fl 2",
+        "Owner Mail 2": "Chicago, Il 60661",
+        "Owner Match Code": "P-00001",
+        "Properties Held by Owner": 388,
+        "Owner Name": "Pangea Properties",
+        "Mailing Addresses Associated with Owner Match Code": 12
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.756536,
+          41.928225
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Property Address": "2616 N Laramie Ave",
+        "Community Area": "Belmont Cragin",
+        "Geocoder Input": "2616 N Laramie Ave Cook County, IL",
+        "Lat": 41.928368,
+        "Long": -87.756656,
+        "Property Index Number": 1328315005,
+        "Owner": "Pp Fin Chicago 19 Llc",
+        "Owner Mail 1": "549 W Randolph St Fl 2",
+        "Owner Mail 2": "Chicago, Il 60661",
+        "Owner Match Code": "P-00001",
+        "Properties Held by Owner": 388,
+        "Owner Name": "Pangea Properties",
+        "Mailing Addresses Associated with Owner Match Code": 12
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.756656,
+          41.928368
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Property Address": "4653 W Jackson Blvd",
+        "Community Area": "Austin",
+        "Geocoder Input": "4653 W Jackson Blvd Cook County, IL",
+        "Lat": 41.876605,
+        "Long": -87.742419,
+        "Property Index Number": 1615113001,
+        "Owner": "Pp 23 1 Llc",
+        "Owner Mail 1": "549 W Randolph St Fl 2",
+        "Owner Mail 2": "Chicago, Il 60661",
+        "Owner Match Code": "P-00001",
+        "Properties Held by Owner": 388,
+        "Owner Name": "Pangea Properties",
+        "Mailing Addresses Associated with Owner Match Code": 12
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.742419,
+          41.876605
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Property Address": "5040 W Quincy St",
+        "Community Area": "Austin",
+        "Geocoder Input": "5040 W Quincy St Cook County, IL",
+        "Lat": 41.8778973,
+        "Long": -87.7509919,
+        "Property Index Number": 1616207021,
+        "Owner": "Pp 23 1 Llc",
+        "Owner Mail 1": "549 W Randolph St Fl 2",
+        "Owner Mail 2": "Chicago, Il 60661",
+        "Owner Match Code": "P-00001",
+        "Properties Held by Owner": 388,
+        "Owner Name": "Pangea Properties",
+        "Mailing Addresses Associated with Owner Match Code": 12
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.750992,
+          41.877897
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Property Address": "5036 W Quincy St",
+        "Community Area": "Austin",
+        "Geocoder Input": "5036 W Quincy St Cook County, IL",
+        "Lat": 41.8778928,
+        "Long": -87.7507612,
+        "Property Index Number": 1616207022,
+        "Owner": "Pp Fin Chicago 43 Llc",
+        "Owner Mail 1": "549 W Randolph St Fl 2",
+        "Owner Mail 2": "Chicago, Il 60661",
+        "Owner Match Code": "P-00001",
+        "Properties Held by Owner": 388,
+        "Owner Name": "Pangea Properties",
+        "Mailing Addresses Associated with Owner Match Code": 12
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.750761,
+          41.877893
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Property Address": "5448 W Adams St",
+        "Community Area": "Austin",
+        "Geocoder Input": "5448 W Adams St Cook County, IL",
+        "Lat": 41.878596,
+        "Long": -87.761564,
+        "Property Index Number": 1616104073,
+        "Owner": "Pp P10 3 Llc",
+        "Owner Mail 1": "549 W Randolph St Fl 2",
+        "Owner Mail 2": "Chicago, Il 60661",
+        "Owner Match Code": "P-00001",
+        "Properties Held by Owner": 388,
+        "Owner Name": "Pangea Properties",
+        "Mailing Addresses Associated with Owner Match Code": 12
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.761564,
+          41.878596
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Property Address": "19 S Austin Blvd",
+        "Community Area": "Austin",
+        "Geocoder Input": "19 S Austin Blvd Cook County, IL",
+        "Lat": 41.87937,
+        "Long": -87.774163,
+        "Property Index Number": 1617200007,
+        "Owner": "Pp Fin Chicago 4 Llc",
+        "Owner Mail 1": "549 W Randolph St Fl 2",
+        "Owner Mail 2": "Chicago, Il 60661",
+        "Owner Match Code": "P-00001",
+        "Properties Held by Owner": 388,
+        "Owner Name": "Pangea Properties",
+        "Mailing Addresses Associated with Owner Match Code": 12
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.774163,
+          41.87937
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Property Address": "19 S Austin Blvd",
+        "Community Area": "Austin",
+        "Geocoder Input": "19 S Austin Blvd Cook County, IL",
+        "Lat": 41.87937,
+        "Long": -87.774163,
+        "Property Index Number": 1617200006,
+        "Owner": "Pp Fin Chicago 4 Llc",
+        "Owner Mail 1": "549 W Randolph St Fl 2",
+        "Owner Mail 2": "Chicago, Il 60661",
+        "Owner Match Code": "P-00001",
+        "Properties Held by Owner": 388,
+        "Owner Name": "Pangea Properties",
+        "Mailing Addresses Associated with Owner Match Code": 12
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.774163,
+          41.87937
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Property Address": "5101 W Monroe St",
+        "Community Area": "Austin",
+        "Geocoder Input": "5101 W Monroe St Cook County, IL",
+        "Lat": 41.879136,
+        "Long": -87.753735,
+        "Property Index Number": 1616203005,
+        "Owner": "Pp P7 3 Llc",
+        "Owner Mail 1": "549 W Randolph St Fl 2",
+        "Owner Mail 2": "Chicago, Il 60661",
+        "Owner Match Code": "P-00001",
+        "Properties Held by Owner": 388,
+        "Owner Name": "Pangea Properties",
+        "Mailing Addresses Associated with Owner Match Code": 12
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.753735,
+          41.879136
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Property Address": "5100 W Monroe St",
+        "Community Area": "Austin",
+        "Geocoder Input": "5100 W Monroe St Cook County, IL",
+        "Lat": 41.879662,
+        "Long": -87.753753,
+        "Property Index Number": 1616200012,
+        "Owner": "Pp 23 1 Llc",
+        "Owner Mail 1": "549 W Randolph St Fl 2",
+        "Owner Mail 2": "Chicago, Il 60661",
+        "Owner Match Code": "P-00001",
+        "Properties Held by Owner": 388,
+        "Owner Name": "Pangea Properties",
+        "Mailing Addresses Associated with Owner Match Code": 12
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.753753,
+          41.879662
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Property Address": "4814 W Monroe St",
+        "Community Area": "Austin",
+        "Geocoder Input": "4814 W Monroe St Cook County, IL",
+        "Lat": 41.8797668,
+        "Long": -87.746197,
+        "Property Index Number": 1616202047,
+        "Owner": "Pp Fin Chicago 43 Llc",
+        "Owner Mail 1": "549 W Randolph St Fl 2",
+        "Owner Mail 2": "Chicago, Il 60661",
+        "Owner Match Code": "P-00001",
+        "Properties Held by Owner": 388,
+        "Owner Name": "Pangea Properties",
+        "Mailing Addresses Associated with Owner Match Code": 12
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.746197,
+          41.879767
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Property Address": "5125 W Madison St",
+        "Community Area": "Austin",
+        "Geocoder Input": "5125 W Madison St Cook County, IL",
+        "Lat": 41.880051,
+        "Long": -87.753758,
+        "Property Index Number": 1616200007,
+        "Owner": "Rodinia Holdings 3 Ll",
+        "Owner Mail 1": "549 W Randolph St Fl 2",
+        "Owner Mail 2": "Chicago, Il 60661",
+        "Owner Match Code": "P-00001",
+        "Properties Held by Owner": 388,
+        "Owner Name": "Pangea Properties",
+        "Mailing Addresses Associated with Owner Match Code": 12
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.753758,
+          41.880051
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Property Address": "5100 W Madison St",
+        "Community Area": "Austin",
+        "Geocoder Input": "5100 W Madison St Cook County, IL",
+        "Lat": 41.880817,
+        "Long": -87.752874,
+        "Property Index Number": 1609425039,
+        "Owner": "Pp 23 1 Llc",
+        "Owner Mail 1": "549 W Randolph St Fl 2",
+        "Owner Mail 2": "Chicago, Il 60661",
+        "Owner Match Code": "P-00001",
+        "Properties Held by Owner": 388,
+        "Owner Name": "Pangea Properties",
+        "Mailing Addresses Associated with Owner Match Code": 12
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.752874,
+          41.880817
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Property Address": "5201 W Washington Blvd",
+        "Community Area": "Austin",
+        "Geocoder Input": "5201 W Washington Blvd Cook County, IL",
+        "Lat": 41.882089,
+        "Long": -87.755436,
+        "Property Index Number": 1609324006,
+        "Owner": "Pp Fin Chicago 36 Llc",
+        "Owner Mail 1": "549 W Randolph St Fl 2",
+        "Owner Mail 2": "Chicago, Il 60661",
+        "Owner Match Code": "P-00001",
+        "Properties Held by Owner": 388,
+        "Owner Name": "Pangea Properties",
+        "Mailing Addresses Associated with Owner Match Code": 12
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.755436,
+          41.882089
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Property Address": "5015 W Maypole Ave",
+        "Community Area": "Austin",
+        "Geocoder Input": "5015 W Maypole Ave Cook County, IL",
+        "Lat": 41.8840152,
+        "Long": -87.7509219,
+        "Property Index Number": 1609415015,
+        "Owner": "Pp Fin Chicago 38 Llc",
+        "Owner Mail 1": "549 W Randolph St Fl 2",
+        "Owner Mail 2": "Chicago, Il 60661",
+        "Owner Match Code": "P-00001",
+        "Properties Held by Owner": 388,
+        "Owner Name": "Pangea Properties",
+        "Mailing Addresses Associated with Owner Match Code": 12
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.750922,
+          41.884015
+        ]
+      }
     }
-  ],
-  "type": "FeatureCollection"
+  ]
 }

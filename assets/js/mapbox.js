@@ -81,7 +81,6 @@ function containsObject(obj, list) {
             return true;
         };
     };
-
     return false;
 };
 
@@ -100,11 +99,10 @@ map.on("load", function() {
 
 			json.features.forEach(function(feature) {	
 				var address = feature.properties['Address'];
-				var trimmedAddress = address.trim().toLowerCase();
 
-				if (!map.getLayer(trimmedAddress)) {
+				if (!map.getLayer(address)) {
 					map.addLayer({
-						"id": trimmedAddress,
+						"id": address,
 						"type": "circle",
 						"source": "buildings",
 						"paint": {
@@ -143,29 +141,30 @@ function matchAddresses(e) {
 	// Create list of search results
 	var results = buildings.filter(function(feature) {
 		var address = feature.properties.Address.trim().toLowerCase();
+		// Return feature when trimmed input is found in buildings array
 		return address.indexOf(value) > -1;
 	});
 	console.log("search results ["+results+"]");
 
 	buildings.forEach(function(e) {	
-		var layerID = e.properties.Address.trim().toLowerCase();
+		var layerID = e.properties.Address;
 
+		// If building is within search results, show it 
 		if (containsObject(e, results)) {
-			console.log("building visible");
-			
 			map.setLayoutProperty(
 				layerID,
 				"visibility",
 				"visible"
 			);
+			console.log("building visible");
 		} else {
-			console.log("building hidden");
-			
+			// Hide it otherwise
 			map.setLayoutProperty(
 				layerID,
 				"visibility",
 				"none"
 			);
+			console.log("building hidden");
 		};	
 	});
 	// Call function once map is rendered

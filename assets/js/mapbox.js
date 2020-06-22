@@ -14,7 +14,7 @@ var map = new mapboxgl.Map({
 });
 
 var url = "assets/data/features.geojson";
-var matchingAddresses = [];
+var buildings = [];
 var searchInput = document.getElementById("search-input");
 var searchResultsContainer = document.getElementById("search-results-container");
 var searchResultsCounter = document.getElementById("search-results-counter");
@@ -54,34 +54,15 @@ function renderResults(features) {
 	};
 };
 
-function fetchLayer (feature) {
-	// Get features
-	var layer = map.queryRenderedFeatures({ layers: [feature] });
-
-	// Check if array has content
-	if (Array.isArray(layer) && layer.length) {
-		console.log("loaded");
-		return layer;
-	} else {
-		console.log("not loaded");
-	};
-};
-
 function createListItem(feature) {
-	// Get layer
-	var layer = fetchLayer(feature);
+	var item = document.createElement('div');
+	var address = feature.properties.Address;
+	var owner = feature.properties.Owner;
+	var owned = feature.properties.Owned;
 
-	// If layer exists, create ListItem
-	if (layer != null) {
-		var item = document.createElement('div');
-		var address = layer[0].properties.Address;
-		var owner = layer[0].properties.Owner;
-		var owned = layer[0].properties.Owned;
-
-		item.className = "search-result";
-		item.innerHTML = "<h3>"+address+"</h3><p>Owned by: "+owner+"</br>Total properties owned: "+owned+"</p><button type='button'>Download their data</button>";
-		searchResultsList.appendChild(item);
-	};
+	item.className = "search-result";
+	item.innerHTML = "<h3>"+address+"</h3><p>Owned by: "+owner+"</br>Total properties owned: "+owned+"</p><button type='button'>Download their data</button>";
+	searchResultsList.appendChild(item);
 };
 
 function clearSearchResults() {
@@ -93,6 +74,17 @@ function clearSearchResults() {
 	searchResultsList.innerHTML = "";
 };
 
+function containsObject(obj, list) {
+    var i;
+    for (i = 0; i < list.length; i++) {
+        if (list[i] === obj) {
+            return true;
+        };
+    };
+
+    return false;
+};
+
 map.on("load", function() {
 	// Load GeoJSON
 	var request = new XMLHttpRequest();
@@ -100,7 +92,6 @@ map.on("load", function() {
 	request.onload = function() {
 		if (this.status >= 200 && this.status < 400) {
 			var json = JSON.parse(this.response);
-			console.log(json);
 
 			map.addSource("buildings", {
 				type: "geojson",
@@ -109,11 +100,11 @@ map.on("load", function() {
 
 			json.features.forEach(function(feature) {	
 				var address = feature.properties['Address'];
-				var matchingAddress = address.trim().toLowerCase();
+				var trimmedAddress = address.trim().toLowerCase();
 
-				if (!map.getLayer(matchingAddress)) {
+				if (!map.getLayer(trimmedAddress)) {
 					map.addLayer({
-						"id": matchingAddress,
+						"id": trimmedAddress,
 						"type": "circle",
 						"source": "buildings",
 						"paint": {
@@ -132,7 +123,7 @@ map.on("load", function() {
 						},
 						"filter": ["==", "Address", address]
 					});
-					matchingAddresses.push(matchingAddress);
+					buildings.push(feature);
 				};
 			});
 			// Show input once loaded
@@ -143,37 +134,35 @@ map.on("load", function() {
 		};
 	};
 	request.send();
-
 });
 
 function matchAddresses(e) {
 	var value = e.target.value.trim().toLowerCase();
 	console.log("key up ["+value+"]");
-
+	
 	// Create list of search results
-	var results = matchingAddresses.filter(function(matchingAddress) {
-		return matchingAddress.indexOf(value) > -1;
+	var results = buildings.filter(function(feature) {
+		var address = feature.properties.Address.trim().toLowerCase();
+		return address.indexOf(value) > -1;
 	});
 	console.log("search results ["+results+"]");
 
-	matchingAddresses.forEach(function(matchingAddress) {	
-		var layer = map.queryRenderedFeatures({ layers: [matchingAddress] });
-		console.log("rendered features ["+JSON.stringify(layer)+"]");
+	buildings.forEach(function(e) {	
+		var layerID = e.properties.Address.trim().toLowerCase();
 
-		if (results.indexOf(matchingAddress) > -1) {
+		if (containsObject(e, results)) {
 			console.log("building visible");
 			
 			map.setLayoutProperty(
-				matchingAddress,
+				layerID,
 				"visibility",
 				"visible"
 			);
-			
 		} else {
 			console.log("building hidden");
 			
 			map.setLayoutProperty(
-				matchingAddress,
+				layerID,
 				"visibility",
 				"none"
 			);
@@ -184,7 +173,10 @@ function matchAddresses(e) {
 
 	function afterChangeComplete () {
 		// Map isn't loaded, bail out
-		if (!map.loaded()) { return };
+		if (!map.loaded()) { 
+			console.log("map isn't loaded");
+			return; 
+		};
 
 		// Map is loaded, render list
 		renderResults(results);

@@ -207,7 +207,8 @@ map.on("load", function() {
 			// Show input once loaded
 			searchInput.style.display = "block";
 
-			// Add listener
+			// Add listeners
+			searchInput.addEventListener("change", matchAddresses);
 			searchInput.addEventListener("keyup", matchAddresses);
 		};
 	};

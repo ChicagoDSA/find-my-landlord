@@ -23,6 +23,8 @@ function renderResults(features) {
 		// Results were found
 		// Show container
 		searchResultsContainer.style.display = "block";
+		// Restore scrollbar
+		searchResultsList.style.overflowY = "scroll";
 
 		// Change language depending on number of results
 		if (features.length == 1) {
@@ -39,6 +41,8 @@ function renderResults(features) {
 		// No results found
 		// Show container
 		searchResultsContainer.style.display = "block";
+		// Hide scrollbar
+		searchResultsList.style.overflowY = "scroll";
 
 		// Create elements
 		const headline = document.createElement("h4");
@@ -113,6 +117,7 @@ function highlightPoint(feature, address) {
 	// Clear counter and list HTML
 	searchResultsCounter.innerHTML = "";
 	searchResultsList.innerHTML = "";
+	// Hide scrollbar
 	searchResultsList.style.overflowY = "hidden";
 
 	// Create elements

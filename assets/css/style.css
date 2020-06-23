@@ -60,7 +60,7 @@ body {
 	left: 10px;
 	width: 180px;
 	padding: 10px;
-	line-height: 20px;
+	line-height: normal; /* Fix for IE */
 	color: #808080;
 	border: 0;
 }

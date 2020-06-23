@@ -5,6 +5,10 @@ body {
 	padding: 0;
 }
 
+input [type=text]::-ms-clear {
+	display: none;
+}
+
 /* Map */
 
 #map {

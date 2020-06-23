@@ -81,7 +81,7 @@ function createListItem(feature) {
 };
 
 function highlightText(input, destination) {
-	var regex = new RegExp(input.value, 'gi')
+	var regex = new RegExp(input.value, "gi")
 	var response = destination.innerHTML.replace(regex, function(str) {
 		return "<b>" + str + "</b>"
 	});
@@ -102,11 +102,11 @@ function highlightPoint(feature, address) {
 		var objAtIndex = buildings[i].properties["Property Address"]; 
 		if (address === objAtIndex) {
 			// Show address at full opacity
-			map.setPaintProperty(objAtIndex, 'circle-opacity', 1);
+			map.setPaintProperty(objAtIndex, "circle-opacity", 1);
 		}
 		else {
 			// Dim other points
-			map.setPaintProperty(objAtIndex, 'circle-opacity', .2);
+			map.setPaintProperty(objAtIndex, "circle-opacity", .2);
 		};
 	};
 
@@ -141,7 +141,7 @@ function highlightPoint(feature, address) {
 function clearPointStyles() {
 	for (var i = 0; i < buildings.length; i++) {
 		var objAtIndex = buildings[i].properties["Property Address"]; 
-		map.setPaintProperty(objAtIndex, 'circle-opacity', 1);
+		map.setPaintProperty(objAtIndex, "circle-opacity", 1);
 	};
 };
 

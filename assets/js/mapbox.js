@@ -208,8 +208,9 @@ map.on("load", function() {
 			searchInput.style.display = "block";
 
 			// Add listeners
-			searchInput.addEventListener("mouseup", matchAddresses);
 			searchInput.addEventListener("keyup", matchAddresses);
+			// Fix for IE clear button
+			searchInput.addEventListener("input", matchAddresses);
 		};
 	};
 	request.send();

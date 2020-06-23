@@ -113,7 +113,7 @@ function highlightPoint(feature, address) {
 	// Clear counter and list HTML
 	searchResultsCounter.innerHTML = "";
 	searchResultsList.innerHTML = "";
-	searchResultsList.overflowY = "hidden";
+	searchResultsList.style.overflowY = "hidden";
 
 	// Create elements
 	const headline = document.createElement("h4");

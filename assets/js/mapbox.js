@@ -42,7 +42,7 @@ function renderResults(features) {
 		// Show container
 		searchResultsContainer.style.display = "block";
 		// Hide scrollbar
-		searchResultsList.style.overflowY = "scroll";
+		searchResultsList.style.overflowY = "hidden";
 
 		// Create elements
 		const headline = document.createElement("h4");

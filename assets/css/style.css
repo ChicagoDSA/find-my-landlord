@@ -59,8 +59,8 @@ body {
 	top: 60px;
 	left: 10px;
 	width: 180px;
+	height: 20px;
 	padding: 10px;
-	line-height: normal; /* Fix for IE */
 	color: #808080;
 	border: 0;
 }

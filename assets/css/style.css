@@ -29,6 +29,11 @@ body {
 	background-color: #fff;
 }
 
+#search-input:focus, .empty-container button:focus {
+	outline: none;
+	box-shadow: 0 0 0 2px #0099ff;
+}
+
 #search-results-counter h4, .empty-container p {
 	margin: 0;
 }
@@ -65,11 +70,6 @@ body {
 	border: 0;
 }
 
-#search-input :focus {
-	outline: none;
-	box-shadow: 0 0 0 2px #0099ff;
-}
-
 /* Search results list */
 
 #search-results-container {
@@ -102,6 +102,18 @@ body {
 	margin: 10px;
 }
 
+.empty-container button {
+	width: 100%;
+	margin-top: 10px;
+	padding: 5px;
+	font-weight: bold;
+	color: #fff;
+	border: 1px solid #660000;
+	border-radius: 3px;
+	background-color: #990000;
+	cursor: pointer;
+}
+
 /* Search results listitem */
 
 .search-result {
@@ -114,12 +126,12 @@ body {
 	cursor: pointer;
 }
 
-.search-result p {
-	margin: 0;
-}
-
 #search-results-list .search-result:last-child {
 	border-bottom: 0;
+}
+
+.search-result p {
+	margin: 0;
 }
 
 /* Map legend */

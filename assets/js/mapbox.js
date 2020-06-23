@@ -126,6 +126,7 @@ function highlightPoint(feature, address) {
 	const addressText = document.createElement("h3");
 	const ownerText = document.createElement("p");
 	const ownedText = document.createElement("p");
+	const downloadButton = document.createElement("button");
 
 	// Set values
 	var owner = feature.properties["Owner Name"];
@@ -135,6 +136,7 @@ function highlightPoint(feature, address) {
 	addressText.innerHTML = address;
 	ownerText.innerHTML = "Owner: "+owner;
 	ownedText.innerHTML = "Total properties owned: "+owned;
+	downloadButton.innerHTML = "Download all "+owner+" data";
 
 	// Add content to containers
 	searchResultsCounter.appendChild(headline);
@@ -142,6 +144,16 @@ function highlightPoint(feature, address) {
 	container.appendChild(addressText);
 	container.appendChild(ownerText);
 	container.appendChild(ownedText);
+	container.appendChild(downloadButton);
+
+	// Add button listener
+	downloadButton.onclick = function(){
+		// Create PDF
+		var doc = new jsPDF();
+		doc.text(owner, 10, 10);
+		// Save with trimmed filename
+		doc.save(owner.replace(/\s+/g, "")+".pdf");
+	};
 };
 
 function clearPointStyles() {

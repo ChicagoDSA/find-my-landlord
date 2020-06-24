@@ -107,8 +107,10 @@ function renderFilteredDescription(feature, otherProperties) {
 	container.appendChild(downloadButton);
 
 	if (navigator.userAgent.indexOf("MSIE") >= 0) {
+		console.log("IE");
     	downloadButton.innerHTML = "Internet Explorer doesn't support data downloads, try Chrome!";
 	} else {
+		console.log("supported browser");
 		// Add button listener
 		downloadButton.onclick = function(){
 			createPDF(owner, otherProperties);

@@ -1,12 +1,14 @@
 function createPDF(title, list) {
 	console.log("inside create PDF");
 
-	/*
+	
 	// Set global defaults
 	jsPDF.autoTableSetDefaults({
 		// Black table style
 		headStyles: {fillColor: 0},
 	});
+
+	/*
 
 	// Create PDF
 	var doc = new jsPDF();

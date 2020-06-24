@@ -108,7 +108,6 @@ function renderFilteredDescription(feature, otherProperties) {
 
 	// Add button listener
 	downloadButton.onclick = function(){
-		console.log("clicked");
 		createPDF(owner, otherProperties);
 	};
 }

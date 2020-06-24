@@ -1,14 +1,9 @@
-function createPDF(title, list) {
-	console.log("inside create PDF");
-
-	
+function createPDF(title, list) {	
 	// Set global defaults
 	jsPDF.autoTableSetDefaults({
 		// Black table style
 		headStyles: {fillColor: 0},
 	});
-
-
 
 	// Create PDF
 	var doc = new jsPDF();
@@ -21,27 +16,22 @@ function createPDF(title, list) {
 		"Properties Held by Owner"
 	];
 
-	
-	
 	// Create empty rows array
 	var rows = [];
 
+	createRows();
+	function createRows() {
+	    for (var i = 0; i < list.length; i++) {
+	        var temp = [
+				list[i].properties["Property Address"],
+				list[i].properties["Community Area"],
+				list[i].properties["Owner Name"],
+				list[i].properties["Properties Held by Owner"]
+			];
+			rows.push(temp);
+	    };
+	};
 
-
-	// Add rows
-	list.forEach(feature => {
-		console.log("adding rows");
-		/*var temp = [
-			feature.properties["Property Address"],
-			feature.properties["Community Area"],
-			feature.properties["Owner Name"],
-			feature.properties["Properties Held by Owner"]
-		];
-		rows.push(temp);*/
-	});
-
-	console.log("debugging");
-/*
 	// Create table
 	doc.autoTable({
 		columns: col,
@@ -59,5 +49,4 @@ function createPDF(title, list) {
 	// Save with trimmed filename
 	doc.save(title.replace(/\s+/g, "")+".pdf");
 	console.log("PDF saved");
-	*/
 };

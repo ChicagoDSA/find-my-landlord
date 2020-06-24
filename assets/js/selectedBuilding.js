@@ -13,8 +13,8 @@ function highlightPoint(feature) {
 	});
 
 	// Build list of buildings with the same owner
-	const otherProperties = buildings.filter(function(feature) {
-		const otherPropertiesOwner = owner;
+	const otherProperties = buildings.filter(function(e) {
+		const otherPropertiesOwner = e.properties["Owner Name"];
 		// Return feature when trimmed input is found in buildings array
 		return otherPropertiesOwner.indexOf(owner) > -1;
 	});

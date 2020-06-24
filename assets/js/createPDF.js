@@ -25,11 +25,12 @@ function createPDF(title, list) {
 	
 	// Create empty rows array
 	var rows = [];
-console.log("debugging");
 
-/*
+
+
 	// Add rows
 	list.forEach(feature => {
+		console.log("adding rows");
 		var temp = [
 			feature.properties["Property Address"],
 			feature.properties["Community Area"],
@@ -39,6 +40,8 @@ console.log("debugging");
 		rows.push(temp);
 	});
 
+	console.log("debugging");
+/*
 	// Create table
 	doc.autoTable({
 		columns: col,

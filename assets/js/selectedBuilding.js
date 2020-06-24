@@ -106,8 +106,12 @@ function renderFilteredDescription(feature, otherProperties) {
 	container.appendChild(ownedText);
 	container.appendChild(downloadButton);
 
-	// Add button listener
-	downloadButton.onclick = function(){
-		createPDF(owner, otherProperties);
-	};
+	if (navigator.userAgent.indexOf("MSIE") >= 0) {
+    	downloadButton.innerHTML = "Internet Explorer doesn't support data downloads, try Chrome!";
+	} else {
+		// Add button listener
+		downloadButton.onclick = function(){
+			createPDF(owner, otherProperties);
+		};
+	}	
 }

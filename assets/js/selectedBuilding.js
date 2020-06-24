@@ -106,6 +106,8 @@ function renderFilteredDescription(feature, otherProperties) {
 		console.log("IE");
 		console.log("IE"+navigator.userAgent);
     	downloadButton.innerHTML = "Internet Explorer doesn't support data downloads, try Chrome!";
+		downloadButton.disabled = true;
+		downloadbutton.style.cursor = "default";
 	} else {
 		console.log("supported browser");
 		console.log("not IE"+navigator.userAgent);

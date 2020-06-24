@@ -1,5 +1,7 @@
 function createPDF(title, list) {
 	console.log("inside create PDF");
+
+	/*
 	// Set global defaults
 	jsPDF.autoTableSetDefaults({
 		// Black table style
@@ -48,4 +50,5 @@ function createPDF(title, list) {
 	// Save with trimmed filename
 	doc.save(title.replace(/\s+/g, "")+".pdf");
 	console.log("PDF saved");
+	*/
 };

@@ -25,7 +25,9 @@ function createPDF(title, list) {
 	
 	// Create empty rows array
 	var rows = [];
+console.log("debugging");
 
+/*
 	// Add rows
 	list.forEach(feature => {
 		var temp = [
@@ -37,8 +39,6 @@ function createPDF(title, list) {
 		rows.push(temp);
 	});
 
-	console.log("debugging");
-	/*
 	// Create table
 	doc.autoTable({
 		columns: col,

@@ -155,20 +155,18 @@ function highlightPoint(feature, address) {
 			// Return feature when trimmed input is found in buildings array
 			return otherPropertiesOwner.indexOf(currentOwner) > -1;
 		});
-
-		console.log(JSON.stringify(otherProperties));
-
-
-		jsPDF.autoTableSetDefaults({
-			// Black table style
-    		headStyles: {fillColor: 0},
-  		});
 		
 		createPDF(owner, otherProperties);
 	};
 };
 
 function createPDF(title, list) {
+	// Set global defaults
+	jsPDF.autoTableSetDefaults({
+		// Black table style
+		headStyles: {fillColor: 0},
+	});
+
 	// Create PDF
 	var doc = new jsPDF();
 
@@ -209,6 +207,7 @@ function createPDF(title, list) {
 		});
 	// Save with trimmed filename
 	doc.save(title.replace(/\s+/g, "")+".pdf");
+	console.log("PDF saved");
 }
 
 function clearPointStyles() {

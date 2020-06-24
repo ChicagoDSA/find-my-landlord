@@ -8,7 +8,7 @@ function createPDF(title, list) {
 		headStyles: {fillColor: 0},
 	});
 
-	/*
+
 
 	// Create PDF
 	var doc = new jsPDF();
@@ -20,6 +20,8 @@ function createPDF(title, list) {
 		"Owner Name",
 		"Properties Held by Owner"
 	];
+
+	/*
 	
 	// Create empty rows array
 	var rows = [];

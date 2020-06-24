@@ -31,13 +31,13 @@ function createPDF(title, list) {
 	// Add rows
 	list.forEach(feature => {
 		console.log("adding rows");
-		var temp = [
+		/*var temp = [
 			feature.properties["Property Address"],
 			feature.properties["Community Area"],
 			feature.properties["Owner Name"],
 			feature.properties["Properties Held by Owner"]
 		];
-		rows.push(temp);
+		rows.push(temp);*/
 	});
 
 	console.log("debugging");

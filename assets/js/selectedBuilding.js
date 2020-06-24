@@ -108,12 +108,14 @@ function renderFilteredDescription(feature, otherProperties) {
 
 	if (navigator.userAgent.indexOf("MSIE") >= 0 || navigator.userAgent.indexOf("compatible") >= 0) {
 		console.log("IE");
+		console.log("IE"+navigator.userAgent);
     	downloadButton.innerHTML = "Internet Explorer doesn't support data downloads, try Chrome!";
 	} else {
 		console.log("supported browser");
+		console.log("not IE"+navigator.userAgent);
 		// Add button listener
 		downloadButton.onclick = function(){
-			createPDF(owner, otherProperties);
+			//createPDF(owner, otherProperties);
 		};
 	}	
 }

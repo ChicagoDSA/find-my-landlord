@@ -14,6 +14,17 @@ body {
 	width: 100%;
 }
 
+#marker {
+	margin-top: -22px;
+  	width: 50px;
+  	height: 50px;
+}
+
+#marker svg {
+	width: 100%;
+	height: 100%;
+}
+
 /* Shared styles */
 
 #title, #search-input, #search-results-container, #legend {
@@ -48,8 +59,8 @@ body {
 	top: 10px;
 	left: 10px;
 	color: #fff;
-	border: 1px solid #660000;
-	background-color: #330000;
+	border: 1px solid #808080;
+	background-color: #000;
 }
 
 #title h2 {
@@ -108,9 +119,9 @@ body {
 	padding: 5px;
 	font-weight: bold;
 	color: #fff;
-	border: 1px solid #660000;
+	border: 1px solid #000000;
 	border-radius: 3px;
-	background-color: #990000;
+	background-color: #808080;
 	cursor: pointer;
 }
 
@@ -146,7 +157,7 @@ body {
 	width: 10px;
 	height: 10px;
 	margin-right: 5px;
-	border: 1px solid #660000;
+	border: 1px solid #000;
 	border-radius: 50%;
 }
 

@@ -93,10 +93,6 @@ function renderFilteredDescription(feature, otherProperties) {
 	addressText.innerHTML = address;
 	ownerText.innerHTML = "Owner: "+owner;
 	ownedText.innerHTML = "Total properties owned: "+owned;
-	downloadButton.innerHTML = "Download all "+owner+" data";
-	downloadButton.style.color = setSecondaryColors(feature);
-	downloadButton.style.backgroundColor = setColors(feature);
-	downloadButton.style.borderColor = setSecondaryColors(feature);
 
 	// Add content to containers
 	searchResultsCounter.appendChild(headline);
@@ -113,6 +109,11 @@ function renderFilteredDescription(feature, otherProperties) {
 	} else {
 		console.log("supported browser");
 		console.log("not IE"+navigator.userAgent);
+
+		downloadButton.innerHTML = "Download all "+owner+" data";
+		downloadButton.style.color = setSecondaryColors(feature);
+		downloadButton.style.backgroundColor = setColors(feature);
+		downloadButton.style.borderColor = setSecondaryColors(feature);
 		// Add button listener
 		downloadButton.onclick = function(){
 			//createPDF(owner, otherProperties);

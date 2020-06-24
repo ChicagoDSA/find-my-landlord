@@ -171,6 +171,6 @@ body {
 
 @media screen and (max-height: 600px) {
 	#search-results-list {
-		max-height: 140px;
+		max-height: 160px;
 	}
 }

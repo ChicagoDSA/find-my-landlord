@@ -168,9 +168,3 @@ body {
 		max-height: 200px;
 	}
 }
-
-@media screen and (max-height: 600px) {
-	#search-results-list {
-		max-height: 160px;
-	}
-}

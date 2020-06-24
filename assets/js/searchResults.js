@@ -103,11 +103,11 @@ function clearSearchResults() {
 };
 
 function clearPointStyles() {
-	if (typeof marker !== "undefined") {
+	/*if (typeof marker !== "undefined") {
 		// Remove marker
 		marker.remove();
 		marker = undefined;
-	};
+	};*/
 
 	for (var i = 0; i < buildings.length; i++) {
 		var objAtIndex = buildings[i].properties["Property Address"];

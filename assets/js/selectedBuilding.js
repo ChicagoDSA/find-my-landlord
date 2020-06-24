@@ -106,7 +106,7 @@ function renderFilteredDescription(feature, otherProperties) {
 	container.appendChild(ownedText);
 	container.appendChild(downloadButton);
 
-	if (navigator.userAgent.indexOf("MSIE") >= 0 || navigator.userAgent.indexOf("compatible") >= 0) {
+	if (navigator.userAgent.indexOf("MSIE") >= 0 || navigator.userAgent.indexOf("Trident") >= 0) {
 		console.log("IE");
 		console.log("IE"+navigator.userAgent);
     	downloadButton.innerHTML = "Internet Explorer doesn't support data downloads, try Chrome!";

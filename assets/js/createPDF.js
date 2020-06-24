@@ -1,4 +1,5 @@
 function createPDF(title, list) {
+	console.log("inside create PDF");
 	// Set global defaults
 	jsPDF.autoTableSetDefaults({
 		// Black table style

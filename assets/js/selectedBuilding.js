@@ -1,6 +1,9 @@
 function highlightPoint(feature) {
+	const address = feature.properties["Property Address"];
+	const owner = feature.properties["Owner Name"];
+
 	// Set search input content
-	searchInput.value = feature.properties["Property Address"];
+	searchInput.value = address;
 
 	// Center map on address
 	map.flyTo({
@@ -11,9 +14,9 @@ function highlightPoint(feature) {
 
 	// Build list of buildings with the same owner
 	const otherProperties = buildings.filter(function(feature) {
-		const otherPropertiesOwner = feature.properties["Owner Name"];
+		const otherPropertiesOwner = owner;
 		// Return feature when trimmed input is found in buildings array
-		return otherPropertiesOwner.indexOf(feature.properties["Owner Name"]) > -1;
+		return otherPropertiesOwner.indexOf(owner) > -1;
 	});
 
 	renderFilteredPoints(feature, otherProperties);
@@ -21,9 +24,12 @@ function highlightPoint(feature) {
 };
 
 function renderFilteredPoints(feature, otherProperties) {
+	const address = feature.properties["Property Address"];
+	const owner = feature.properties["Owner Name"];
+
 	for (var i = 0; i < buildings.length; i++) {
 		var objAtIndex = buildings[i].properties["Property Address"]; 
-		if (feature.properties["Property Address"] === objAtIndex) {
+		if (address === objAtIndex) {
 			// Building that matches input
 			map.setPaintProperty(objAtIndex, "circle-opacity", 1);
 
@@ -49,7 +55,7 @@ function renderFilteredPoints(feature, otherProperties) {
 				};
 			};
 			request.send();
-		} else if (buildings[i].properties["Owner Name"] == feature.properties["Owner Name"]) {
+		} else if (buildings[i].properties["Owner Name"] == owner) {
 			// Building with the same owner
 			map.setPaintProperty(objAtIndex, "circle-opacity", .5);
 		}
@@ -62,6 +68,10 @@ function renderFilteredPoints(feature, otherProperties) {
 }
 
 function renderFilteredDescription(feature, otherProperties) {
+	const address = feature.properties["Property Address"];
+	const owner = feature.properties["Owner Name"];
+	const owned = feature.properties["Properties Held by Owner"];
+
 	// Clear counter and list HTML
 	searchResultsCounter.innerHTML = "";
 	searchResultsList.innerHTML = "";
@@ -80,10 +90,10 @@ function renderFilteredDescription(feature, otherProperties) {
 	// Set values
 	headline.innerHTML = "Details";
 	container.className = "empty-container";
-	addressText.innerHTML = feature.properties["Property Address"];
-	ownerText.innerHTML = "Owner: "+feature.properties["Owner Name"];
-	ownedText.innerHTML = "Total properties owned: "+feature.properties["Properties Held by Owner"];
-	downloadButton.innerHTML = "Download all "+feature.properties["Owner Name"]+" data";
+	addressText.innerHTML = address;
+	ownerText.innerHTML = "Owner: "+owner;
+	ownedText.innerHTML = "Total properties owned: "+owned;
+	downloadButton.innerHTML = "Download all "+owner+" data";
 	downloadButton.style.color = setSecondaryColors(feature);
 	downloadButton.style.backgroundColor = setColors(feature);
 	downloadButton.style.borderColor = setSecondaryColors(feature);
@@ -98,22 +108,6 @@ function renderFilteredDescription(feature, otherProperties) {
 
 	// Add button listener
 	downloadButton.onclick = function(){
-		createPDF(feature.properties["Owner Name"], otherProperties);
+		createPDF(owner, otherProperties);
 	};
 }
-
-function clearPointStyles() {
-	if (typeof marker !== "undefined") {
-		// Remove marker
-		marker.remove();
-		marker = undefined;
-	};
-
-	for (var i = 0; i < buildings.length; i++) {
-		var objAtIndex = buildings[i].properties["Property Address"];
-		
-		// Revert to original style 
-		map.setPaintProperty(objAtIndex, "circle-color", setColors(buildings[i]));
-		map.setPaintProperty(objAtIndex, "circle-opacity", defaultOpacity);
-	};
-};

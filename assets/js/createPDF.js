@@ -47,4 +47,4 @@ function createPDF(title, list) {
 	// Save with trimmed filename
 	doc.save(title.replace(/\s+/g, "")+".pdf");
 	console.log("PDF saved");
-}
+};

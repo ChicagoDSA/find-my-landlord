@@ -1,23 +1,25 @@
+// Map setup
 mapboxgl.accessToken = "pk.eyJ1IjoibHVjaWVubGl6bGVwaW9yeiIsImEiOiJjaWluY3lweWUwMWU5dHBrcHlsYnpscjF5In0.siT3_mzRABrCBeG4iGCEYQ";
-
 var map = new mapboxgl.Map({
 	container: "map",
 	style: "mapbox://styles/mapbox/dark-v10",
 	center: [-87.695787, 41.881302], // Fred Hampton mural
 	zoom: 10,
 });
-
 var marker;
-
 var defaultOpacity = .5;
 
+// Data
 var url = "assets/data/features.geojson";
 var buildings = [];
+
+// Page elements
 var searchInput = document.getElementById("search-input");
 var searchResultsContainer = document.getElementById("search-results-container");
 var searchResultsCounter = document.getElementById("search-results-counter");
 var searchResultsList = document.getElementById("search-results-list");
 
+// Add zoom controls
 map.addControl(new mapboxgl.NavigationControl());
 
 map.on("load", function() {

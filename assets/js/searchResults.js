@@ -101,3 +101,19 @@ function clearSearchResults() {
 	searchResultsCounter.innerHTML = "";
 	searchResultsList.innerHTML = "";
 };
+
+function clearPointStyles() {
+	if (typeof marker !== "undefined") {
+		// Remove marker
+		marker.remove();
+		marker = undefined;
+	};
+
+	for (var i = 0; i < buildings.length; i++) {
+		var objAtIndex = buildings[i].properties["Property Address"];
+		
+		// Revert to original style 
+		map.setPaintProperty(objAtIndex, "circle-color", setColors(buildings[i]));
+		map.setPaintProperty(objAtIndex, "circle-opacity", defaultOpacity);
+	};
+};

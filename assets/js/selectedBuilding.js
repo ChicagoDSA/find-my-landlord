@@ -103,19 +103,18 @@ function renderFilteredDescription(feature, otherProperties) {
 	container.appendChild(downloadButton);
 
 	if (navigator.userAgent.indexOf("MSIE") >= 0 || navigator.userAgent.indexOf("Trident") >= 0) {
-		console.log("IE");
-		console.log("IE"+navigator.userAgent);
+		// Show unsupported message
     	downloadButton.innerHTML = "Internet Explorer doesn't support data downloads, try Chrome!";
 		downloadButton.disabled = true;
-		downloadbutton.style.cursor = "default";
+		downloadButton.style.cursor = "default";
+		
 	} else {
-		console.log("supported browser");
-		console.log("not IE"+navigator.userAgent);
-
+		// Set button text and style
 		downloadButton.innerHTML = "Download all "+owner+" data";
 		downloadButton.style.color = setSecondaryColors(feature);
 		downloadButton.style.backgroundColor = setColors(feature);
 		downloadButton.style.borderColor = setSecondaryColors(feature);
+		
 		// Add button listener
 		downloadButton.onclick = function(){
 			//createPDF(owner, otherProperties);

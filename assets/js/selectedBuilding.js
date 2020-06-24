@@ -69,7 +69,7 @@ function renderFilteredPoints(feature, otherProperties) {
 
 function renderFilteredDescription(feature, otherProperties) {
 	const address = feature.properties["Property Address"];
-	const owner = feature.properties["Owner Name"];
+	var owner = feature.properties["Owner Name"];
 	const owned = feature.properties["Properties Held by Owner"];
 
 	// Clear counter and list HTML

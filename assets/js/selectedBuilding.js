@@ -106,7 +106,7 @@ function renderFilteredDescription(feature, otherProperties) {
 		// Show unsupported message
     	downloadButton.innerHTML = "Internet Explorer doesn't support data downloads, try Chrome!";
 		downloadButton.disabled = true;
-		downloadButton.style.cursor = "default";
+		downloadButton.style.cursor = "auto";
 		
 	} else {
 		// Set button text and style

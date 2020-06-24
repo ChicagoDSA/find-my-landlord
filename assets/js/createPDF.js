@@ -21,7 +21,7 @@ function createPDF(title, list) {
 		"Properties Held by Owner"
 	];
 
-	/*
+	
 	
 	// Create empty rows array
 	var rows = [];
@@ -37,6 +37,8 @@ function createPDF(title, list) {
 		rows.push(temp);
 	});
 
+	console.log("debugging");
+	/*
 	// Create table
 	doc.autoTable({
 		columns: col,

@@ -2,32 +2,27 @@ function matchAddresses(e) {
 	var value = e.target.value.trim().toLowerCase();
 	console.log("key up ["+value+"]");
 
-	// Reset highlighted points
-	clearPointStyles();
+	// Reset rendered objects
+	resetSearchResults();
 
-	// Create list of search results
-	var results = buildings.filter(function(feature) {
-		const address = feature.properties["Property Address"].trim().toLowerCase();
-		// Return feature when trimmed input is found in buildings array
-		return address.indexOf(value) > -1;
-	});
+	// Reset points
+	resetPointStyles();
 
-	// Render list
-	console.log("search results populated");
-	renderResults(results);
-};
+	if (value != "") {
+		// Create list of search results
+		var results = buildings.filter(function(feature) {
+			const address = feature.properties["Property Address"].trim().toLowerCase();
+			// Return feature when trimmed input is found in buildings array
+			return address.indexOf(value) > -1;
+		});
 
-function highlightText(input, destination) {
-	const regex = new RegExp(input.value, "gi")
-	const response = destination.innerHTML.replace(regex, function(str) {
-		return "<b>" + str + "</b>"
-	});
-	destination.innerHTML = response;
+		// Render list
+		console.log("search results populated");
+		renderResults(results);
+	};
 };
 
 function renderResults(features) {
-	clearSearchResults();
-
 	if (features.length) {		
 		// Results were found
 		// Show container
@@ -66,11 +61,6 @@ function renderResults(features) {
 		searchResultsCounter.appendChild(headline);
 		searchResultsList.appendChild(description);
 	};
-
-	if (searchInput.value == "") {
-		// Input is empty
-		clearSearchResults();
-	};
 };
 
 function createListItem(feature) {
@@ -89,31 +79,14 @@ function createListItem(feature) {
 
 	// Add click event
 	item.onclick = function(){
-		highlightPoint(feature);
+		selectPoint(feature);
 	};
 };
 
-function clearSearchResults() {
-	// Hide container
-	searchResultsContainer.style.display = "none";
-
-	// Clear counter and list HTML
-	searchResultsCounter.innerHTML = "";
-	searchResultsList.innerHTML = "";
-};
-
-function clearPointStyles() {
-	if (typeof marker !== "undefined") {
-		// Remove marker
-		marker.parentNode.removeChild(marker);
-		marker = undefined;
-	};
-
-	for (var i = 0; i < buildings.length; i++) {
-		var objAtIndex = buildings[i].properties["Property Address"];
-		
-		// Revert to original style 
-		map.setPaintProperty(objAtIndex, "circle-color", setColors(buildings[i]));
-		map.setPaintProperty(objAtIndex, "circle-opacity", defaultOpacity);
-	};
+function highlightText(input, destination) {
+	const regex = new RegExp(input.value, "gi")
+	const response = destination.innerHTML.replace(regex, function(str) {
+		return "<b>" + str + "</b>"
+	});
+	destination.innerHTML = response;
 };

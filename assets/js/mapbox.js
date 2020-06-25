@@ -7,11 +7,19 @@ var map = new mapboxgl.Map({
 	zoom: 10,
 });
 var marker;
+var defaultRadius = {
+	"base": 3,
+	"stops": [
+		[12, 3],
+		[22, 180]
+	]
+};
 var defaultOpacity = .5;
 
 // Data
 var url = "assets/data/features.geojson";
 var buildings = [];
+var buildingAtPoint;
 
 // Page elements
 var searchInput = document.getElementById("search-input");
@@ -44,13 +52,7 @@ map.on("load", function() {
 						"type": "circle",
 						"source": "buildings",
 						"paint": {
-							"circle-radius": {
-								"base": 3,
-								"stops": [
-									[12, 3],
-									[22, 180]
-								]
-							},
+							"circle-radius": defaultRadius,
 							"circle-color": setColors(feature),
 							"circle-opacity": defaultOpacity
 						},
@@ -69,4 +71,32 @@ map.on("load", function() {
 		};
 	};
 	request.send();
+
+	map.on("mousemove", function(e) {
+        const featuresAtPoint = map.queryRenderedFeatures(e.point);
+		buildingAtPoint = getBuildingAtPoint(featuresAtPoint);
+
+		if (buildingAtPoint) {
+			selectedFeature = buildingAtPoint;
+			map.getCanvas().style.cursor = "pointer";
+        } else {
+			map.getCanvas().style.cursor = "";
+			buildingAtPoint = undefined;
+		};
+    });
+
+    map.on("click", function(e) {
+       	if (buildingAtPoint) {
+       		selectPoint(buildingAtPoint);
+       	};
+    });
 });
+
+function getBuildingAtPoint (features) {
+	const filtered = features.filter(function(feature) {
+		const source = feature.layer.source;
+		// Return feature when trimmed input is found in buildings array
+		return source.indexOf("buildings") > -1;
+	});
+	return filtered[0];
+};

@@ -1,14 +1,29 @@
-function highlightPoint(feature) {
+function selectPoint(feature) {
+	const highlightZoom = 12;
 	const address = feature.properties["Property Address"];
 	const owner = feature.properties["Owner Name"];
 
 	// Set search input content
 	searchInput.value = address;
 
+	// Reset points
+	resetPointStyles();
+
+	// Set zoom
+	function setZoom(currentZoom) {
+		if (currentZoom>highlightZoom) {
+			// Respect user zoom
+			return currentZoom;
+		} else {
+			// Zoom in
+			return highlightZoom;
+		};
+	};
+
 	// Center map on address
 	map.flyTo({
 		center: feature.geometry.coordinates,
-		zoom: 12,
+		zoom: setZoom(map.getZoom()),
 		essential: true
 	});
 
@@ -65,7 +80,7 @@ function renderFilteredPoints(feature, otherProperties) {
 			map.setPaintProperty(objAtIndex, "circle-opacity", .5);
 		};
 	};
-}
+};
 
 function renderFilteredDescription(feature, otherProperties) {
 	const address = feature.properties["Property Address"];
@@ -76,6 +91,8 @@ function renderFilteredDescription(feature, otherProperties) {
 	searchResultsCounter.innerHTML = "";
 	searchResultsList.innerHTML = "";
 	
+	// Show container
+	searchResultsContainer.style.display = "block";
 	// Hide scrollbar
 	searchResultsList.style.overflowY = "hidden";
 
@@ -119,5 +136,5 @@ function renderFilteredDescription(feature, otherProperties) {
 		downloadButton.onclick = function(){
 			createPDF(owner, otherProperties);
 		};
-	}	
-}
+	};	
+};

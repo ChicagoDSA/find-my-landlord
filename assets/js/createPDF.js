@@ -19,9 +19,9 @@ function createPDF(title, list) {
 	// Create empty rows array
 	var rows = [];
 
-	createRows();
-	function createRows() {
-	    for (var i = 0; i < list.length; i++) {
+	// Create rows
+	(function () {
+		for (var i = 0; i < list.length; i++) {
 	        var temp = [
 				list[i].properties["Property Address"],
 				list[i].properties["Community Area"],
@@ -30,7 +30,7 @@ function createPDF(title, list) {
 			];
 			rows.push(temp);
 	    };
-	};
+	}());
 
 	// Create table
 	doc.autoTable({

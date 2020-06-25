@@ -32,7 +32,7 @@ map.addControl(new mapboxgl.NavigationControl());
 
 map.on("load", function() {
 	// Load GeoJSON
-	const request = new XMLHttpRequest();
+	var request = new XMLHttpRequest();
 	request.open("GET", url, true);
 	request.onload = function() {
 		if (this.status >= 200 && this.status < 400) {
@@ -44,7 +44,7 @@ map.on("load", function() {
 			});
 
 			json.features.forEach(function(feature) {	
-				const address = feature.properties["Property Address"];
+				var address = feature.properties["Property Address"];
 
 				if (!map.getLayer(address)) {
 					map.addLayer({
@@ -73,7 +73,7 @@ map.on("load", function() {
 	request.send();
 
 	map.on("mousemove", function(e) {
-        const featuresAtPoint = map.queryRenderedFeatures(e.point);
+        var featuresAtPoint = map.queryRenderedFeatures(e.point);
 		buildingAtPoint = getBuildingAtPoint(featuresAtPoint);
 
 		if (buildingAtPoint) {
@@ -93,8 +93,8 @@ map.on("load", function() {
 });
 
 function getBuildingAtPoint (features) {
-	const filtered = features.filter(function(feature) {
-		const source = feature.layer.source;
+	var filtered = features.filter(function(feature) {
+		var source = feature.layer.source;
 		// Return feature when trimmed input is found in buildings array
 		return source.indexOf("buildings") > -1;
 	});

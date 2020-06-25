@@ -1,7 +1,7 @@
 function selectPoint(feature) {
-	const highlightZoom = 12;
-	const address = feature.properties["Property Address"];
-	const owner = feature.properties["Owner Name"];
+	var highlightZoom = 12;
+	var address = feature.properties["Property Address"];
+	var owner = feature.properties["Owner Name"];
 
 	// Set search input content
 	searchInput.value = address;
@@ -28,8 +28,8 @@ function selectPoint(feature) {
 	});
 
 	// Build list of buildings with the same owner
-	const otherProperties = buildings.filter(function(e) {
-		const otherPropertiesOwner = e.properties["Owner Name"];
+	var otherProperties = buildings.filter(function(e) {
+		var otherPropertiesOwner = e.properties["Owner Name"];
 		// Return feature when trimmed input is found in buildings array
 		return otherPropertiesOwner.indexOf(owner) > -1;
 	});
@@ -39,8 +39,8 @@ function selectPoint(feature) {
 };
 
 function renderFilteredPoints(feature, otherProperties) {
-	const address = feature.properties["Property Address"];
-	const owner = feature.properties["Owner Name"];
+	var address = feature.properties["Property Address"];
+	var owner = feature.properties["Owner Name"];
 
 	for (var i = 0; i < buildings.length; i++) {
 		var objAtIndex = buildings[i].properties["Property Address"]; 
@@ -50,7 +50,7 @@ function renderFilteredPoints(feature, otherProperties) {
 
 			var selectedBuilding = buildings[i];
 
-			const request = new XMLHttpRequest();
+			var request = new XMLHttpRequest();
 			request.open("GET", "assets/images/marker.svg", true);
 			request.onload = function() {
 				if (this.status >= 200 && this.status < 400) {
@@ -83,9 +83,9 @@ function renderFilteredPoints(feature, otherProperties) {
 };
 
 function renderFilteredDescription(feature, otherProperties) {
-	const address = feature.properties["Property Address"];
+	var address = feature.properties["Property Address"];
 	var owner = feature.properties["Owner Name"];
-	const owned = feature.properties["Properties Held by Owner"];
+	var owned = feature.properties["Properties Held by Owner"];
 
 	// Clear counter and list HTML
 	searchResultsCounter.innerHTML = "";
@@ -97,12 +97,12 @@ function renderFilteredDescription(feature, otherProperties) {
 	searchResultsList.style.overflowY = "hidden";
 
 	// Create elements
-	const headline = document.createElement("h4");
-	const container = document.createElement("div");
-	const addressText = document.createElement("h3");
-	const ownerText = document.createElement("p");
-	const ownedText = document.createElement("p");
-	const downloadButton = document.createElement("button");
+	var headline = document.createElement("h4");
+	var container = document.createElement("div");
+	var addressText = document.createElement("h3");
+	var ownerText = document.createElement("p");
+	var ownedText = document.createElement("p");
+	var downloadButton = document.createElement("button");
 
 	// Set values
 	headline.innerHTML = "Details";

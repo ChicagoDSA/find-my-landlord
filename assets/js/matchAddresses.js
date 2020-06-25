@@ -11,7 +11,7 @@ function matchAddresses(e) {
 	if (value != "") {
 		// Create list of search results
 		var results = buildings.filter(function(feature) {
-			const address = feature.properties["Property Address"].trim().toLowerCase();
+			var address = feature.properties["Property Address"].trim().toLowerCase();
 			// Return feature when trimmed input is found in buildings array
 			return address.indexOf(value) > -1;
 		});
@@ -49,8 +49,8 @@ function renderResults(features) {
 		searchResultsList.style.overflowY = "hidden";
 
 		// Create elements
-		const headline = document.createElement("h4");
-		const description = document.createElement("p");
+		var headline = document.createElement("h4");
+		var description = document.createElement("p");
 
 		// Set values
 		headline.innerHTML = "No search results";
@@ -64,9 +64,9 @@ function renderResults(features) {
 };
 
 function createListItem(feature) {
-	const item = document.createElement("div");
-	const addressText = document.createElement("p");
-	const address = feature.properties["Property Address"];
+	var item = document.createElement("div");
+	var addressText = document.createElement("p");
+	var address = feature.properties["Property Address"];
 
 	item.className = "search-result";
 	addressText.innerHTML = address;
@@ -84,8 +84,8 @@ function createListItem(feature) {
 };
 
 function highlightText(input, destination) {
-	const regex = new RegExp(input.value, "gi")
-	const response = destination.innerHTML.replace(regex, function(str) {
+	var regex = new RegExp(input.value, "gi")
+	var response = destination.innerHTML.replace(regex, function(str) {
 		return "<b>" + str + "</b>"
 	});
 	destination.innerHTML = response;

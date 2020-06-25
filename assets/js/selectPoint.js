@@ -105,6 +105,11 @@ function renderFilteredDescription(feature, otherProperties) {
 		downloadButton.style.cursor = "auto";
 		
 	} else {
+		if (marker) {		
+			centerMap(marker.getLngLat());
+		};
+
+		/*
 		// Set button text and style
 		downloadButton.innerHTML = "Download all "+owner+" data";
 		downloadButton.style.color = setSecondaryColors(feature);
@@ -115,5 +120,6 @@ function renderFilteredDescription(feature, otherProperties) {
 		downloadButton.onclick = function(){
 			createPDF(owner, otherProperties);
 		};
+		*/
 	};	
 };

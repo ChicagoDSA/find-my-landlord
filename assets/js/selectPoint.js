@@ -1,31 +1,6 @@
 function selectPoint(feature) {
-	var highlightZoom = 12;
 	var address = feature.properties["Property Address"];
 	var owner = feature.properties["Owner Name"];
-
-	// Set search input content
-	searchInput.value = address;
-
-	// Reset points
-	resetPointStyles();
-
-	// Set zoom
-	function setZoom(currentZoom) {
-		if (currentZoom>highlightZoom) {
-			// Respect user zoom
-			return currentZoom;
-		} else {
-			// Zoom in
-			return highlightZoom;
-		};
-	};
-
-	// Center map on address
-	map.flyTo({
-		center: feature.geometry.coordinates,
-		zoom: setZoom(map.getZoom()),
-		essential: true
-	});
 
 	// Build list of buildings with the same owner
 	var otherProperties = buildings.filter(function(e) {
@@ -34,6 +9,10 @@ function selectPoint(feature) {
 		return otherPropertiesOwner.indexOf(owner) > -1;
 	});
 
+	// Set UI
+	searchInput.value = address;
+	centerMap(feature.geometry.coordinates);
+	resetPointStyles();
 	renderFilteredPoints(feature, otherProperties);
 	renderFilteredDescription(feature, otherProperties);
 };
@@ -57,16 +36,16 @@ function renderFilteredPoints(feature, otherProperties) {
 					var svg = this.response;
 
 					// Create marker
-					marker = document.createElement("div");
-					marker.id = "marker";
-					new mapboxgl.Marker(marker)
+					markerContainer = document.createElement("div");
+					markerContainer.id = "marker";
+					marker = new mapboxgl.Marker(markerContainer)
 						.setLngLat(selectedBuilding.geometry.coordinates)
 						.addTo(map);
 
 					// Add SVG to marker
-					marker.innerHTML = svg;
-					marker.children[0].getElementById("outline").setAttribute("stroke", setSecondaryColors(selectedBuilding));
-					marker.children[0].getElementById("shape").setAttribute("fill", setColors(selectedBuilding));
+					markerContainer.innerHTML = svg;
+					markerContainer.children[0].getElementById("outline").setAttribute("stroke", setSecondaryColors(selectedBuilding));
+					markerContainer.children[0].getElementById("shape").setAttribute("fill", setColors(selectedBuilding));
 				};
 			};
 			request.send();

@@ -7,6 +7,8 @@ var map = new mapboxgl.Map({
 	zoom: 10,
 });
 var marker;
+
+// Vars
 var defaultRadius = {
 	"base": 3,
 	"stops": [
@@ -15,6 +17,7 @@ var defaultRadius = {
 	]
 };
 var defaultOpacity = .5;
+var highlightZoom = 12;
 
 // Data
 var url = "assets/data/features.geojson";
@@ -22,6 +25,7 @@ var buildings = [];
 var buildingAtPoint;
 
 // Page elements
+var markerContainer;
 var searchInput = document.getElementById("search-input");
 var searchResultsContainer = document.getElementById("search-results-container");
 var searchResultsCounter = document.getElementById("search-results-counter");

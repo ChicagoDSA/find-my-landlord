@@ -8,10 +8,10 @@ function resetSearchResults() {
 };
 
 function resetPointStyles() {
-	if (typeof marker !== "undefined") {
+	if (typeof markerContainer !== "undefined") {
 		// Remove marker
-		marker.parentNode.removeChild(marker);
-		marker = undefined;
+		markerContainer.parentNode.removeChild(markerContainer);
+		markerContainer = undefined;
 	};
 
 	for (var i = 0; i < buildings.length; i++) {

@@ -38,14 +38,16 @@ function renderFilteredPoints(feature, otherProperties) {
 					// Create marker
 					markerContainer = document.createElement("div");
 					markerContainer.id = "marker";
-					marker = new mapboxgl.Marker(markerContainer)
-						.setLngLat(selectedBuilding.geometry.coordinates)
-						.addTo(map);
 
 					// Add SVG to marker
 					markerContainer.innerHTML = svg;
 					markerContainer.children[0].getElementById("outline").setAttribute("stroke", setSecondaryColors(selectedBuilding));
 					markerContainer.children[0].getElementById("shape").setAttribute("fill", setColors(selectedBuilding));
+					
+					// Add to map
+					marker = new mapboxgl.Marker(markerContainer)
+						.setLngLat(selectedBuilding.geometry.coordinates)
+						.addTo(map);
 				};
 			};
 			request.send();

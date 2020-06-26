@@ -14,6 +14,10 @@ body {
 	width: 100%;
 }
 
+.mapboxgl-canvas-container.mapboxgl-interactive {
+	cursor: move;
+} 
+
 #marker {
 	margin-top: -22px;
   	width: 50px;

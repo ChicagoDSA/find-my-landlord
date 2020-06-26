@@ -30,15 +30,7 @@ var defaultColors = [
 	red,
 	yellow
 ];
-var defaultOpacity = [
-	"case",
-	["boolean",
-		["feature-state", "clicked"],
-		false
-	],
-	1,
-	.5
-];
+var defaultOpacity = .5;
 var highlightZoom = 12;
 
 // Data

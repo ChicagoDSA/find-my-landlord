@@ -3,7 +3,7 @@ function selectPoint(feature) {
 	var owner = feature.properties["Owner Name"];
 
 	// Build list of buildings with the same owner
-	var otherProperties = buildings.filter(function(e) {
+	var otherProperties = json.features.filter(function(e) {
 		var otherPropertiesOwner = e.properties["Owner Name"];
 		// Return feature when trimmed input is found in buildings array
 		return otherPropertiesOwner.indexOf(owner) > -1;
@@ -12,7 +12,7 @@ function selectPoint(feature) {
 	// Set UI
 	searchInput.value = address;
 	centerMap(feature.geometry.coordinates);
-	resetPointStyles();
+	resetPointStyles(feature);
 	renderFilteredPoints(feature, otherProperties);
 	renderFilteredDescription(feature, otherProperties);
 };
@@ -21,13 +21,19 @@ function renderFilteredPoints(feature, otherProperties) {
 	var address = feature.properties["Property Address"];
 	var owner = feature.properties["Owner Name"];
 
-	for (var i = 0; i < buildings.length; i++) {
-		var objAtIndex = buildings[i].properties["Property Address"]; 
+	for (var i = 0; i < json.features.length; i++) {
+		var objAtIndex = json.features[i].properties["Property Address"]; 
 		if (address === objAtIndex) {
 			// Building that matches input
-			map.setPaintProperty(objAtIndex, "circle-opacity", 1);
+			map.setFeatureState({
+		    	source: "propertyData",
+		    	id: feature.id,
+		    }, {
+		    	// TODO deselection logic
+		    	clicked: false
+		    });
 
-			var selectedBuilding = buildings[i];
+			var selectedBuilding = json.features[i];
 
 			var request = new XMLHttpRequest();
 			request.open("GET", "assets/images/marker.svg", true);
@@ -51,14 +57,14 @@ function renderFilteredPoints(feature, otherProperties) {
 				};
 			};
 			request.send();
-		} else if (buildings[i].properties["Owner Name"] == owner) {
+		} else if (json.features[i].properties["Owner Name"] == owner) {
 			// Building with the same owner
-			map.setPaintProperty(objAtIndex, "circle-opacity", .5);
+			// map.setPaintProperty(objAtIndex, "circle-opacity", .5);
 		}
 		else {
 			// All other buildings
-			map.setPaintProperty(objAtIndex, "circle-color", "#000");
-			map.setPaintProperty(objAtIndex, "circle-opacity", .5);
+			// map.setPaintProperty(objAtIndex, "circle-color", "#000");
+			// map.setPaintProperty(objAtIndex, "circle-opacity", .5);
 		};
 	};
 };

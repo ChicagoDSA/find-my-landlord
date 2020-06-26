@@ -9,19 +9,37 @@ var map = new mapboxgl.Map({
 var marker;
 
 // Vars
-var defaultRadius = {
-	"base": 3,
-	"stops": [
-		[12, 3],
-		[22, 180]
-	]
-};
-var defaultOpacity = .5;
+var defaultRadius = [
+	"interpolate",
+	["exponential", 1.75],
+	["zoom"],
+	12, 3,
+	22, 180,
+];
+var defaultColors = [
+	"case",
+	["<", ["get", "Properties Held by Owner"], 5],
+	"#3366ff",
+	["<", ["get", "Properties Held by Owner"], 50],
+	"#ff00ff",
+	["<", ["get", "Properties Held by Owner"], 200],
+	"#ff4d4d",
+	"#ffff00"
+];
+var defaultOpacity = [
+	"case",
+	["boolean",
+		["feature-state", "clicked"],
+		false
+	],
+	1,
+	.5
+];
 var highlightZoom = 12;
 
 // Data
 var url = "assets/data/features.geojson";
-var buildings = [];
+var json = [];
 var buildingAtPoint;
 
 // Page elements
@@ -40,31 +58,25 @@ map.on("load", function() {
 	request.open("GET", url, true);
 	request.onload = function() {
 		if (this.status >= 200 && this.status < 400) {
-			var json = JSON.parse(this.response);
+			json = JSON.parse(this.response);
 
-			map.addSource("buildings", {
+			map.addSource("propertyData", {
 				type: "geojson",
-				data: json
+				data: json,
+				generateId: true
 			});
-
-			json.features.forEach(function(feature) {	
-				var address = feature.properties["Property Address"];
-
-				if (!map.getLayer(address)) {
-					map.addLayer({
-						"id": address,
-						"type": "circle",
-						"source": "buildings",
-						"paint": {
-							"circle-radius": defaultRadius,
-							"circle-color": setColors(feature),
-							"circle-opacity": defaultOpacity
-						},
-						"filter": ["==", "Property Address", address]
-					});
-					buildings.push(feature);
-				};
+			
+			map.addLayer({
+				"id": "buildings",
+				"type": "circle",
+				"source": "propertyData",
+				"paint": {
+					"circle-radius": defaultRadius,
+					"circle-color": defaultColors,
+					"circle-opacity": defaultOpacity
+				},
 			});
+			
 			// Show input once loaded
 			searchInput.style.display = "block";
 
@@ -81,7 +93,6 @@ map.on("load", function() {
 		buildingAtPoint = getBuildingAtPoint(featuresAtPoint);
 
 		if (buildingAtPoint) {
-			selectedFeature = buildingAtPoint;
 			map.getCanvas().style.cursor = "pointer";
         } else {
         	// Restore cursor
@@ -101,7 +112,7 @@ function getBuildingAtPoint (features) {
 	var filtered = features.filter(function(feature) {
 		var source = feature.layer.source;
 		// Return feature when trimmed input is found in buildings array
-		return source.indexOf("buildings") > -1;
+		return source.indexOf("propertyData") > -1;
 	});
 	return filtered[0];
 };

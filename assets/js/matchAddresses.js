@@ -10,7 +10,7 @@ function matchAddresses(e) {
 
 	if (value != "") {
 		// Create list of search results
-		var results = buildings.filter(function(feature) {
+		var results = json.features.filter(function(feature) {
 			var address = feature.properties["Property Address"].trim().toLowerCase();
 			// Return feature when trimmed input is found in buildings array
 			return address.indexOf(value) > -1;

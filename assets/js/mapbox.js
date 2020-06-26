@@ -35,6 +35,9 @@ var searchResultsList = document.getElementById("search-results-list");
 map.addControl(new mapboxgl.NavigationControl());
 
 map.on("load", function() {
+	// Change default cursor style
+	map.getCanvas().style.cursor = "move";
+
 	// Load GeoJSON
 	var request = new XMLHttpRequest();
 	request.open("GET", url, true);
@@ -84,7 +87,8 @@ map.on("load", function() {
 			selectedFeature = buildingAtPoint;
 			map.getCanvas().style.cursor = "pointer";
         } else {
-			map.getCanvas().style.cursor = "";
+        	// Restore cursor
+			map.getCanvas().style.cursor = "move";
 			buildingAtPoint = undefined;
 		};
     });

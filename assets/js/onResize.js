@@ -1,5 +1,5 @@
 window.addEventListener("resize", function () {
-	if (marker) {		
-		centerMap(marker.getLngLat());
+	if (marker) {	
+		map.jumpTo({center: marker.getLngLat()});
 	}
 });

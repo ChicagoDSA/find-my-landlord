@@ -24,14 +24,7 @@ function renderFilteredPoints(feature, otherProperties) {
 	for (var i = 0; i < json.features.length; i++) {
 		var objAtIndex = json.features[i].properties["Property Address"]; 
 		if (address === objAtIndex) {
-			// Building that matches input
-			map.setFeatureState({
-		    	source: "propertyData",
-		    	id: feature.id,
-		    }, {
-		    	// TODO deselection logic
-		    	clicked: false
-		    });
+			// TODO add selected style
 
 			var selectedBuilding = json.features[i];
 
@@ -59,12 +52,11 @@ function renderFilteredPoints(feature, otherProperties) {
 			request.send();
 		} else if (json.features[i].properties["Owner Name"] == owner) {
 			// Building with the same owner
-			// map.setPaintProperty(objAtIndex, "circle-opacity", .5);
+			// TODO add related style
 		}
 		else {
 			// All other buildings
-			// map.setPaintProperty(objAtIndex, "circle-color", "#000");
-			// map.setPaintProperty(objAtIndex, "circle-opacity", .5);
+			// TODO add deemphasized style
 		};
 	};
 };

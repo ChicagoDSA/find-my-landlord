@@ -16,15 +16,19 @@ var defaultRadius = [
 	12, 3,
 	22, 180,
 ];
+var yellow = "#ffff00";
+var red = "#ff4d4d";
+var pink = "#ff00ff";
+var blue = "#3366ff";
 var defaultColors = [
 	"case",
 	["<", ["get", "Properties Held by Owner"], 5],
-	"#3366ff",
+	blue,
 	["<", ["get", "Properties Held by Owner"], 50],
-	"#ff00ff",
+	pink,
 	["<", ["get", "Properties Held by Owner"], 200],
-	"#ff4d4d",
-	"#ffff00"
+	red,
+	yellow
 ];
 var defaultOpacity = [
 	"case",

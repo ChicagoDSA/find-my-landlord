@@ -2,13 +2,13 @@ function setColors(feature) {
 	var count = feature.properties["Properties Held by Owner"];
 
 	if (count < 5) {
-		return "#3366ff";
+		return blue;
 	} else if (count < 50) {
-		return "#ff00ff";
+		return pink;
 	} else if (count < 200) {
-		return "#ff4d4d";
+		return red;
 	} else {
-		return "#ffff00";
+		return yellow;
 	};
 };
 

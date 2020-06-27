@@ -10,10 +10,10 @@ function resetSearchResults() {
 };
 
 function resetPointStyles(feature) {
-	if (typeof markerContainer !== "undefined") {
+	if (markerContainer) {
 		// Remove marker
 		markerContainer.parentNode.removeChild(markerContainer);
-		markerContainer = undefined;
+		markerContainer = null;
 	};
 
 	// Restore layer with complete dataset

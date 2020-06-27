@@ -92,6 +92,7 @@ function addFilteredLayer (name, data, color, opacity) {
 	map.addSource(name, {
 		type: "geojson",
 		data: data,
+		generateId: true
 	});
 
 	// Add to map

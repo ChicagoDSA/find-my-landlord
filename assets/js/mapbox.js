@@ -59,7 +59,6 @@ map.on("load", function() {
 			map.addSource("propertyData", {
 				type: "geojson",
 				data: json,
-				generateId: true
 			});
 			
 			map.addLayer({

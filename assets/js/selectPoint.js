@@ -22,7 +22,7 @@ function renderFilteredPoints(feature, otherProperties) {
 	var owner = feature.properties["Owner Name"];
 	
 	// Create empty GeoJSON objects
-	var selectedPoint= {
+	var otherPoints = {
 	  "type": "FeatureCollection",
 	  "features": []
 	};
@@ -30,7 +30,7 @@ function renderFilteredPoints(feature, otherProperties) {
 	  "type": "FeatureCollection",
 	  "features": []
 	};
-	var otherPoints = {
+	var selectedPoint= {
 	  "type": "FeatureCollection",
 	  "features": []
 	};
@@ -82,28 +82,28 @@ function renderFilteredPoints(feature, otherProperties) {
 	};
 	
 	// Add GeoJSON objects as sources
-	map.addSource("selectedPoint", {
+	map.addSource("otherPoints", {
 		type: "geojson",
-		data: selectedPoint,
+		data: otherPoints,
 	});
 	map.addSource("relatedPoints", {
 		type: "geojson",
 		data: relatedPoints,
 	});
-	map.addSource("otherPoints", {
+	map.addSource("selectedPoint", {
 		type: "geojson",
-		data: otherPoints,
+		data: selectedPoint,
 	});
 	
 	// Add corresponding layers
 	map.addLayer({
-		"id": "selectedPoint",
+		"id": "otherPoints",
 		"type": "circle",
-		"source": "selectedPoint",
+		"source": "otherPoints",
 		"paint": {
 			"circle-radius": defaultRadius,
-			"circle-color": defaultColors,
-			"circle-opacity": 1
+			"circle-color": "#000",
+			"circle-opacity": defaultOpacity
 		},
 	});
 	map.addLayer({
@@ -117,13 +117,13 @@ function renderFilteredPoints(feature, otherProperties) {
 		},
 	});
 	map.addLayer({
-		"id": "otherPoints",
+		"id": "selectedPoint",
 		"type": "circle",
-		"source": "otherPoints",
+		"source": "selectedPoint",
 		"paint": {
 			"circle-radius": defaultRadius,
-			"circle-color": "#000",
-			"circle-opacity": defaultOpacity
+			"circle-color": defaultColors,
+			"circle-opacity": 1
 		},
 	});
 };

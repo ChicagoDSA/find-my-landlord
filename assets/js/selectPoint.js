@@ -36,7 +36,7 @@ function renderFilteredPoints(feature, otherProperties) {
 	};
 
 	// Hide layer with complete dataset
-	map.setPaintProperty("propertyData", "circle-opacity", 0);
+	map.setLayoutProperty("propertyData", "visibility", "none");
 
 	for (var i = 0; i < json.features.length; i++) {
 		var objAtIndex = json.features[i].properties["Property Address"]; 

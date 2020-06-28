@@ -77,8 +77,6 @@ map.on("load", function() {
 		};
 	};
 	request.send();
-
-	setHoverState("propertyData");
 });
 
 map.on("click", function(e) {
@@ -106,14 +104,20 @@ function addFilteredLayer (name, data, color, opacity) {
 			"circle-opacity": opacity
 		},
 	});
+
+	if (name == "propertyData" || name == "relatedPoints") {
+		setHoverState(name);
+	}
 };
 
 function setHoverState (layer) {
 	map.on("mousemove", layer, function(e) {
+		console.log(layer);
 	    var featuresAtPoint = map.queryRenderedFeatures(e.point);
 		buildingAtPoint = getBuildingAtPoint(featuresAtPoint, layer);
 
 		if (buildingAtPoint) {
+			console.log(buildingAtPoint);
 			map.getCanvas().style.cursor = "pointer";
 			// Remove existing state
 			if (buildingID) {
@@ -125,6 +129,7 @@ function setHoverState (layer) {
 			
 			// Set new ID
 		    buildingID = buildingAtPoint.id;
+		    console.log(buildingID);
 		    
 		    // Hover to true
 		    map.setFeatureState({

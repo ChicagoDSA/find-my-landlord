@@ -1,5 +1,4 @@
 function setColors(feature) {
-	console.log("YO"+feature.properties["Properties Held by Owner"]);
 	var count = feature.properties["Properties Held by Owner"];
 
 	if (count == "") {

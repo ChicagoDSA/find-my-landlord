@@ -84,12 +84,6 @@ map.on("load", function() {
 	request.send();
 });
 
-map.on("click", function(e) {
-   	if (buildingAtPoint) {
-   		selectPoint(buildingAtPoint);
-   	};
-});
-
 function addFilteredLayer (name, data, color, opacity) {
 	// Set source data
 	map.addSource(name, {
@@ -148,6 +142,12 @@ function setHoverState (layer) {
 	    	// Clear var
 			buildingAtPoint = null;
 		};
+	});
+
+	map.on("click", layer, function(e) {
+   		if (buildingAtPoint) {
+   			selectPoint(buildingAtPoint);
+   		};
 	});
 
 	map.on("mouseleave", layer, function() {

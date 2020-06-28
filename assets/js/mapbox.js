@@ -13,10 +13,15 @@ var defaultRadius = [
 	"interpolate",
 	["exponential", 1.75],
 	["zoom"],
+	8, ["case",
+		["boolean", ["feature-state", "hover"], false],
+		10,
+		2
+	],
 	12, ["case",
 		["boolean", ["feature-state", "hover"], false],
 		12,
-		3
+		4
 	],
 	22, ["case",
 		["boolean", ["feature-state", "hover"], false],

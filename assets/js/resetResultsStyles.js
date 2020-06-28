@@ -17,7 +17,7 @@ function resetPointStyles(feature) {
 	};
 
 	// Restore layer with complete dataset
-	map.setPaintProperty("buildings", "circle-opacity", defaultOpacity);
+	map.setPaintProperty("propertyData", "circle-opacity", defaultOpacity);
 
 	// Remove selected layers
 	if (map.getLayer("selectedPoint")) {

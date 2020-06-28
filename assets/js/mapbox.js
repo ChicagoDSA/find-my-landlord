@@ -65,22 +65,7 @@ map.on("load", function() {
 		if (this.status >= 200 && this.status < 400) {
 			json = JSON.parse(this.response);
 
-			map.addSource("propertyData", {
-				type: "geojson",
-				data: json,
-				generateId: true
-			});
-			
-			map.addLayer({
-				"id": "buildings",
-				"type": "circle",
-				"source": "propertyData",
-				"paint": {
-					"circle-radius": defaultRadius,
-					"circle-color": defaultColors,
-					"circle-opacity": defaultOpacity
-				},
-			});
+			addFilteredLayer("propertyData", json, defaultColors, defaultOpacity);
 			
 			// Show input once loaded
 			searchInput.style.display = "block";
@@ -93,8 +78,29 @@ map.on("load", function() {
 	};
 	request.send();
 
-	setHoverState("propertyData", "buildings");
+	setHoverState("propertyData");
 });
+
+function addFilteredLayer (name, data, color, opacity) {
+	// Set source data
+	map.addSource(name, {
+		type: "geojson",
+		data: data,
+		generateId: true
+	});
+
+	// Add to map
+	map.addLayer({
+		"id": name,
+		"type": "circle",
+		"source": name,
+		"paint": {
+			"circle-radius": defaultRadius,
+			"circle-color": color,
+			"circle-opacity": opacity
+		},
+	});
+};
 
 map.on("click", function(e) {
    	if (buildingAtPoint) {
@@ -102,17 +108,17 @@ map.on("click", function(e) {
    	};
 });
 
-function setHoverState (source, layer) {
+function setHoverState (layer) {
 	map.on("mousemove", layer, function(e) {
 	    var featuresAtPoint = map.queryRenderedFeatures(e.point);
-		buildingAtPoint = getBuildingAtPoint(featuresAtPoint, source);
+		buildingAtPoint = getBuildingAtPoint(featuresAtPoint, layer);
 
 		if (buildingAtPoint) {
 			map.getCanvas().style.cursor = "pointer";
 			// Remove existing state
 			if (buildingID) {
 				map.removeFeatureState({
-					source: source,
+					source: layer,
 					id: buildingID
 				});
 			};
@@ -122,7 +128,7 @@ function setHoverState (source, layer) {
 		    
 		    // Hover to true
 		    map.setFeatureState({
-		      source: source,
+		      source: layer,
 		      id: buildingID,
 		    }, {
 		    	hover: true
@@ -137,7 +143,7 @@ function setHoverState (source, layer) {
 		// Hover to false
 		if (buildingID) {
 			map.setFeatureState({
-				source: source,
+				source: layer,
 				id: buildingID
 			}, {
 				hover: false

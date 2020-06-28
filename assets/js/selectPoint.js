@@ -36,7 +36,7 @@ function renderFilteredPoints(feature, otherProperties) {
 	};
 
 	// Hide layer with complete dataset
-	map.setPaintProperty("buildings", "circle-opacity", 0);
+	map.setPaintProperty("propertyData", "circle-opacity", 0);
 
 	for (var i = 0; i < json.features.length; i++) {
 		var objAtIndex = json.features[i].properties["Property Address"]; 
@@ -85,27 +85,6 @@ function renderFilteredPoints(feature, otherProperties) {
 	addFilteredLayer("otherPoints", otherPoints, "#000", defaultOpacity);
 	addFilteredLayer("relatedPoints", relatedPoints, defaultColors, defaultOpacity);
 	addFilteredLayer("selectedPoint", selectedPoint, defaultColors, 1);
-};
-
-function addFilteredLayer (name, data, color, opacity) {
-	// Set source data
-	map.addSource(name, {
-		type: "geojson",
-		data: data,
-		generateId: true
-	});
-
-	// Add to map
-	map.addLayer({
-		"id": name,
-		"type": "circle",
-		"source": name,
-		"paint": {
-			"circle-radius": defaultRadius,
-			"circle-color": color,
-			"circle-opacity": opacity
-		},
-	});
 };
 
 function renderFilteredDescription(feature, otherProperties) {

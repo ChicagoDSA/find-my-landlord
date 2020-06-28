@@ -93,11 +93,13 @@ body {
     right: -15px;
     width: 30px;
     height: 30px;
-    font-size: 20px;
-    line-height: 28px;
-    text-align: center;
-    color: #808080;
     cursor: pointer;
+}
+
+#clear img {
+	position: absolute;
+	top: 7px;
+	right: 7px;
 }
 
 /* Search results list */

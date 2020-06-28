@@ -2,6 +2,9 @@ function matchAddresses(e) {
 	var value = e.target.value.trim().toLowerCase();
 	console.log("key up ["+value+"]");
 
+	// Show "x"
+	renderClearButton(value);
+
 	// Reset rendered objects
 	resetSearchResults();
 
@@ -19,6 +22,28 @@ function matchAddresses(e) {
 		// Render list
 		console.log("search results populated");
 		renderResults(results);
+	};
+};
+
+function renderClearButton(value) {
+	if (navigator.userAgent.indexOf("MSIE") >= 0 || navigator.userAgent.indexOf("Trident") >= 0) {
+		// IE already has a clear button
+		// Do nothing
+    	return;
+	} else {
+		// Show if input has content
+		clearButton.style.display = (value.length) ? "block" : "none";
+
+		// Add listener
+		clearButton.onclick = function() {
+			// Hide button
+			this.style.display = "none";
+
+			// Reset UI
+			searchInput.value = "";
+			resetSearchResults();
+			resetPointStyles();
+		};
 	};
 };
 

@@ -54,7 +54,9 @@ var buildingAtPoint = null;
 
 // Page elements
 var markerContainer = null;
+var searchInputContainer = document.getElementById("search-input-container");
 var searchInput = document.getElementById("search-input");
+var clearButton = document.getElementById("clear");
 var searchResultsContainer = document.getElementById("search-results-container");
 var searchResultsCounter = document.getElementById("search-results-counter");
 var searchResultsList = document.getElementById("search-results-list");
@@ -73,7 +75,7 @@ map.on("load", function() {
 			addFilteredLayer("propertyData", json, defaultColors, defaultOpacity);
 			
 			// Show input once loaded
-			searchInput.style.display = "block";
+			searchInputContainer.style.display = "block";
 
 			// Add listeners
 			searchInput.addEventListener("keyup", matchAddresses);

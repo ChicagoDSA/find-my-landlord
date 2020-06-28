@@ -27,13 +27,16 @@ body {
 
 /* Shared styles */
 
-#title, #search-input, #search-results-container, #legend {
+#title, #search-input-container, #search-input, #clear, #search-results-container, #legend {
 	position: absolute;
+	z-index: 1;
+}
+
+#title, #search-input, #search-results-container, #legend {
 	padding: 10px;
 	font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
 	border-radius: 3px;
 	box-shadow: 0 1px 2px #1a1a1a;
-	z-index: 1;
 }
 
 #search-input, #legend {
@@ -69,16 +72,32 @@ body {
 
 /* Search input */
 
-#search-input {
+#search-input-container {
 	display: none;
 	position: absolute;
 	top: 60px;
 	left: 10px;
 	width: 180px;
+}
+
+#search-input {
+	width: 100%;
 	height: 20px;
-	padding: 10px;
 	color: #808080;
 	border: 0;
+}
+
+#clear {
+	display: none;
+	top: 5px;
+    right: -15px;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    line-height: 28px;
+    text-align: center;
+    color: #808080;
+    cursor: pointer;
 }
 
 /* Search results list */

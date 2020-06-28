@@ -139,7 +139,6 @@ function renderFilteredDescription(feature, otherProperties) {
     	downloadButton.innerHTML = "Internet Explorer doesn't support data downloads, try Chrome!";
 		downloadButton.disabled = true;
 		downloadButton.style.cursor = "auto";
-		
 	} else {
 		// Set button text and style
 		downloadButton.innerHTML = "Download all "+owner+" data";

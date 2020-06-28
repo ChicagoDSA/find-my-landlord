@@ -1,13 +1,20 @@
 function selectPoint(feature) {
 	var address = feature.properties["Property Address"];
-	var owner = feature.properties["Owner Name"];
+	var ownerCode = feature.properties["Owner Match Code"];
 
-	// Build list of buildings with the same owner
-	var otherProperties = json.features.filter(function(e) {
-		var otherPropertiesOwner = e.properties["Owner Name"];
-		// Return feature when trimmed input is found in buildings array
-		return otherPropertiesOwner.indexOf(owner) > -1;
-	});
+	// Proceed if selection has an owner
+	if (typeof ownerCode !== "undefined") {
+		// Build list of buildings with the same owner
+		var otherProperties = json.features.filter(function(e) {
+			var otherPropertiesOwner = e.properties["Owner Match Code"];
+
+			// Ignore properties with no owners
+			if(typeof otherPropertiesOwner !== "undefined") {
+				// Return feature when trimmed input is found in buildings array
+				return otherPropertiesOwner.indexOf(ownerCode) > -1;
+			};
+		});
+	};
 
 	// Set UI
 	searchInput.value = address;
@@ -18,7 +25,7 @@ function selectPoint(feature) {
 };
 
 function renderFilteredPoints(feature, otherProperties) {
-	var address = feature.properties["Property Address"];
+	var propertyIndex = feature.properties["Property Index Number"];
 	var owner = feature.properties["Owner Name"];
 	
 	// Create empty GeoJSON objects
@@ -39,8 +46,8 @@ function renderFilteredPoints(feature, otherProperties) {
 	map.setLayoutProperty("propertyData", "visibility", "none");
 
 	for (var i = 0; i < json.features.length; i++) {
-		var objAtIndex = json.features[i].properties["Property Address"]; 
-		if (address === objAtIndex) {
+		var objAtIndex = json.features[i].properties["Property Index Number"]; 
+		if (propertyIndex === objAtIndex) {
 			// Selected building
 			// Add feature to GeoJSON object
 			selectedPoint.features.push(json.features[i]);

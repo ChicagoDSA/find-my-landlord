@@ -45,7 +45,6 @@ var highlightZoom = 12;
 var url = "assets/data/features.geojson";
 var json = [];
 var buildingAtPoint = null;
-var buildingID = null;
 
 // Page elements
 var markerContainer = null;
@@ -90,7 +89,7 @@ function addFilteredLayer (name, data, color, opacity) {
 	map.addSource(name, {
 		type: "geojson",
 		data: data,
-		generateId: true
+		promoteId: "Property Address"
 	});
 
 	// Add to map
@@ -105,19 +104,21 @@ function addFilteredLayer (name, data, color, opacity) {
 		},
 	});
 
-	if (name == "propertyData" || name == "relatedPoints") {
+	// Hover unselected layers
+	if (name != "selectedPoint") {
 		setHoverState(name);
 	}
 };
 
 function setHoverState (layer) {
+	// Declared here to fix duplicates
+	var buildingID = null;
+
 	map.on("mousemove", layer, function(e) {
-		console.log(layer);
 	    var featuresAtPoint = map.queryRenderedFeatures(e.point);
 		buildingAtPoint = getBuildingAtPoint(featuresAtPoint, layer);
 
 		if (buildingAtPoint) {
-			console.log(buildingAtPoint);
 			map.getCanvas().style.cursor = "pointer";
 			// Remove existing state
 			if (buildingID) {
@@ -129,7 +130,6 @@ function setHoverState (layer) {
 			
 			// Set new ID
 		    buildingID = buildingAtPoint.id;
-		    console.log(buildingID);
 		    
 		    // Hover to true
 		    map.setFeatureState({

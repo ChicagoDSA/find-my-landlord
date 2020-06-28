@@ -18,6 +18,7 @@ function selectPoint(feature) {
 
 	// Set UI
 	searchInput.value = address;
+	renderClearButton(address);
 	centerMap(feature.geometry.coordinates);
 	resetPointStyles(feature);
 	renderFilteredPoints(feature, otherProperties);

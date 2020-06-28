@@ -1,9 +1,12 @@
 function centerMap (coordinates) {
-	map.flyTo({
-		center: coordinates,
-		zoom: setZoom(map.getZoom()),
-		essential: true
-	});
+	// Validate coordinates
+	if (coordinates.length == 2) {
+		map.flyTo({
+			center: coordinates,
+			zoom: setZoom(map.getZoom()),
+			essential: true
+		});
+	};
 };
 
 // Set zoom

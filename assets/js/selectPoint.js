@@ -26,7 +26,7 @@ function selectPoint(feature) {
 
 function renderFilteredPoints(feature, otherProperties) {
 	var propertyIndex = feature.properties["Property Index Number"];
-	var owner = feature.properties["Owner Name"];
+	var ownerCode = feature.properties["Owner Match Code"];
 	
 	// Create empty GeoJSON objects
 	var otherPoints = {
@@ -70,13 +70,16 @@ function renderFilteredPoints(feature, otherProperties) {
 					markerContainer.children[0].getElementById("shape").setAttribute("fill", setColors(selectedBuilding));
 					
 					// Add to map
-					marker = new mapboxgl.Marker(markerContainer)
-						.setLngLat(selectedBuilding.geometry.coordinates)
-						.addTo(map);
+					// Validate coordinates
+					if (selectedBuilding.geometry.coordinates.length == 2) {
+						marker = new mapboxgl.Marker(markerContainer)
+							.setLngLat(selectedBuilding.geometry.coordinates)
+							.addTo(map);
+					};
 				};
 			};
 			request.send();
-		} else if (json.features[i].properties["Owner Name"] == owner) {
+		} else if (json.features[i].properties["Owner Match Code"] == ownerCode) {
 			// Building with the same owner
 			// Add feature to GeoJSON object
 			relatedPoints.features.push(json.features[i]);

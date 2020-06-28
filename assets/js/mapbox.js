@@ -33,6 +33,7 @@ var yellow = "#ffff00";
 var red = "#ff4d4d";
 var pink = "#ff00ff";
 var blue = "#3366ff";
+var gray = "#808080";
 var defaultColors = [
 	"case",
 	["<", ["get", "Properties Held by Owner"], 5],
@@ -94,7 +95,7 @@ function addFilteredLayer (name, data, color, opacity) {
 	map.addSource(name, {
 		type: "geojson",
 		data: data,
-		promoteId: "Property Address"
+		promoteId: "Property Index Number"
 	});
 
 	// Add to map

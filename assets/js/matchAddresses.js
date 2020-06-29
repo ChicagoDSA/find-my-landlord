@@ -26,11 +26,7 @@ function matchAddresses(e) {
 };
 
 function renderClearButton(value) {
-	if (navigator.userAgent.indexOf("MSIE") >= 0 || navigator.userAgent.indexOf("Trident") >= 0) {
-		// IE already has a clear button
-		// Do nothing
-    	return;
-	} else {
+	if (checkIE() == false) {
 		// Show if input has content
 		clearButton.style.display = (value.length) ? "block" : "none";
 

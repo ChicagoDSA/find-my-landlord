@@ -38,12 +38,12 @@ function createPDF(title, list) {
 		body: rows,
 		didDrawPage: function (data) {
   			// Set header
-  			doc.setFontSize(20)
-  			doc.setTextColor(40)
-  			doc.setFontStyle("bold")
-  			doc.text(title, data.settings.margin.left, 20)
+  			doc.setFontSize(20);
+  			doc.setTextColor(40);
+  			doc.setFontStyle("bold");
+  			doc.text(title, data.settings.margin.left, 20);
 		},
-		margin: {top: 30},
+		margin: {top: 30}
 		});
 	
 	// Save with trimmed filename

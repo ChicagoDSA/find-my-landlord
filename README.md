@@ -1,4 +1,4 @@
 # Cook County Rental Properties
-A map of Cook County rental properties relative to the size of their owners.
+Who owns your rental? Find your landlord's other properties.
 
-Built with [Mapbox](https://www.mapbox.com/).
+Built with [Mapbox](https://www.mapbox.com/) and [jsPDF](https://github.com/MrRio/jsPDF).

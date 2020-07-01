@@ -92,6 +92,9 @@ map.on("load", function() {
 		};
 	};
 	request.send();
+
+	// Remove persisted value
+	searchInput.value = "";
 });
 
 function addFilteredLayer (name, data, color, opacity) {

@@ -1,11 +1,19 @@
 // Map setup
 mapboxgl.accessToken = "pk.eyJ1IjoibHVjaWVubGl6bGVwaW9yeiIsImEiOiJjaWluY3lweWUwMWU5dHBrcHlsYnpscjF5In0.siT3_mzRABrCBeG4iGCEYQ";
-var map = new mapboxgl.Map({
-	container: "map",
-	style: "mapbox://styles/mapbox/dark-v10?optimize=true",
-	center: [-87.695787, 41.881302], // Fred Hampton mural
-	zoom: 10,
+
+var control = new mapboxgl.AttributionControl({
+	customAttribution: "<a href='https://github.com/ChicagoDSA/rental-property-owners'>View this project on GitHub</a>"
 });
+
+var map = new mapboxgl.Map({
+		container: "map",
+		style: "mapbox://styles/mapbox/dark-v10?optimize=true",
+		center: [-87.695787, 41.881302], // Fred Hampton mural
+		zoom: 10,
+		attributionControl: false
+	})
+	.addControl(control);
+
 var marker;
 
 // Vars
@@ -27,7 +35,7 @@ var defaultRadius = [
 		["boolean", ["feature-state", "hover"], false],
 		360,
 		180
-	],
+	]
 ];
 var yellow = "#ffff00";
 var red = "#ff4d4d";
@@ -136,7 +144,7 @@ function setHoverState (layer) {
 		    // Hover to true
 		    map.setFeatureState({
 		      source: layer,
-		      id: buildingID,
+		      id: buildingID
 		    }, {
 		    	hover: true
 		    });

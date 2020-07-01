@@ -5,8 +5,6 @@ function resetSearchResults() {
 	// Clear counter and list HTML
 	searchResultsCounter.innerHTML = "";
 	searchResultsList.innerHTML = "";
-
-	
 };
 
 function resetPointStyles(feature) {

@@ -1,5 +1,5 @@
 // Map setup
-mapboxgl.accessToken = "pk.eyJ1IjoibHVjaWVubGl6bGVwaW9yeiIsImEiOiJjaWluY3lweWUwMWU5dHBrcHlsYnpscjF5In0.siT3_mzRABrCBeG4iGCEYQ";
+mapboxgl.accessToken = "pk.eyJ1IjoibHVjaWVubGl6bGVwaW9yeiIsImEiOiJja2M2YTN3dG8wYmZlMnp0ZXBzZzJuM3JsIn0.n6bA8boNS3LQW1izwa6MKg";
 
 var control = new mapboxgl.AttributionControl({
 	customAttribution: "<a href='https://github.com/ChicagoDSA/rental-property-owners'>View this project on GitHub</a>"

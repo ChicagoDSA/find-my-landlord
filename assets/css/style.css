@@ -72,7 +72,7 @@ body {
 	display: inline-block;
 	width: auto;
 	margin-top: 10px;
-	margin-right: 60px;
+	margin-right: 49px; /* Leave room for map controls */
 	margin-left: 10px;
 }
 
@@ -182,7 +182,7 @@ body {
 
 #legend {
 	right: 10px;
-	bottom: 80px;
+	bottom: 60px; /* Leave room for compact attribution overlay */
 	z-index: 1;
 }
 

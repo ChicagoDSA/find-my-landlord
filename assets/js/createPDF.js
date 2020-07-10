@@ -6,14 +6,15 @@ function createPDF(title, list) {
 	});
 
 	// Create PDF
-	var doc = new jsPDF();
+	var doc = new jsPDF("l");
 
 	// Set column titles
 	var col = [
 		"Property Address",
 		"Community Area",
-		"Owner Name",
-		"Properties Held by Owner"
+		"Affiliated With",
+		"Total Properties Owned",
+		"Taxpayer"
 	];
 
 	// Create empty rows array
@@ -25,8 +26,9 @@ function createPDF(title, list) {
 	        var temp = [
 				list[i].properties["Property Address"],
 				list[i].properties["Community Area"],
-				list[i].properties["Owner Name"],
-				list[i].properties["Properties Held by Owner"]
+				list[i].properties["Affiliated With"],
+				list[i].properties["Properties Held by Affiliated With"],
+				list[i].properties["Taxpayer"]
 			];
 			rows.push(temp);
 	    };

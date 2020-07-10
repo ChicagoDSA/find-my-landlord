@@ -44,11 +44,11 @@ var blue = "#3366ff";
 var gray = "#808080";
 var defaultColors = [
 	"case",
-	["<", ["get", "Properties Held by Owner"], 5],
+	["<", ["get", "Properties Held by Affiliated With"], 5],
 	blue,
-	["<", ["get", "Properties Held by Owner"], 50],
+	["<", ["get", "Properties Held by Affiliated With"], 50],
 	pink,
-	["<", ["get", "Properties Held by Owner"], 200],
+	["<", ["get", "Properties Held by Affiliated With"], 200],
 	red,
 	yellow
 ];

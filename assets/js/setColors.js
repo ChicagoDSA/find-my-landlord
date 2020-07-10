@@ -1,5 +1,5 @@
 function setColors(feature) {
-	var count = feature.properties["Properties Held by Owner"];
+	var count = feature.properties["Properties Held by Affiliated With"];
 
 	if (count == "") {
 		return gray;
@@ -15,7 +15,7 @@ function setColors(feature) {
 };
 
 function setSecondaryColors(feature) {
-	var count = feature.properties["Properties Held by Owner"];
+	var count = feature.properties["Properties Held by Affiliated With"];
 
 	if (count == "") {
 		return "#000000";

@@ -1,17 +1,17 @@
 function selectPoint(feature) {
 	var address = feature.properties["Property Address"];
-	var ownerCode = feature.properties["Owner Match Code"];
+	var affiliatedWith = feature.properties["Affiliated With"];
 
-	// Proceed if selection has an owner
-	if (typeof ownerCode !== "undefined") {
-		// Build list of buildings with the same owner
+	// Proceed if selection has an affliated with
+	if (typeof affiliatedWith !== "undefined") {
+		// Build list of buildings with the same affliated with
 		var otherProperties = json.features.filter(function(e) {
-			var otherPropertiesOwner = e.properties["Owner Match Code"];
+			var otherPropertiesAffiliatedWith = e.properties["Affiliated With"];
 
-			// Ignore properties with no owners
-			if(typeof otherPropertiesOwner !== "undefined") {
+			// Ignore properties with no affliated with
+			if(typeof otherPropertiesAffiliatedWith !== "undefined") {
 				// Return feature when trimmed input is found in buildings array
-				return otherPropertiesOwner.indexOf(ownerCode) > -1;
+				return otherPropertiesAffiliatedWith.indexOf(affiliatedWith) > -1;
 			};
 		});
 	};
@@ -27,7 +27,7 @@ function selectPoint(feature) {
 
 function renderFilteredPoints(feature, otherProperties) {
 	var propertyIndex = feature.properties["Property Index Number"];
-	var ownerCode = feature.properties["Owner Match Code"];
+	var affiliatedWith = feature.properties["Affiliated With"];
 	
 	// Create empty GeoJSON objects
 	var otherPoints = {
@@ -80,8 +80,8 @@ function renderFilteredPoints(feature, otherProperties) {
 				};
 			};
 			request.send();
-		} else if (json.features[i].properties["Owner Match Code"] == ownerCode) {
-			// Building with the same owner
+		} else if (json.features[i].properties["Affiliated With"] == affiliatedWith) {
+			// Building with the same affliated with
 			// Add feature to GeoJSON object
 			relatedPoints.features.push(json.features[i]);
 		}
@@ -100,8 +100,9 @@ function renderFilteredPoints(feature, otherProperties) {
 
 function renderFilteredDescription(feature, otherProperties) {
 	var address = feature.properties["Property Address"];
-	var owner = feature.properties["Owner Name"];
-	var owned = feature.properties["Properties Held by Owner"];
+	var affiliatedWith = feature.properties["Affiliated With"];
+	var owned = feature.properties["Properties Held by Affiliated With"];
+	var taxpayer = feature.properties["Taxpayer"];
 
 	// Clear counter and list HTML
 	searchResultsCounter.innerHTML = "";
@@ -116,23 +117,26 @@ function renderFilteredDescription(feature, otherProperties) {
 	var headline = document.createElement("h4");
 	var container = document.createElement("div");
 	var addressText = document.createElement("h3");
-	var ownerText = document.createElement("p");
+	var affiliatedWithText = document.createElement("p");
 	var ownedText = document.createElement("p");
+	var taxpayerText = document.createElement("p");
 	var downloadButton = document.createElement("button");
 
 	// Set values
 	headline.innerHTML = "Details";
 	container.className = "empty-container";
 	addressText.innerHTML = address;
-	ownerText.innerHTML = "Owner: "+owner;
+	affiliatedWithText.innerHTML = "Affiliated with: "+affiliatedWith;
 	ownedText.innerHTML = "Total properties owned: "+owned;
+	taxpayerText.innerHTML = "Taxpayer: "+taxpayer;
 
 	// Add content to containers
 	searchResultsCounter.appendChild(headline);
 	searchResultsList.appendChild(container);
 	container.appendChild(addressText);
-	container.appendChild(ownerText);
+	container.appendChild(affiliatedWithText);
 	container.appendChild(ownedText);
+	container.appendChild(taxpayerText);
 	container.appendChild(downloadButton);
 
 	if (checkIE() == true) {
@@ -142,14 +146,14 @@ function renderFilteredDescription(feature, otherProperties) {
 		downloadButton.style.cursor = "auto";
 	} else {
 		// Set button text and style
-		downloadButton.innerHTML = "Download all "+owner+" data";
+		downloadButton.innerHTML = "Download all "+affiliatedWith+" data";
 		downloadButton.style.color = setSecondaryColors(feature);
 		downloadButton.style.backgroundColor = setColors(feature);
 		downloadButton.style.borderColor = setSecondaryColors(feature);
 		
 		// Add button listener
 		downloadButton.onclick = function(){
-			createPDF(owner, otherProperties);
+			createPDF(affiliatedWith, otherProperties);
 		};
 	};
 };

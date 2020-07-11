@@ -201,11 +201,3 @@ body {
 	border: 1px solid #000;
 	border-radius: 50%;
 }
-
-/* Responsive */
-
-@media screen and (max-height: 700px) {
-	#search-results-list {
-		max-height: 200px;
-	}
-}

@@ -45,33 +45,38 @@ body {
 #search-results-container,
 #legend {
 	padding: 10px;
-	font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
-	border-radius: 3px;
-	box-shadow: 0 1px 2px #1a1a1a;
 }
 
-#search-input,
+#title,
+#legend,
+#search-results-container  {
+	font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+#search-input {
+	font: 16px/1.5 bold "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
 #search-results-container,
 #legend {
 	background-color: #fff;
+}
+
+#top-container,
+#legend {
+	box-shadow: 0 1px 2px #1a1a1a;
 }
 
 #search-input-container,
 #search-results-container {
 	display: none;
 	position: relative;
-	margin-top: 10px;
 }
 
 #search-input:focus,
 .empty-container button:focus {
 	outline: none;
-	box-shadow: 0 0 0 2px #0099ff;
-}
-
-#search-input,
-.empty-container table tr td:first-child {
-	color: #808080;
+	box-shadow: inset 0 0 0 2px #0099ff;
 }
 
 #search-results-counter h4,
@@ -93,8 +98,9 @@ body {
 
 #top-container {
 	display: inline-block;
-	width: auto;
-	padding: 10px 10px 0 10px;
+	width: 360px;
+	overflow: hidden;
+	border-radius: 0 0 3px 0;
 }
 
 /* Site title */
@@ -102,7 +108,6 @@ body {
 #title {
 	position: relative;
 	color: #fff;
-	border: 1px solid #808080;
 	background-color: #000;
 }
 
@@ -123,6 +128,7 @@ body {
 	width: 100%;
 	height: 100%;
 	border: 0;
+	background-color: #f2f2f2;
 }
 
 #clear {
@@ -149,18 +155,13 @@ body {
 }
 
 #search-results-counter {
-	position: absolute;
-	top: 0;
-	right: 0;
-	left: 0;
 	padding: 5px 10px;
 	color: #fff;
-	background-color: #000;
+	background-color: #808080;
 }
 
 #search-results-list {
 	max-height: 260px;
-	margin-top: 30px;
 	overflow-y: scroll;
 }
 
@@ -181,13 +182,18 @@ body {
 	border-bottom: none;
 }
 
+.empty-container table tr td:first-child {
+	width: 160px;
+	color: #808080;
+}
+
 .empty-container button {
 	width: 100%;
 	padding: 10px;
 	font-weight: bold;
 	color: #fff;
 	border: 1px solid #000000;
-	border-radius: 3px;
+	border-radius: 6px;
 	background-color: #808080;
 	cursor: pointer;
 }
@@ -200,7 +206,7 @@ body {
 }
 
 .search-result:hover {
-	background-color: #e6e6e6;
+	background-color: #e6f5ff;
 	cursor: pointer;
 }
 
@@ -216,9 +222,9 @@ body {
 
 #legend {
 	width: 180px;
-	margin-right: 10px;
 	margin-bottom: 10px;
 	margin-left: auto;
+	border-radius: 3px 0 0 3px;
 	pointer-events: auto;
 }
 
@@ -240,5 +246,6 @@ body {
 
 	#top-container {
 		width: 100%;
+		border-radius: 0;
 	}
 }

@@ -116,7 +116,6 @@ function renderFilteredDescription(feature, otherProperties) {
 	// Create elements
 	var headline = document.createElement("h4");
 	var container = document.createElement("div");
-	var addressText = document.createElement("h3");
 	
 	// Create definition list
 	var infoTable = document.createElement("table");
@@ -135,8 +134,7 @@ function renderFilteredDescription(feature, otherProperties) {
 	// Set values
 	headline.innerHTML = "Details";
 	container.className = "empty-container";
-	addressText.innerHTML = address;
-	
+
 	// Apply attributes to definition list
 	affiliatedWithLabel.innerHTML = "Affiliated with:";
 	affiliatedWithValue.innerHTML = affiliatedWith;
@@ -148,7 +146,6 @@ function renderFilteredDescription(feature, otherProperties) {
 	// Add content to containers
 	searchResultsCounter.appendChild(headline);
 	searchResultsList.appendChild(container);
-	container.appendChild(addressText);
 	container.appendChild(infoTable);
 	// First row
 	infoTable.appendChild(affiliatedWithRow);

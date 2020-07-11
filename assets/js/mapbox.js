@@ -1,21 +1,5 @@
 // Map setup
 mapboxgl.accessToken = "pk.eyJ1IjoibHVjaWVubGl6bGVwaW9yeiIsImEiOiJja2M2YTN3dG8wYmZlMnp0ZXBzZzJuM3JsIn0.n6bA8boNS3LQW1izwa6MKg";
-
-var control = new mapboxgl.AttributionControl({
-	customAttribution: "<a href='https://github.com/ChicagoDSA/rental-property-owners'>View this project on GitHub</a>"
-});
-
-var map = new mapboxgl.Map({
-		container: "map",
-		style: "mapbox://styles/mapbox/dark-v10?optimize=true",
-		center: [-87.695787, 41.881302], // Fred Hampton mural
-		zoom: 10,
-		attributionControl: false
-	})
-	.addControl(control);
-
-var marker;
-
 // Vars
 var defaultRadius = [
 	"interpolate",
@@ -69,8 +53,55 @@ var searchResultsContainer = document.getElementById("search-results-container")
 var searchResultsCounter = document.getElementById("search-results-counter");
 var searchResultsList = document.getElementById("search-results-list");
 
-// Add zoom controls
-map.addControl(new mapboxgl.NavigationControl());
+// Set map defaults
+var map = new mapboxgl.Map({
+		container: "map",
+		style: "mapbox://styles/mapbox/dark-v10?optimize=true",
+		center: [-87.695787, 41.881302], // Fred Hampton mural
+		zoom: 10,
+		attributionControl: false
+	});
+
+// Get bottom-right control
+var bottomRightClass = document.getElementsByClassName("mapboxgl-ctrl-bottom-right");
+var bottomRightControl = bottomRightClass[0];
+
+// Create legend
+var legendContainer = document.createElement("div");
+var legendTitle = document.createElement("h4");
+var legend200plus = document.createElement("div");
+var legend50plus = document.createElement("div");
+var legend5plus = document.createElement("div");
+var legendLess5 = document.createElement("div");
+
+// Set content
+legendContainer.id = "legend";
+legendTitle.innerHTML = "Owned by a landlord with...";
+legend200plus.innerHTML = "<span style='background-color: "+yellow+"'></span>200+ properties";
+legend50plus.innerHTML = "<span style='background-color: "+red+"'></span>50+ properties";
+legend5plus.innerHTML = "<span style='background-color: "+pink+"'></span>5+ properties";
+legendLess5.innerHTML = "<span style='background-color: "+blue+"'></span>Less than 5 properties";
+
+// Add attribution control
+var attributionControl = new mapboxgl.AttributionControl({
+	customAttribution: "<a href='https://github.com/ChicagoDSA/rental-property-owners'>View this project on GitHub</a>"
+});
+map.addControl(attributionControl);
+
+// Add legend inside control
+bottomRightControl.insertBefore(legendContainer, bottomRightControl.firstChild);
+legendContainer.appendChild(legendTitle);
+legendContainer.appendChild(legend200plus);
+legendContainer.appendChild(legend50plus);
+legendContainer.appendChild(legend5plus);
+legendContainer.appendChild(legendLess5);
+
+// Add navigation
+var navigationControl = new mapboxgl.NavigationControl();
+map.addControl(navigationControl, "top-right");
+
+// Store marker
+var marker;
 
 map.on("load", function() {
 	// Load GeoJSON

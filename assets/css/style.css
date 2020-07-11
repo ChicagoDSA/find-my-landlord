@@ -1,5 +1,9 @@
 /* Global elements */
 
+* {
+	box-sizing: border-box;
+}
+
 body {
 	margin: 0;
 	padding: 0;
@@ -28,56 +32,68 @@ body {
 
 /* Shared styles */
 
-#title, #search-input, #search-results-container, #legend {
+#title,
+#search-input,
+#search-results-container,
+#legend {
 	padding: 10px;
 	font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
 	border-radius: 3px;
 	box-shadow: 0 1px 2px #1a1a1a;
 }
 
-#search-input, #search-results-container, #legend {
+#search-input-container,
+#search-input,
+#search-results-container,
+#search-results-list {
+	width: 100%;
+}
+
+#search-input,
+#search-results-container,
+#legend {
 	background-color: #fff;
 }
 
-#search-input-container, #search-results-container {
+#search-input-container,
+#search-results-container {
 	display: none;
 	position: relative;
 	margin-top: 10px;
 }
 
-#search-input:focus, .empty-container button:focus {
+#search-input:focus,
+.empty-container button:focus {
 	outline: none;
 	box-shadow: 0 0 0 2px #0099ff;
 }
 
-#search-input, .empty-container dt {
+#search-input,
+.empty-container dt {
 	color: #808080;
 }
 
-#clear, #legend {
-	position: absolute;
-}
-
-#search-results-counter h4, .empty-container p {
+#search-results-counter h4,
+.empty-container p {
 	margin: 0;
 }
 
-.empty-container h3, #legend h4 {
+.empty-container h3,
+#legend h4 {
 	margin: 0 0 10px;
 }
 
 /* Primary interaction area */
 
-#top-left, #top-left * {
+#top-container,
+#top-container * {
 	z-index: 2;
 }
 
-#top-left {
+#top-container {
 	display: inline-block;
 	width: auto;
-	margin-top: 10px;
-	margin-right: 49px; /* Leave room for map controls */
-	margin-left: 10px;
+	padding: 10px 10px 0 10px;
 }
 
 /* Site title */
@@ -96,19 +112,23 @@ body {
 /* Search input */
 
 #search-input-container {
-	width: 180px;
+	padding: 20px;
 }
 
 #search-input {
+	position: absolute;
+	top: 0;
+	left: 0;
 	width: 100%;
-	height: 20px;
+	height: 100%;
 	border: 0;
 }
 
 #clear {
 	display: none;
+	position: absolute;
 	top: 5px;
-    right: -15px;
+    right: 5px;
     width: 30px;
     height: 30px;
     cursor: pointer;
@@ -123,7 +143,6 @@ body {
 /* Search results list */
 
 #search-results-container {
-	width: 200px;
 	padding: 0;
 	overflow: hidden;
 }
@@ -139,7 +158,6 @@ body {
 }
 
 #search-results-list {
-	width: 200px;
 	max-height: 260px;
 	margin-top: 30px;
 	overflow-y: scroll;
@@ -188,9 +206,11 @@ body {
 /* Map legend */
 
 #legend {
-	right: 10px;
-	bottom: 60px; /* Leave room for compact attribution overlay */
-	z-index: 1;
+	width: 180px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	margin-left: auto;
+	pointer-events: auto;
 }
 
 #legend div span {
@@ -200,4 +220,16 @@ body {
 	margin-right: 5px;
 	border: 1px solid #000;
 	border-radius: 50%;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 640px) {
+	.mapboxgl-ctrl-group {
+		display: none;
+	}
+
+	#top-container {
+		width: 100%;
+	}
 }

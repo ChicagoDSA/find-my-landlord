@@ -119,13 +119,16 @@ function renderFilteredDescription(feature, otherProperties) {
 	var addressText = document.createElement("h3");
 	
 	// Create definition list
-	var definitionList = document.createElement("dl");
-	var affiliatedWithLabel = document.createElement("dt");
-	var affiliatedWithValue = document.createElement("dd");
-	var ownedLabel = document.createElement("dt");
-	var ownedValue = document.createElement("dd");
-	var taxpayerLabel = document.createElement("dt");
-	var taxpayerValue = document.createElement("dd");
+	var infoTable = document.createElement("table");
+	var affiliatedWithRow = document.createElement("tr");
+	var affiliatedWithLabel = document.createElement("td");
+	var affiliatedWithValue = document.createElement("td");
+	var ownedRow = document.createElement("tr");
+	var ownedLabel = document.createElement("td");
+	var ownedValue = document.createElement("td");
+	var taxpayerRow = document.createElement("tr");
+	var taxpayerLabel = document.createElement("td");
+	var taxpayerValue = document.createElement("td");
 
 	var downloadButton = document.createElement("button");
 
@@ -146,13 +149,19 @@ function renderFilteredDescription(feature, otherProperties) {
 	searchResultsCounter.appendChild(headline);
 	searchResultsList.appendChild(container);
 	container.appendChild(addressText);
-	container.appendChild(definitionList);
-	definitionList.appendChild(affiliatedWithLabel);
-	definitionList.appendChild(affiliatedWithValue);
-	definitionList.appendChild(ownedLabel);
-	definitionList.appendChild(ownedValue);
-	definitionList.appendChild(taxpayerLabel);
-	definitionList.appendChild(taxpayerValue);
+	container.appendChild(infoTable);
+	// First row
+	infoTable.appendChild(affiliatedWithRow);
+	affiliatedWithRow.appendChild(affiliatedWithLabel);
+	affiliatedWithRow.appendChild(affiliatedWithValue);
+	// Second row
+	infoTable.appendChild(ownedRow);
+	ownedRow.appendChild(ownedLabel);
+	ownedRow.appendChild(ownedValue);
+	// Third row
+	infoTable.appendChild(taxpayerRow);
+	taxpayerRow.appendChild(taxpayerLabel);
+	taxpayerRow.appendChild(taxpayerValue);
 	
 	container.appendChild(downloadButton);
 

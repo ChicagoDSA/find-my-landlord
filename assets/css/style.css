@@ -32,6 +32,14 @@ body {
 
 /* Shared styles */
 
+#search-input-container,
+#search-input,
+#search-results-container,
+#search-results-list,
+.empty-container table {
+	width: 100%;
+}
+
 #title,
 #search-input,
 #search-results-container,
@@ -40,13 +48,6 @@ body {
 	font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
 	border-radius: 3px;
 	box-shadow: 0 1px 2px #1a1a1a;
-}
-
-#search-input-container,
-#search-input,
-#search-results-container,
-#search-results-list {
-	width: 100%;
 }
 
 #search-input,
@@ -69,7 +70,7 @@ body {
 }
 
 #search-input,
-.empty-container dt {
+.empty-container table tr td:first-child {
 	color: #808080;
 }
 
@@ -167,14 +168,22 @@ body {
 	margin: 10px;
 }
 
-.empty-container dd {
-	margin-left: 16px;
-	margin-bottom: 6px;
+.empty-container table {
+	margin-bottom: 10px;
+	border-collapse: collapse;
+}
+
+.empty-container table tr {
+	border-bottom: 1px solid #808080;
+}
+
+.empty-container table tr:last-child {
+	border-bottom: none;
 }
 
 .empty-container button {
 	width: 100%;
-	padding: 5px;
+	padding: 10px;
 	font-weight: bold;
 	color: #fff;
 	border: 1px solid #000000;

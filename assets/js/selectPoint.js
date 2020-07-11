@@ -117,26 +117,43 @@ function renderFilteredDescription(feature, otherProperties) {
 	var headline = document.createElement("h4");
 	var container = document.createElement("div");
 	var addressText = document.createElement("h3");
-	var affiliatedWithText = document.createElement("p");
-	var ownedText = document.createElement("p");
-	var taxpayerText = document.createElement("p");
+	
+	// Create definition list
+	var definitionList = document.createElement("dl");
+	var affiliatedWithLabel = document.createElement("dt");
+	var affiliatedWithValue = document.createElement("dd");
+	var ownedLabel = document.createElement("dt");
+	var ownedValue = document.createElement("dd");
+	var taxpayerLabel = document.createElement("dt");
+	var taxpayerValue = document.createElement("dd");
+
 	var downloadButton = document.createElement("button");
 
 	// Set values
 	headline.innerHTML = "Details";
 	container.className = "empty-container";
 	addressText.innerHTML = address;
-	affiliatedWithText.innerHTML = "Affiliated with: "+affiliatedWith;
-	ownedText.innerHTML = "Total properties owned: "+owned;
-	taxpayerText.innerHTML = "Taxpayer: "+taxpayer;
+	
+	// Apply attributes to definition list
+	affiliatedWithLabel.innerHTML = "Affiliated with:";
+	affiliatedWithValue.innerHTML = affiliatedWith;
+	ownedLabel.innerHTML = "Total properties owned:";
+	ownedValue.innerHTML = owned;
+	taxpayerLabel.innerHTML = "Taxpayer:";
+	taxpayerValue.innerHTML = taxpayer;
 
 	// Add content to containers
 	searchResultsCounter.appendChild(headline);
 	searchResultsList.appendChild(container);
 	container.appendChild(addressText);
-	container.appendChild(affiliatedWithText);
-	container.appendChild(ownedText);
-	container.appendChild(taxpayerText);
+	container.appendChild(definitionList);
+	definitionList.appendChild(affiliatedWithLabel);
+	definitionList.appendChild(affiliatedWithValue);
+	definitionList.appendChild(ownedLabel);
+	definitionList.appendChild(ownedValue);
+	definitionList.appendChild(taxpayerLabel);
+	definitionList.appendChild(taxpayerValue);
+	
 	container.appendChild(downloadButton);
 
 	if (checkIE() == true) {

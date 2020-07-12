@@ -179,6 +179,7 @@ body {
 }
 
 .empty-container table tr {
+	vertical-align: top;
 	border-bottom: 1px solid #808080;
 }
 

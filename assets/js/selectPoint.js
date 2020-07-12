@@ -115,16 +115,16 @@ function renderFilteredDescription(feature, otherProperties) {
 	
 	// Show container
 	searchResultsContainer.style.display = "block";
+	// Hide counter
+	searchResultsCounter.style.display = "none";
 	// Hide scrollbar
 	searchResultsList.style.overflowY = "hidden";
 
 	// Create elements
-	var headline = document.createElement("h4");
 	var container = document.createElement("div");
 	var infoTable = document.createElement("table");
 
 	// Set values
-	headline.innerHTML = "Details";
 	container.className = "empty-container";
 
 	// Affiliated entity
@@ -174,7 +174,6 @@ function renderFilteredDescription(feature, otherProperties) {
 	};
 
 	// Add content to containers
-	searchResultsCounter.appendChild(headline);
 	searchResultsList.appendChild(container);
 	container.insertBefore(infoTable, container.firstChild);
 

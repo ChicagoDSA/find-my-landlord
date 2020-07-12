@@ -1,6 +1,8 @@
 function resetSearchResults() {
 	// Hide container
 	searchResultsContainer.style.display = "none";
+	// Hide counter
+	searchResultsCounter.style.display = "none";
 
 	// Clear counter and list HTML
 	searchResultsCounter.innerHTML = "";

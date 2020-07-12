@@ -45,6 +45,8 @@ function renderResults(features) {
 		// Results were found
 		// Show container
 		searchResultsContainer.style.display = "block";
+		// Show counter
+		searchResultsCounter.style.display = "block";
 		// Restore scrollbar
 		searchResultsList.style.overflowY = "scroll";
 
@@ -63,6 +65,8 @@ function renderResults(features) {
 		// No results found
 		// Show container
 		searchResultsContainer.style.display = "block";
+		// Show counter
+		searchResultsCounter.style.display = "block";
 		// Hide scrollbar
 		searchResultsList.style.overflowY = "hidden";
 

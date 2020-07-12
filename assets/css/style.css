@@ -54,7 +54,7 @@ body {
 }
 
 #search-input {
-	font: 16px/1.5 bold "Helvetica Neue", Arial, Helvetica, sans-serif;
+	font: 14px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
 #search-results-container,
@@ -76,7 +76,6 @@ body {
 #search-input:focus,
 .empty-container button:focus {
 	outline: none;
-	box-shadow: inset 0 0 0 2px #0099ff;
 }
 
 #search-results-counter h4,
@@ -127,8 +126,13 @@ body {
 	left: 0;
 	width: 100%;
 	height: 100%;
+	font-weight: bold;
 	border: 0;
 	background-color: #f2f2f2;
+}
+
+#search-input:focus {
+	box-shadow: inset 0 -10px 0 -8px #0099ff;
 }
 
 #clear {
@@ -196,6 +200,10 @@ body {
 	border-radius: 6px;
 	background-color: #808080;
 	cursor: pointer;
+}
+
+.empty-container button:focus {
+	box-shadow: 0 0 0 2px #0099ff;
 }
 
 /* Search results listitem */

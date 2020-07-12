@@ -12,17 +12,10 @@ body {
 
 /* Map */
 
-#map {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	width: 100%;
-}
-
 #marker {
 	margin-top: -22px;
-  	width: 50px;
-  	height: 50px;
+	width: 50px;
+	height: 50px;
 }
 
 #marker svg {
@@ -49,20 +42,19 @@ body {
 
 #title,
 #legend,
-#search-results-container  {
+#search-results-container,
+#modal-content {
 	font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
-#search-input {
-	font: 14px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
-}
-
 #search-results-container,
+#modal-content,
 #legend {
 	background-color: #fff;
 }
 
 #top-container,
+#modal-content,
 #legend {
 	box-shadow: 0 1px 2px #1a1a1a;
 }
@@ -88,11 +80,19 @@ body {
 	margin: 0 0 10px;
 }
 
+#map,
+#modal-background {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+}
+
 /* Primary interaction area */
 
 #top-container,
 #top-container * {
-	z-index: 2;
+	z-index: 1;
 }
 
 #top-container {
@@ -126,6 +126,7 @@ body {
 	left: 0;
 	width: 100%;
 	height: 100%;
+	font: 14px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	border: 0;
 	background-color: #f2f2f2;
@@ -135,20 +136,25 @@ body {
 	box-shadow: inset 0 -10px 0 -8px #0099ff;
 }
 
-#clear {
-	display: none;
+#clear,
+#modal-close {
 	position: absolute;
 	top: 5px;
-    right: 5px;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
+	right: 5px;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
 }
 
-#clear img {
+#clear img,
+#modal-close img {
 	position: absolute;
 	top: 7px;
 	right: 7px;
+}
+
+#clear {
+	display: none;
 }
 
 /* Search results list */
@@ -196,6 +202,7 @@ body {
 	width: 100%;
 	padding: 5px;
 	font-weight: bold;
+	border: 1px solid #000; /* Fallback */
 	border: 1px solid rgba(0, 0, 0, .5);
 	border-radius: 6px;
 	background-color: #bfbfbf;
@@ -204,6 +211,13 @@ body {
 
 .empty-container button:focus {
 	box-shadow: 0 0 0 2px #0099ff;
+}
+
+#data-info-link {
+	margin-top: 10px;
+	color: #808080;
+	text-decoration: underline;
+	cursor: pointer;
 }
 
 /* Search results listitem */
@@ -226,6 +240,55 @@ body {
 	margin: 0;
 }
 
+/* Modal */
+
+#data-info-modal {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%; 
+	z-index: 2;
+}
+
+#modal-background {
+	background-color: #000;
+	opacity: .5;
+
+	/* IE fixes */
+	zoom: 1;
+	filter: alpha(opacity=50);
+}
+
+#modal-content,
+#modal-title {
+	padding: 10px;
+}
+
+#modal-content {
+	position: relative;
+	margin: 20% auto;
+	width: 480px;
+	max-height: 60%;
+	overflow: auto;
+	border-radius: 3px;
+}
+
+#modal-title {
+	margin: -10px -10px 0 -10px;
+	color: #fff;
+	background-color: #000;
+}
+
+#modal-title h3 {
+	margin: 0;
+}
+
+#modal-content p:last-child {
+	margin-bottom: 0;
+}
+
 /* Map legend */
 
 #legend {
@@ -241,6 +304,7 @@ body {
 	width: 10px;
 	height: 10px;
 	margin-right: 5px;
+	border: 1px solid #000; /* Fallback */
 	border: 1px solid rgba(0, 0, 0, .5);
 	border-radius: 50%;
 }
@@ -254,6 +318,14 @@ body {
 
 	#top-container {
 		width: 100%;
+		border-radius: 0;
+	}
+
+	#modal-content {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+		max-height: 100%;
 		border-radius: 0;
 	}
 }

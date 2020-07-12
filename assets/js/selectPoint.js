@@ -177,6 +177,13 @@ function renderFilteredDescription(feature, otherProperties) {
 	searchResultsList.appendChild(container);
 	container.insertBefore(infoTable, container.firstChild);
 
+	// Data info
+	var dataInfoLink = document.createElement("p");
+	dataInfoLink.id = "data-info-link";
+	dataInfoLink.innerText = "How was this data collected?";
+	container.appendChild(dataInfoLink);
+	attachModal(dataInfoLink);
+
 	if (downloadButton) {
 		if (checkIE() == true) {
 			// Show unsupported message

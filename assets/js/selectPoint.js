@@ -67,7 +67,7 @@ function renderFilteredPoints(feature, otherProperties) {
 
 					// Add SVG to marker
 					markerContainer.innerHTML = svg;
-					markerContainer.children[0].getElementById("outline").setAttribute("stroke", setSecondaryColors(selectedBuilding));
+					markerContainer.children[0].getElementById("outline").setAttribute("stroke", black);
 					markerContainer.children[0].getElementById("shape").setAttribute("fill", setColors(selectedBuilding));
 					
 					// Add to map
@@ -93,7 +93,7 @@ function renderFilteredPoints(feature, otherProperties) {
 	};
 
 	// Render layers
-	addFilteredLayer("otherPoints", otherPoints, "#000", defaultOpacity);
+	addFilteredLayer("otherPoints", otherPoints, black, defaultOpacity);
 	addFilteredLayer("relatedPoints", relatedPoints, defaultColors, defaultOpacity);
 	addFilteredLayer("selectedPoint", selectedPoint, defaultColors, 1);
 };
@@ -103,6 +103,11 @@ function renderFilteredDescription(feature, otherProperties) {
 	var affiliatedWith = feature.properties["Affiliated With"];
 	var owned = feature.properties["Properties Held by Affiliated With"];
 	var taxpayer = feature.properties["Taxpayer"];
+
+	// Handle stray datapoints
+	if (owned < 1 || owned == "") {
+		owned = 1;
+	};
 
 	// Clear counter and list HTML
 	searchResultsCounter.innerHTML = "";
@@ -116,67 +121,78 @@ function renderFilteredDescription(feature, otherProperties) {
 	// Create elements
 	var headline = document.createElement("h4");
 	var container = document.createElement("div");
-	
-	// Create definition list
 	var infoTable = document.createElement("table");
-	var affiliatedWithRow = document.createElement("tr");
-	var affiliatedWithLabel = document.createElement("td");
-	var affiliatedWithValue = document.createElement("td");
-	var ownedRow = document.createElement("tr");
-	var ownedLabel = document.createElement("td");
-	var ownedValue = document.createElement("td");
-	var taxpayerRow = document.createElement("tr");
-	var taxpayerLabel = document.createElement("td");
-	var taxpayerValue = document.createElement("td");
-
-	var downloadButton = document.createElement("button");
 
 	// Set values
 	headline.innerHTML = "Details";
 	container.className = "empty-container";
 
-	// Apply attributes to definition list
-	affiliatedWithLabel.innerHTML = "Affiliated with:";
-	affiliatedWithValue.innerHTML = affiliatedWith;
+	// Affiliated entity
+	if (affiliatedWith) {
+		var affiliatedWithRow = document.createElement("tr");
+		var affiliatedWithLabel = document.createElement("td");
+		var affiliatedWithValue = document.createElement("td");
+
+		affiliatedWithLabel.innerHTML = "Affiliated with:";
+		affiliatedWithValue.innerHTML = affiliatedWith;
+
+		// Table row
+		infoTable.appendChild(affiliatedWithRow);
+		affiliatedWithRow.appendChild(affiliatedWithLabel);
+		affiliatedWithRow.appendChild(affiliatedWithValue);
+
+		// Download
+		var downloadButton = document.createElement("button");
+		container.appendChild(downloadButton);
+	};
+	
+	// Property count
+	var ownedRow = document.createElement("tr");
+	var ownedLabel = document.createElement("td");
+	var ownedValue = document.createElement("td");
+
 	ownedLabel.innerHTML = "Total properties owned:";
 	ownedValue.innerHTML = owned;
-	taxpayerLabel.innerHTML = "Taxpayer:";
-	taxpayerValue.innerHTML = taxpayer;
+
+	infoTable.appendChild(ownedRow);
+	ownedRow.appendChild(ownedLabel);
+	ownedRow.appendChild(ownedValue);
+
+	// Taxpayer info
+	if (taxpayer) {
+		var taxpayerRow = document.createElement("tr");
+		var taxpayerLabel = document.createElement("td");
+		var taxpayerValue = document.createElement("td");
+
+		taxpayerLabel.innerHTML = "Taxpayer:";
+		taxpayerValue.innerHTML = taxpayer;
+
+		// Table row
+		infoTable.appendChild(taxpayerRow);
+		taxpayerRow.appendChild(taxpayerLabel);
+		taxpayerRow.appendChild(taxpayerValue);
+	};
 
 	// Add content to containers
 	searchResultsCounter.appendChild(headline);
 	searchResultsList.appendChild(container);
-	container.appendChild(infoTable);
-	// First row
-	infoTable.appendChild(affiliatedWithRow);
-	affiliatedWithRow.appendChild(affiliatedWithLabel);
-	affiliatedWithRow.appendChild(affiliatedWithValue);
-	// Second row
-	infoTable.appendChild(ownedRow);
-	ownedRow.appendChild(ownedLabel);
-	ownedRow.appendChild(ownedValue);
-	// Third row
-	infoTable.appendChild(taxpayerRow);
-	taxpayerRow.appendChild(taxpayerLabel);
-	taxpayerRow.appendChild(taxpayerValue);
-	
-	container.appendChild(downloadButton);
+	container.insertBefore(infoTable, container.firstChild);
 
-	if (checkIE() == true) {
-		// Show unsupported message
-    	downloadButton.innerHTML = "Internet Explorer doesn't support data downloads, try Chrome!";
-		downloadButton.disabled = true;
-		downloadButton.style.cursor = "auto";
-	} else {
-		// Set button text and style
-		downloadButton.innerHTML = "Download all "+affiliatedWith+" data";
-		downloadButton.style.color = setSecondaryColors(feature);
-		downloadButton.style.backgroundColor = setColors(feature);
-		downloadButton.style.borderColor = setSecondaryColors(feature);
-		
-		// Add button listener
-		downloadButton.onclick = function(){
-			createPDF(affiliatedWith, otherProperties);
+	if (downloadButton) {
+		if (checkIE() == true) {
+			// Show unsupported message
+	    	downloadButton.innerHTML = "Internet Explorer doesn't support data downloads, try Chrome!";
+			downloadButton.disabled = true;
+			downloadButton.style.cursor = "auto";
+		} else {
+			// Set button text and style
+			downloadButton.innerHTML = "Download all "+affiliatedWith+" data";
+			downloadButton.style.backgroundColor = setColors(feature);
+			
+			// Add button listener
+			downloadButton.onclick = function(){
+				createPDF(affiliatedWith, otherProperties);
+			};
 		};
 	};
 };

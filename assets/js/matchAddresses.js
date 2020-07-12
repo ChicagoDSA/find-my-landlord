@@ -1,13 +1,10 @@
 function matchAddresses(e) {
 	var value = e.target.value.trim().toLowerCase();
-	console.log("key up ["+value+"]");
 
 	// Show "x"
 	renderClearButton(value);
-
 	// Reset rendered objects
 	resetSearchResults();
-
 	// Reset points
 	resetPointStyles();
 

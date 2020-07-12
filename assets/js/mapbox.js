@@ -25,12 +25,13 @@ var defaultRadius = [
 var yellow = "#ffff00";
 var red = "#ff4d4d";
 var pink = "#ff00ff";
-var blue = "#3366ff";
+var green = "#33cc33";
 var gray = "#808080";
+var black = "#000";
 var defaultColors = [
 	"case",
 	["<", ["get", "Properties Held by Affiliated With"], 5],
-	blue,
+	green,
 	["<", ["get", "Properties Held by Affiliated With"], 50],
 	pink,
 	["<", ["get", "Properties Held by Affiliated With"], 200],
@@ -81,7 +82,7 @@ legendTitle.innerHTML = "Owned by a landlord with...";
 legend200plus.innerHTML = "<span style='background-color: "+yellow+"'></span>200+ properties";
 legend50plus.innerHTML = "<span style='background-color: "+red+"'></span>50+ properties";
 legend5plus.innerHTML = "<span style='background-color: "+pink+"'></span>5+ properties";
-legendLess5.innerHTML = "<span style='background-color: "+blue+"'></span>Less than 5 properties";
+legendLess5.innerHTML = "<span style='background-color: "+green+"'></span>Less than 5 properties";
 
 // Add attribution control
 var attributionControl = new mapboxgl.AttributionControl({

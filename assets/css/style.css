@@ -359,7 +359,7 @@ body {
 
 @media screen and (max-width: 40rem) {
 	#map {
-		top: 2.9375rem;
+		top: 3.125rem;
 	}
 
 	.mapboxgl-ctrl-group {
@@ -372,9 +372,9 @@ body {
 		border-radius: 0;
 	}
 
-	#title,
-	#modal-title {
-		font-size: .75rem;
+	#title h2,
+	#modal-title h2 {
+		font-size: 1.25rem;
 	}
 
 	#modal-content {

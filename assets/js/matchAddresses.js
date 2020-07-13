@@ -95,7 +95,7 @@ function renderResults(features) {
 };
 
 function createListItem(feature) {
-	var item = document.createElement("div");
+	var item = document.createElement("li");
 	var addressText = document.createElement("p");
 	var address = feature.properties["Property Address"];
 

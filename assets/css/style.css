@@ -43,9 +43,9 @@ body, input, button {
 	line-height: 1.5;
 }
 
-#search-results-counter, .search-result {
+.search-results-container {
 	font-style: italic;
-	font-size: 16px;
+	font-size: 18px;
 }
 
 /* Map */

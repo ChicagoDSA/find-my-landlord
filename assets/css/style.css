@@ -103,12 +103,6 @@ body {
 	position: relative;
 }
 
-#search-input-container,
-#search-results-container {
-	display: none;
-	position: relative;
-}
-
 #search-input,
 .empty-container table tr:nth-child(even) {
 	background-color: #e6e6e6;

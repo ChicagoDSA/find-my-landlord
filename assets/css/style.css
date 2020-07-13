@@ -24,7 +24,7 @@
 
 /* Global elements */
 
-html * {max-height:1000000px;}
+html * {text-size-adjust: none;}
 
 * {
 	box-sizing: border-box;

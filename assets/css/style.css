@@ -58,6 +58,7 @@ body, input, button {
 
 /* Focus */
 
+#title-link,
 #search-input:focus,
 .search-result:focus,
 .empty-container button:focus,
@@ -74,6 +75,7 @@ body, input, button {
 	outline-offset: 0;
 }
 
+#title-link,
 #search-input:focus,
 .search-result:focus {
 	outline-offset: -2px;

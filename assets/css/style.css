@@ -43,7 +43,7 @@ body, input, button {
 	line-height: 1.5;
 }
 
-.search-results-container {
+#search-results-container {
 	font-style: italic;
 	font-size: 18px;
 }

@@ -177,6 +177,7 @@ body, input, button {
 /* Site title */
 
 #title-link {
+	display: block;
 	text-decoration: none;
 }
 

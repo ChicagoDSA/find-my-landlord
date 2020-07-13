@@ -153,10 +153,9 @@ body, input, button {
 }
 
 #top-container {
-	position: relative;
-	display: inline-block;
-	width: 30rem;
+	position: absolute;
 	margin: 10px 10px 0 10px;
+	width: 30rem;
 }
 
 /* Site title */
@@ -197,7 +196,7 @@ body, input, button {
 
 #search-results-container {
 	padding: 0;
-	max-height: 100%;
+	max-height: 16rem;
 	overflow: hidden;
 }
 

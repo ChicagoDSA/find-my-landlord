@@ -24,8 +24,6 @@
 
 /* Global elements */
 
-body{ -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%} 
-
 * {
 	box-sizing: border-box;
 }

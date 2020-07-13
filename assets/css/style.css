@@ -43,11 +43,6 @@ body, input, button {
 	line-height: 1.5;
 }
 
-#search-results-counter h4, .search-result p, .empty-container {
-	font-style: italic;
-	font-size: 18px;
-}
-
 /* Map */
 
 #marker {
@@ -212,6 +207,7 @@ body, input, button {
 }
 
 #search-results-list {
+	max-height: 16rem;
 	overflow-y: scroll;
 }
 

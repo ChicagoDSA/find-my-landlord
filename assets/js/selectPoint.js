@@ -196,12 +196,12 @@ function renderFilteredDescription(feature, otherProperties) {
 			// Show unsupported message
 	    	downloadButton.innerHTML = "Internet Explorer doesn't support data downloads, try Chrome!";
 			downloadButton.disabled = true;
-			downloadButton.style.transition = "none";
 			downloadButton.style.cursor = "auto";
 		} else {
 			// Set button text and style
 			downloadButton.innerHTML = "Download all "+affiliatedWith+" data";
 			downloadButton.style.backgroundColor = setColors(feature);
+			downloadButton.classList.add("button-hover");
 			
 			// Add button listener
 			downloadButton.onclick = function(){

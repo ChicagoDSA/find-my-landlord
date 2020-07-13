@@ -61,9 +61,9 @@ function renderResults(features) {
 
 		// Change language depending on number of results
 		if (features.length == 1) {
-			searchResultsCounter.innerHTML = "<h4>"+features.length+" search result"+window.getComputedStyle(searchResultsCounter).fontSize;
+			searchResultsCounter.innerHTML = "<h4>"+features.length+" search result";
 		} else {
-			searchResultsCounter.innerHTML = "<h4>"+features.length+" search results"+window.getComputedStyle(searchResultsCounter).fontSize;
+			searchResultsCounter.innerHTML = "<h4>"+features.length+" search results";
 		};
 
 		// Add ListItems
@@ -107,7 +107,6 @@ function createListItem(feature) {
 
 	item.appendChild(addressText);
 	searchResultsList.appendChild(item);
-	console.log(window.getComputedStyle(addressText).fontSize);
 
 	// Add click event
 	item.onclick = function(){

@@ -161,6 +161,7 @@ body {
 }
 
 #top-container {
+	position: relative;
 	display: inline-block;
 	width: 30rem;
 	margin: 10px 10px 0 10px;

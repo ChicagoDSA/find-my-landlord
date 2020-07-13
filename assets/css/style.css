@@ -38,7 +38,7 @@ body, input, button, #map {
 	font-family: "ManifoldDSA", sans-serif;
 }
 
-body, input, button {
+#title, #search-input-container, #search-results-container, input, button {
 	font-size: 16px;
 	line-height: 1.5;
 }

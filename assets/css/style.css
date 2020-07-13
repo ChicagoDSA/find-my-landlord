@@ -58,7 +58,7 @@ body, input, button {
 
 /* Focus */
 
-#title-link:focus,
+#title:focus,
 #search-input:focus,
 .search-result:focus,
 .empty-container button:focus,
@@ -75,7 +75,7 @@ body, input, button {
 	outline-offset: 0;
 }
 
-#title-link:focus,
+#title:focus,
 #search-input:focus,
 .search-result:focus {
 	outline-offset: -2px;
@@ -176,13 +176,10 @@ body, input, button {
 
 /* Site title */
 
-#title-link {
-	display: block;
-	text-decoration: none;
-}
-
 #title {
+	display: block;
 	position: relative;
+	text-decoration: none;
 	color: #fff;
 	background-color: #000;
 }

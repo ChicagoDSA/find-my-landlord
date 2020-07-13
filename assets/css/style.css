@@ -299,18 +299,6 @@ body, input, button {
 	padding: 10px;
 }
 
-#modal-close {
-	top: 10px;
-}
-
-#modal-content {
-	position: relative;
-	margin: 15% auto;
-	width: 32rem;
-	max-height: 60%;
-	overflow: auto;
-}
-
 #modal-title {
 	margin: -10px -10px 0 -10px;
 	color: #fff;
@@ -319,6 +307,18 @@ body, input, button {
 
 #modal-title h3 {
 	margin: 0;
+}
+
+#modal-close {
+	top: 7px;
+}
+
+#modal-content {
+	position: relative;
+	margin: 15% auto;
+	width: 32rem;
+	max-height: 60%;
+	overflow: auto;
 }
 
 #modal-content p:first-of-type {
@@ -364,8 +364,7 @@ body, input, button {
 		margin: 0;
 	}
 
-	#title h2,
-	#modal-title h2 {
+	#title h2 {
 		font-size: 1.25rem;
 	}
 

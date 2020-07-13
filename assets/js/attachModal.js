@@ -6,7 +6,7 @@ function attachModal(element) {
 	
 	// Title area
 	var titleContainer = document.createElement("div");
-	var titleText = document.createElement("h3");
+	var titleText = document.createElement("b");
 	var close = document.createElement("div");
 	var closeImg = document.createElement("img");
 	

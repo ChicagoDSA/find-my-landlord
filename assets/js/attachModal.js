@@ -19,6 +19,7 @@ function attachModal(element) {
 	content.id = "modal-content";
 	titleContainer.id = "modal-title";
 	close.id = "modal-close";
+	close.tabIndex = 0;
 
 	// Attributes
 	titleText.innerText= "How was this data collected?"
@@ -38,11 +39,29 @@ function attachModal(element) {
 	element.onclick = function() {
 		document.body.appendChild(modal);	
 	};
+	// Accessibility
+	element.addEventListener("keypress",
+		function(e) {
+			// Enter key
+		    if (e.keyCode == 13) {
+		        e.target.click();
+		    };
+		}
+	);
 
 	// Close button
 	close.onclick = function() {
 		removeModal(modal);
 	};
+	// Accessibility
+	close.addEventListener("keypress",
+		function(e) {
+			// Enter key
+		    if (e.keyCode == 13) {
+		        e.target.click();
+		    };
+		}
+	);
 
 	// Background click
 	window.onclick = function(event) {

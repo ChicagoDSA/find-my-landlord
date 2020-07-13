@@ -119,7 +119,7 @@ map.on("load", function() {
 			searchInputContainer.style.display = "block";
 
 			// Add listeners
-			searchInput.addEventListener("keyup", matchAddresses);
+			searchInput.addEventListener("keypress", matchAddresses);
 			// Fix for IE clear button
 			searchInput.addEventListener("input", matchAddresses);
 		};

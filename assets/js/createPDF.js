@@ -6,7 +6,7 @@ function createPDF(title, list) {
 	});
 
 	// Create PDF
-	var doc = new jsPDF("l");
+	var doc = new jsPDF({orientation: "landscape"});
 
 	// Set column titles
 	var col = [
@@ -36,10 +36,12 @@ function createPDF(title, list) {
 
 	// Create table
 	doc.autoTable({
+		styles: { font: "ManifoldDSA" },
 		columns: col,
 		body: rows,
 		didDrawPage: function (data) {
   			// Set header
+  			doc.setFont("ManifoldDSA");
   			doc.setFontSize(20);
   			doc.setTextColor(40);
   			doc.setFontStyle("bold");

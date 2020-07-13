@@ -180,6 +180,7 @@ function renderFilteredDescription(feature, otherProperties) {
 	// Data info
 	var dataInfoLink = document.createElement("p");
 	dataInfoLink.id = "data-info-link";
+	dataInfoLink.tabIndex = 0; // Allow text to be focused
 	dataInfoLink.innerText = "How was this data collected?";
 	container.appendChild(dataInfoLink);
 	attachModal(dataInfoLink);

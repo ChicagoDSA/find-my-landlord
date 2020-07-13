@@ -12,12 +12,20 @@
 		<!-- jsPDF-AutoTable -->
 		<script src="https://unpkg.com/jspdf-autotable"></script>
 
+		<!-- jsPDF fonts -->
+		<script src="assets/fonts/ManifoldDSA/js/ManifoldDSA-normal.js"></script>
+		<script src="assets/fonts/ManifoldDSA/js/ManifoldDSA-bold.js"></script>
+
 		<!-- Mapbox requirements -->
 		<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js"></script>
 		<link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css" />
 		
 		<link rel="stylesheet" href="assets/css/style.css" />
 		<link rel="shortcut icon" href="assets/images/favicon.ico" />
+
+		<!-- preload text fonts -->
+		<link rel="preload" href="assets/fonts/ManifoldDSA/ManifoldDSA-Medium.woff" as="font" type="font/woff" crossorigin>
+		<link rel="preload" href="assets/fonts/ManifoldDSA/ManifoldDSA-ExtraBold.woff" as="font" type="font/woff" crossorigin>
 	</head>
 
 	<body>
@@ -35,7 +43,7 @@
 					name="search"
 					placeholder="Search by address"
 				/>
-				<div id="clear"><img src="assets/images/times.svg" /></div>
+				<div id="clear" tabindex="0"><img src="assets/images/times.svg" /></div>
 			</div>
 
 			<div id="search-results-container">

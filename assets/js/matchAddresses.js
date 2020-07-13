@@ -37,6 +37,15 @@ function renderClearButton(value) {
 			resetSearchResults();
 			resetPointStyles();
 		};
+		// Accessibility
+		clearButton.addEventListener("keypress",
+			function(e) {
+				// Enter key
+			    if (e.keyCode == 13) {
+			        e.target.click();
+			    };
+			}
+		);
 	};
 };
 

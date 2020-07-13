@@ -34,7 +34,7 @@ body {
 	overflow: hidden;
 }
 
-body, input, button {
+body, input, button, #legend {
 	font-family: "ManifoldDSA", sans-serif;
 	font-size: 16px;
 	line-height: 1.5;

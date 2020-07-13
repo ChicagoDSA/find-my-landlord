@@ -10,11 +10,11 @@ function createPDF(title, list) {
 
 	// Set column titles
 	var col = [
-		"Property Address",
-		"Community Area",
-		"Affiliated With",
-		"Total Properties Owned",
-		"Taxpayer"
+		"Property address",
+		"Community area",
+		"Affiliated with",
+		"Properties owned",
+		"Property taxpayer"
 	];
 
 	// Create empty rows array

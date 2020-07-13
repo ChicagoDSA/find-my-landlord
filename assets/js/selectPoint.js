@@ -151,7 +151,7 @@ function renderFilteredDescription(feature, otherProperties) {
 	var ownedLabel = document.createElement("td");
 	var ownedValue = document.createElement("td");
 
-	ownedLabel.innerHTML = "Total properties owned:";
+	ownedLabel.innerHTML = "Properties owned:";
 	ownedValue.innerHTML = owned;
 
 	infoTable.appendChild(ownedRow);
@@ -164,7 +164,7 @@ function renderFilteredDescription(feature, otherProperties) {
 		var taxpayerLabel = document.createElement("td");
 		var taxpayerValue = document.createElement("td");
 
-		taxpayerLabel.innerHTML = "Taxpayer:";
+		taxpayerLabel.innerHTML = "Property taxpayer:";
 		taxpayerValue.innerHTML = taxpayer;
 
 		// Table row

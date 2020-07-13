@@ -227,7 +227,7 @@ body, input, button {
 }
 
 .empty-container table tr td:first-child {
-	width: 12rem;
+	width: 10rem;
 	color: #808080;
 }
 

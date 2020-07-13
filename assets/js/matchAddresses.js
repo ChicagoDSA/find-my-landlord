@@ -100,6 +100,7 @@ function createListItem(feature) {
 	var address = feature.properties["Property Address"];
 
 	item.className = "search-result";
+	addressText.tabIndex = 0;
 	addressText.innerHTML = address;
 
 	// Highlight part of string that matches input 
@@ -112,6 +113,15 @@ function createListItem(feature) {
 	item.onclick = function(){
 		selectPoint(feature);
 	};
+	// Accessibility
+	addressText.addEventListener("keypress",
+		function(e) {
+			// Enter key
+		    if (e.keyCode == 13) {
+		        e.target.parentElement.click();
+		    };
+		}
+	);
 };
 
 function highlightText(input, destination) {

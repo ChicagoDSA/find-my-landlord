@@ -68,6 +68,7 @@ body, input, button {
 
 #search-input:focus,
 #clear:focus,
+.search-result p:focus,
 .empty-container button:focus,
 #data-info-link:focus,
 #modal-close:focus {
@@ -273,6 +274,7 @@ body, input, button {
 }
 
 .search-result p {
+	display: inline-block;
 	margin: 0;
 }
 

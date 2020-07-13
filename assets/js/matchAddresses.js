@@ -1,3 +1,5 @@
+var searchResultsLimit = 50;
+
 function matchAddresses(e) {
 	var value = e.target.value.trim().toLowerCase();
 
@@ -9,12 +11,18 @@ function matchAddresses(e) {
 	resetPointStyles();
 
 	if (value != "") {
-		// Create list of search results
-		var results = json.features.filter(function(feature) {
-			var address = feature.properties["Property Address"].trim().toLowerCase();
-			// Return feature when trimmed input is found in buildings array
-			return address.indexOf(value) > -1;
-		});
+		// Create empty array of results
+		var results = [];
+
+		for (var i = 0; i < json.features.length && results.length < searchResultsLimit; i++) {
+			// Address at current index
+	        var address = json.features[i].properties["Property Address"].trim().toLowerCase();
+	    	// Check if this address includes the input text
+	        if (address.includes(value)) {
+	        	// Add feature to results array
+	        	results.push(json.features[i]);
+	        };
+	    };
 
 		// Render list
 		console.log("search results populated");
@@ -59,11 +67,15 @@ function renderResults(features) {
 		// Restore scrollbar
 		searchResultsList.style.overflowY = "scroll";
 
-		// Change language depending on number of results
-		if (features.length == 1) {
-			searchResultsCounter.innerHTML = "<h4>"+features.length+" search result";
-		} else {
+		if (features.length == searchResultsLimit){
+			// More results than limit
+			searchResultsCounter.innerHTML = "<h4>"+searchResultsLimit+"+ search results";
+		} else if (features.length > 1 && features.length < searchResultsLimit) {
+			// Less results than limit
 			searchResultsCounter.innerHTML = "<h4>"+features.length+" search results";
+		} else {
+			// 1 result
+			searchResultsCounter.innerHTML = "<h4>"+features.length+" search result";
 		};
 
 		// Add ListItems

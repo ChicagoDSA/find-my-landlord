@@ -197,6 +197,7 @@ body, input, button {
 
 #search-results-container {
 	padding: 0;
+	max-height: 16rem;
 	overflow: hidden;
 }
 
@@ -207,7 +208,6 @@ body, input, button {
 }
 
 #search-results-list {
-	max-height: 16rem;
 	overflow-y: scroll;
 }
 

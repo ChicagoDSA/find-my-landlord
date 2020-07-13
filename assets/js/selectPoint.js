@@ -177,6 +177,12 @@ function renderFilteredDescription(feature, otherProperties) {
 	searchResultsList.appendChild(container);
 	container.insertBefore(infoTable, container.firstChild);
 
+	// Style row backgronds
+	var rows = infoTable.querySelectorAll("tr:nth-child(even)");
+	for (var r = 0; r < rows.length; r++) {
+    	rows[r].style.backgroundColor = setRowColors(feature);
+	};
+
 	// Data info
 	var dataInfoLink = document.createElement("p");
 	dataInfoLink.id = "data-info-link";

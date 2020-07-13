@@ -1,6 +1,5 @@
 function setColors(feature) {
 	var count = feature.properties["Properties Held by Affiliated With"];
-	console.log(count);
 
 	if (count < 5) {
 		return green;
@@ -11,6 +10,24 @@ function setColors(feature) {
 	} else if (count >= 200) {
 		return yellow;
 	} else {
-		return gray;
+		// Keep default
+		return;
+	};
+};
+
+function setRowColors(feature) {
+	var count = feature.properties["Properties Held by Affiliated With"];
+
+	if (count < 5) {
+		return "rgba(51, 204, 51, .1)";
+	} else if (count < 50) {
+		return "rgba(255, 0, 255, .1)";
+	} else if (count < 200) {
+		return "rgba(255, 77, 77, .1)";
+	} else if (count >= 200) {
+		return "rgba(255, 255, 0, .1)";
+	} else {
+		// Keep default
+		return;
 	};
 };

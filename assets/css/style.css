@@ -276,9 +276,13 @@ body, input, button {
 
 /* Search results listitem */
 
+#limit-message,
+.search-result {
+	padding: 10px;
+}
+
 .search-result {
 	margin-bottom: 1px;
-	padding: 10px;
 	box-shadow: 0 0 0 1px #808080;
 }
 

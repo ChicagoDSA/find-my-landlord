@@ -14,7 +14,7 @@ function matchAddresses(e) {
 		// Create empty array of results
 		var results = [];
 
-		for (var i = 0; i < json.features.length && results.length < searchResultsLimit; i++) {
+		for (var i = 0; i < json.features.length && results.length < searchResultsLimit+1; i++) {
 			// Address at current index
 	        var address = json.features[i].properties["Property Address"].trim().toLowerCase();
 	    	// Check if this address includes the input text
@@ -67,21 +67,27 @@ function renderResults(features) {
 		// Restore scrollbar
 		searchResultsList.style.overflowY = "scroll";
 
-		if (features.length == searchResultsLimit){
+		if (features.length > searchResultsLimit) {
 			// More results than limit
 			searchResultsCounter.innerHTML = "<h4>"+searchResultsLimit+"+ search results";
-		} else if (features.length > 1 && features.length < searchResultsLimit) {
+
+			var refineMessage = document.createElement("li");
+			refineMessage.id = "limit-message";
+			refineMessage.innerText = "These are the first "+searchResultsLimit+" results. Don't see your building? Try typing more of your address.";
+			searchResultsList.appendChild(refineMessage);
+		} else if (features.length > 1 && features.length <= searchResultsLimit) {
 			// Less results than limit
 			searchResultsCounter.innerHTML = "<h4>"+features.length+" search results";
-		} else {
+		} else if (features.length == 1) {
 			// 1 result
 			searchResultsCounter.innerHTML = "<h4>"+features.length+" search result";
 		};
 
 		// Add ListItems
-		features.forEach(function(feature) {
-			createListItem(feature);
-		});
+		for (var i = 0; i < searchResultsLimit; i++) {
+			// Address at current index
+	        createListItem(features[i]);
+	    };
 	} else if (features.length == 0 && searchInput.value != "") {
 		// No results found
 		// Show container
@@ -119,7 +125,13 @@ function createListItem(feature) {
 	highlightText(searchInput, addressText);
 
 	item.appendChild(addressText);
-	searchResultsList.appendChild(item);
+	if (document.getElementById("limit-message")) {
+		// Insert list items before limit message
+		searchResultsList.insertBefore(item, document.getElementById("limit-message"))
+	} else {
+		// Limit doesn't exist
+		searchResultsList.appendChild(item);
+	};
 
 	// Add click event
 	item.onclick = function(){

@@ -58,7 +58,7 @@ body, input, button {
 
 /* Focus */
 
-#title-link,
+#title-link:focus,
 #search-input:focus,
 .search-result:focus,
 .empty-container button:focus,

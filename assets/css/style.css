@@ -31,7 +31,7 @@
 body {
 	margin: 0;
 	padding: 0;
-	text-size-adjust: none;
+	height: 100%;
 	overflow: hidden;
 }
 

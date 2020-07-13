@@ -153,7 +153,7 @@ body, input, button {
 }
 
 #top-container {
-	position: absolute;
+	position: relative;
 	margin: 10px 10px 0 10px;
 	width: 30rem;
 }
@@ -196,7 +196,6 @@ body, input, button {
 
 #search-results-container {
 	padding: 0;
-	max-height: 100%;
 	overflow: hidden;
 }
 
@@ -207,6 +206,7 @@ body, input, button {
 }
 
 #search-results-list {
+	max-height: 16rem;
 	overflow-y: scroll;
 }
 
@@ -230,7 +230,7 @@ body, input, button {
 
 .empty-container button {
 	width: 100%;
-	padding: 5px;
+	padding: 5px 10px;
 	font-weight: bold;
 	border: none;
 	background-color: #bfbfbf;

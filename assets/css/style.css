@@ -38,7 +38,7 @@ body, input, button, #map {
 	font-family: "ManifoldDSA", sans-serif;
 }
 
-#title, #search-input-container, #search-results-container, input, button {
+body, input, button {
 	font-size: 16px;
 	line-height: 1.5;
 }
@@ -207,7 +207,6 @@ body, input, button, #map {
 }
 
 #search-results-list {
-	max-height: 16rem;
 	overflow-y: scroll;
 }
 

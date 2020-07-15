@@ -282,7 +282,7 @@ h5 {
 	margin: 0;
 }
 
-#search-results-counter p, .search-result, #limit-message p {
+#search-results-counter h4, .search-result, #limit-message {
 	line-height: 24px;
 }
 

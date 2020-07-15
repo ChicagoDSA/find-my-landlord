@@ -5,6 +5,7 @@ function attachModal(element, title, modalContent) {
 		var modal = document.createElement("div");
 		var background = document.createElement("div");
 		var content = document.createElement("div");
+		var scrollArea = document.createElement("div");
 		
 		// Title area
 		var titleContainer = document.createElement("div");
@@ -13,7 +14,7 @@ function attachModal(element, title, modalContent) {
 		var closeImg = document.createElement("img");
 		
 		// Content
-		var description = document.createElement("p");
+		var text = document.createElement("p");
 
 		// Set IDs
 		modal.id = "modal";
@@ -22,19 +23,22 @@ function attachModal(element, title, modalContent) {
 		titleContainer.id = "modal-title";
 		close.id = "modal-close";
 		close.tabIndex = 0;
+		scrollArea.id = "modal-scroll-area";
+		text.id = "modal-text";
 
 		// Attributes
 		titleText.innerText= title;
 		closeImg.src = "assets/images/times.svg";
-		description.innerHTML = modalContent;
+		text.innerHTML = modalContent;
 
 		// Append elements
 		modal.appendChild(background);
 		modal.appendChild(content);	
 		content.appendChild(titleContainer);
-		content.appendChild(close);
-		content.appendChild(description);
+		content.appendChild(scrollArea);	
+		scrollArea.appendChild(text);
 		titleContainer.appendChild(titleText);
+		titleContainer.appendChild(close);
 		close.appendChild(closeImg);
 
 		// Close button
@@ -53,8 +57,6 @@ function attachModal(element, title, modalContent) {
 
 		// Background click
 		window.onclick = function(e) {
-			console.log(e.target);
-			console.log(background);
 			if (e.target == background) {
 				removeModal(modal);
 			};

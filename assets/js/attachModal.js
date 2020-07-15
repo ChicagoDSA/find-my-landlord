@@ -98,15 +98,11 @@ function hasClass(element, className) {
 
 function restoreFocus(element) {
 	// Get elements in container
-	var elements = document.getElementById(element).getElementsByTagName("*");
+	var elements = document.getElementById(element).getElementsByClassName("disabled-focus");
 	for (var i = 0; i < elements.length; i++) {
 		var currentElement = elements[i];
-		// Is focus disabled?
-		if (hasClass(currentElement, "disabled-focus") == true) {
-			// Enable focus
-			currentElement.classList.remove("disabled-focus");
-			currentElement.tabIndex = 0;
-		};
+		currentElement.classList.remove("disabled-focus");
+		currentElement.tabIndex = 0;
 	};
 };
 

@@ -102,7 +102,7 @@ function restoreFocus(element) {
 	for (var i = 0; i < elements.length; i++) {
 		var currentElement = elements[i];
 		// Is focus disabled?
-		if (hasClass(currentElement, "disabled-focus")) {
+		if (hasClass(currentElement, "disabled-focus") == true) {
 			// Enable focus
 			currentElement.classList.remove("disabled-focus");
 			currentElement.tabIndex = 0;

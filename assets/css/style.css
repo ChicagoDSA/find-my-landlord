@@ -214,16 +214,8 @@ h5 {
 
 /* Font boosting */
 
-#search-results-counter {
-	max-height: 10rem;
-}
-
-.search-result {
-	max-height: 10rem;
-}
-
-#limit-message {
-	max-height: 10rem;
+#search-results-container * {
+	max-height: 10000rem;
 }
 
 /* Search input */

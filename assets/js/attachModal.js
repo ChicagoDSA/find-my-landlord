@@ -103,7 +103,7 @@ function restoreFocus(element) {
 		var currentElement = elements[i];
 		console.log("restore candidate"+currentElement);
 		// Is focus disabled?
-		if (currentElement.classList.contains("disabled-focus")) {
+		if (currentElement.className.indexOf("disabled-focus") > -1) {
 			console.log("restoring"+currentElement);
 			// Enable focus
 			currentElement.classList.remove("disabled-focus");

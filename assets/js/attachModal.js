@@ -1,6 +1,10 @@
 function attachModal(element, title, modalContent) {
 	// When element is clicked, show modal
 	element.onclick = function() {
+		// Disable background elements
+		disableFocus("map");
+		disableFocus("top-container");
+
 		// Create containers
 		var modal = document.createElement("div");
 		var background = document.createElement("div");
@@ -74,9 +78,41 @@ function attachModal(element, title, modalContent) {
 	);
 };
 
+function disableFocus(element) {
+	// Get elements in container
+	var elements = document.getElementById(element).getElementsByTagName("*");
+	for (var i = 0; i < elements.length; i++) {
+		var currentElement = elements[i];
+		// Is focus enabled?
+		if (currentElement.tabIndex == 0) {
+			// Disable focus
+			currentElement.classList.add("disabled-focus");
+			currentElement.tabIndex = -1;
+		};
+	};
+};
+
+function restoreFocus(element) {
+	// Get elements in container
+	var elements = document.getElementById(element).getElementsByTagName("*");
+	for (var i = 0; i < elements.length; i++) {
+		var currentElement = elements[i];
+		// Is focus disabled?
+		if (currentElement.classList.contains("disabled-focus")) {
+			// Enable focus
+			currentElement.classList.remove("disabled-focus");
+			currentElement.tabIndex = 0;
+		};
+	};
+};
+
 function removeModal (modal) {
 	if (modal) {
-		// Remove marker
+		// Remove modal
 		modal.parentNode.removeChild(modal);
+
+		// Restore background elements
+		restoreFocus("map");
+		restoreFocus("top-container");
 	};
 };

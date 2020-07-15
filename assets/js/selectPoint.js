@@ -174,19 +174,6 @@ function renderFilteredDescription(feature, otherProperties) {
 		taxpayerRow.appendChild(taxpayerValue);
 	};
 
-	container.appendChild(bottomLinks);
-
-	// Additional details
-	if (additionalDetails) {
-		var additionalDetailsLink = document.createElement("p");
-		additionalDetailsLink.id = "additional-details-link";
-		additionalDetailsLink.className = "property-details-link";
-		additionalDetailsLink.tabIndex = 0; // Allow text to be focused
-		additionalDetailsLink.innerText = "Additional property details";
-		bottomLinks.appendChild(additionalDetailsLink);
-		attachModal(additionalDetailsLink, "Additional property details", additionalDetails);
-	};
-
 	// Add content to containers
 	searchResultsContainer.appendChild(container);
 	container.insertBefore(infoTable, container.firstChild);
@@ -206,10 +193,24 @@ function renderFilteredDescription(feature, otherProperties) {
 	bottomLinks.appendChild(dataInfoLink);
 	attachModal(dataInfoLink, "How was this data collected?", dataInfoContent);
 
+	// Additional details
+	if (additionalDetails) {
+		var additionalDetailsLink = document.createElement("p");
+		additionalDetailsLink.id = "additional-details-link";
+		additionalDetailsLink.className = "property-details-link";
+		additionalDetailsLink.tabIndex = 0; // Allow text to be focused
+		additionalDetailsLink.innerText = "Additional property details";
+		bottomLinks.appendChild(additionalDetailsLink);
+		attachModal(additionalDetailsLink, "Additional property details", additionalDetails);
+	};
+
 	// Add clear to bottom links container
 	var clearFloat = document.createElement("div");
 	clearFloat.style.clear = "both";
 	bottomLinks.appendChild(clearFloat);
+
+	// Append links
+	container.appendChild(bottomLinks);
 
 	if (downloadButton) {
 		if (checkIE() == true) {

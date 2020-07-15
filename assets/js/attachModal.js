@@ -95,6 +95,10 @@ function disableFocus(element) {
 	};
 };
 
+function hasClass(element, className) {
+    return (" " + element.className + " ").indexOf(" " + className+ " ") > -1;
+};
+
 function restoreFocus(element) {
 	console.log("restore target"+element);
 	// Get elements in container
@@ -103,7 +107,7 @@ function restoreFocus(element) {
 		var currentElement = elements[i];
 		console.log("restore candidate"+currentElement);
 		// Is focus disabled?
-		if (currentElement.className.indexOf("disabled-focus") > -1) {
+		if (hasClass(currentElement, "disabled-focus")) {
 			console.log("restoring"+currentElement);
 			// Enable focus
 			currentElement.classList.remove("disabled-focus");

@@ -22,6 +22,17 @@
 	font-style: normal;
 }
 
+@font-face {
+	font-family: "FontAwesome";
+	src: url("../fonts/FontAwesome/fa-solid-900.eot"); 
+	src: url("../fonts/FontAwesome/fa-solid-900.eot?#iefix") format("embedded-opentype"), 
+		url("../fonts/FontAwesome/fa-solid-900.woff2") format("woff2"), 
+		url("../fonts/FontAwesome/fa-solid-900.woff") format("woff"), 
+		url("../fonts/FontAwesome/fa-solid-900.ttf") format("truetype");
+	font-weight: regular;
+	font-style: normal;
+}
+
 /* Disable font boosting on mobile browsers */
 
 body * {
@@ -287,7 +298,19 @@ h5 {
 }
 
 .search-result {
-	border-bottom: 1px solid #e6e6e6;
+	padding-left: 2rem;
+}
+
+.search-result:before {
+	display: inline-block;
+	position: relative;
+	top: -.0625rem;
+	left: -1.25rem;
+	width: 0;
+	font-family: "FontAwesome";
+	font-size: .75rem;
+	color: #808080;
+	content: "\f002";
 }
 
 .search-result:hover {
@@ -303,6 +326,10 @@ h5 {
 .search-result p {
 	display: inline-block;
 	margin: 0;
+}
+
+#limit-message {
+	border-top: 1px solid #e6e6e6;
 }
 
 /* Selected search result */

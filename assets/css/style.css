@@ -237,6 +237,7 @@ h5 {
 /* Search results list */
 
 #search-results-container {
+	line-height: 12px;
 	padding: 0;
 	overflow: hidden;
 }
@@ -263,7 +264,6 @@ h5 {
 }
 
 .search-result {
-	line-height: 12px;
 	margin-bottom: 1px;
 	box-shadow: 0 0 0 1px #808080;
 }

@@ -103,6 +103,7 @@ function renderFilteredDescription(feature, otherProperties) {
 	var affiliatedWith = feature.properties["Affiliated With"];
 	var owned = feature.properties["Properties Held by Affiliated With"];
 	var taxpayer = feature.properties["Taxpayer"];
+	var additionalDetails = feature.properties["Additional Details"];
 
 	// Handle stray datapoints
 	if (owned < 1 || owned == "") {
@@ -123,9 +124,11 @@ function renderFilteredDescription(feature, otherProperties) {
 	// Create elements
 	var container = document.createElement("div");
 	var infoTable = document.createElement("table");
+	var bottomLinks = document.createElement("div");
 
 	// Set values
 	container.className = "empty-container";
+	bottomLinks.id = "bottom-links";
 
 	// Affiliated entity
 	if (affiliatedWith) {
@@ -173,6 +176,19 @@ function renderFilteredDescription(feature, otherProperties) {
 		taxpayerRow.appendChild(taxpayerValue);
 	};
 
+	container.appendChild(bottomLinks);
+
+	// Additional details
+	if (additionalDetails) {
+		var additionalDetailsLink = document.createElement("p");
+		additionalDetailsLink.id = "additional-details-link";
+		additionalDetailsLink.className = "property-details-link";
+		additionalDetailsLink.tabIndex = 0; // Allow text to be focused
+		additionalDetailsLink.innerText = "Additional property details";
+		bottomLinks.appendChild(additionalDetailsLink);
+		attachModal(additionalDetailsLink, "Additional property details", additionalDetails);
+	};
+
 	// Add content to containers
 	searchResultsList.appendChild(container);
 	container.insertBefore(infoTable, container.firstChild);
@@ -186,10 +202,16 @@ function renderFilteredDescription(feature, otherProperties) {
 	// Data info
 	var dataInfoLink = document.createElement("p");
 	dataInfoLink.id = "data-info-link";
+	dataInfoLink.className = "property-details-link";
 	dataInfoLink.tabIndex = 0; // Allow text to be focused
 	dataInfoLink.innerText = "How was this data collected?";
-	container.appendChild(dataInfoLink);
+	bottomLinks.appendChild(dataInfoLink);
 	attachModal(dataInfoLink, "How was this data collected?", dataInfoContent);
+
+	// Add clear to bottom links container
+	var clearFloat = document.createElement("div");
+	clearFloat.style.clear = "both";
+	bottomLinks.appendChild(clearFloat);
 
 	if (downloadButton) {
 		if (checkIE() == true) {

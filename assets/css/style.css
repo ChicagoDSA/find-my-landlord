@@ -47,7 +47,7 @@ a {
     text-decoration: none;
 }
 
-#data-info-link,
+.property-details-link,
 a {
     color: #1e6bb8;
 }
@@ -80,7 +80,7 @@ a:focus,
 #search-input:focus,
 .search-result:focus,
 .empty-container button:focus,
-#data-info-link:focus,
+.property-details-link:focus,
 #clear:focus,
 #modal-close:focus {
 	outline: 2px dashed #0099ff;
@@ -88,7 +88,7 @@ a:focus,
 
 a:focus,
 .empty-container button:focus,
-#data-info-link:focus,
+.property-details-link:focus,
 #clear:focus,
 #modal-close:focus {
 	outline-offset: 0;
@@ -172,7 +172,7 @@ h5 {
 	margin: 0 0 10px;
 }
 
-#data-info-link,
+.property-details-link,
 #legend {
 	font-size: .75rem;
 }
@@ -255,6 +255,35 @@ h5 {
 	list-style-type: none;
 }
 
+/* Search results listitem */
+
+#limit-message,
+.search-result {
+	padding: 10px;
+}
+
+.search-result {
+	margin-bottom: 1px;
+	box-shadow: 0 0 0 1px #808080;
+}
+
+.search-result:hover {
+	background-color: #e6f5ff;
+	cursor: pointer;
+}
+
+#search-results-list .search-result:last-child {
+	margin-bottom: 0;
+	box-shadow: none;
+}
+
+.search-result p {
+	display: inline-block;
+	margin: 0;
+}
+
+/* Selected search result */
+
 .empty-container {
 	margin: 10px;
 }
@@ -287,46 +316,31 @@ h5 {
 	box-shadow: 0 5px 10px rgba(0 , 0, 0, .25);
 }
 
-#data-info-link {
+#bottom-links {
+	margin-top: 10px;
+}
+
+.property-details-link {
 	display: inline-block;
 	margin-top: 10px;
 	cursor: pointer;
 }
 
-#data-info-link:hover {
+.property-details-link:hover {
 	text-decoration: underline;
 }
 
-/* Search results listitem */
-
-#limit-message,
-.search-result {
-	padding: 10px;
+#data-info-link {
+	float: left;
 }
 
-.search-result {
-	margin-bottom: 1px;
-	box-shadow: 0 0 0 1px #808080;
-}
-
-.search-result:hover {
-	background-color: #e6f5ff;
-	cursor: pointer;
-}
-
-#search-results-list .search-result:last-child {
-	margin-bottom: 0;
-	box-shadow: none;
-}
-
-.search-result p {
-	display: inline-block;
-	margin: 0;
+#additional-details-link {
+	float: right;
 }
 
 /* Modal */
 
-#data-info-modal {
+#modal {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -369,6 +383,10 @@ h5 {
 	width: 32rem;
 	max-height: 60%;
 	overflow: auto;
+}
+
+#modal-content p:first-of-type {
+	margin-top: 10px;
 }
 
 #modal-content p:last-child {

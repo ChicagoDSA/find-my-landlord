@@ -84,7 +84,7 @@ function renderResults(features) {
 		};
 
 		// Add ListItems
-		for (var i = 0; i < searchResultsLimit; i++) {
+		for (var i = 0; i < searchResultsLimit && i < features.length; i++) {
 			// Address at current index
 	        createListItem(features[i]);
 	    };

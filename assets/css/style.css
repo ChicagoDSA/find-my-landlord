@@ -124,6 +124,12 @@ a:focus,
 	padding: .625rem;
 }
 
+#search-input,
+#clear,
+#selected-container table tr:nth-child(even) {
+	background-color: #e6e6e6;
+}
+
 #search-results-container,
 #modal-content,
 #legend {
@@ -153,11 +159,6 @@ a:focus,
 #search-results-container {
 	display: none;
 	position: relative;
-}
-
-#search-input,
-#selected-container table tr:nth-child(even) {
-	background-color: #e6e6e6;
 }
 
 #selected-container table tr td:first-child,
@@ -248,7 +249,6 @@ h5 {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	padding-right: 2.5rem;
 	font-weight: bold;
 	border: 0;
 }

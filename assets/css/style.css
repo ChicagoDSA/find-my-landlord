@@ -236,10 +236,6 @@ h5 {
 
 /* Search results list */
 
-#search-results-counter, .search-result {
-	line-height: 24px;
-}
-
 #search-results-container {
 	padding: 0;
 	overflow: hidden;
@@ -284,6 +280,10 @@ h5 {
 .search-result p {
 	display: inline-block;
 	margin: 0;
+}
+
+#search-results-counter, .search-result, #limit-message {
+	line-height: 24px;
 }
 
 /* Selected search result */

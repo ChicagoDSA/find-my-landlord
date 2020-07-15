@@ -7,6 +7,13 @@ function resetSearchResults() {
 	// Clear counter and list HTML
 	searchResultsCounter.innerHTML = "";
 	searchResultsList.innerHTML = "";
+
+	var noResults = document.getElementById("no-results-container");
+
+	if (noResults) {
+		// Remove no results message
+		noResults.parentNode.removeChild(noResults);
+	};
 };
 
 function resetPointStyles(feature) {

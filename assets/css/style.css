@@ -143,6 +143,12 @@ a:focus,
 	top: .4375rem;
 }
 
+#search-results-counter h4,
+#selected-container p,
+#no-results-container p {
+	margin: 0;
+}
+
 #search-input-container,
 #search-results-container {
 	display: none;
@@ -159,6 +165,11 @@ h5 {
 	color: #808080;
 }
 
+#selected-container,
+#no-results-container {
+	margin: .625rem;
+}
+
 #clear,
 #modal-close {
 	position: absolute;
@@ -172,11 +183,6 @@ h5 {
 #modal-close img {
 	position: absolute;
 	right: .4375rem;
-}
-
-#search-results-counter h4,
-#selected-container p {
-	margin: 0;
 }
 
 #selected-container h3,
@@ -301,10 +307,6 @@ h5 {
 }
 
 /* Selected search result */
-
-#selected-container {
-	margin: .625rem;
-}
 
 #selected-container table {
 	margin-bottom: .625rem;

@@ -18,7 +18,7 @@ function matchAddresses(e) {
 			// Address at current index
 	        var address = json.features[i].properties["Property Address"].trim().toLowerCase();
 	    	// Check if this address includes the input text
-	        if (address.includes(value)) {
+	        if (address.indexOf(value) > -1) {
 	        	// Add feature to results array
 	        	results.push(json.features[i]);
 	        };
@@ -99,7 +99,7 @@ function renderResults(features) {
 
 		// Set values
 		headline.innerHTML = "No search results";
-		description.className = "empty-container";
+		description.id = "no-results-container";
 		description.innerHTML = "Sorry, we couldn't find that address. Try something like <b>634 E 50th Pl</b>.";
 
 		// Add content to containers

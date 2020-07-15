@@ -114,17 +114,15 @@ function renderResults(features) {
 
 function createListItem(feature) {
 	var item = document.createElement("li");
-	var addressText = document.createElement("p");
 	var address = feature.properties["Property Address"];
 
 	item.className = "search-result";
 	item.tabIndex = 0;
-	addressText.innerHTML = address;
+	item.innerHTML = address;
 
 	// Highlight part of string that matches input 
-	highlightText(searchInput, addressText);
+	highlightText(searchInput, item);
 
-	item.appendChild(addressText);
 	if (document.getElementById("limit-message")) {
 		// Insert list items before limit message
 		searchResultsList.insertBefore(item, document.getElementById("limit-message"))

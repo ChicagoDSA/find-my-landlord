@@ -212,12 +212,6 @@ h5 {
 	margin: 0;
 }
 
-/* Font boosting */
-
-#search-results-container * {
-	max-height: 10000rem;
-}
-
 /* Search input */
 
 #search-input-container {

@@ -7,16 +7,16 @@ function resetSearchResults() {
 	// Clear counter and list HTML
 	searchResultsCounter.innerHTML = "";
 	searchResultsList.innerHTML = "";
+};
 
+function resetPointStyles(feature) {
 	var selectedContainer = document.getElementById("selected-container");
 
 	if (selectedContainer) {
 		// Remove selected building
 		selectedContainer.parentNode.removeChild(selectedContainer);
 	};
-};
-
-function resetPointStyles(feature) {
+	
 	if (markerContainer) {
 		// Remove marker
 		markerContainer.parentNode.removeChild(markerContainer);

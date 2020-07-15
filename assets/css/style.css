@@ -137,7 +137,6 @@ a:focus,
 
 #search-input,
 #clear,
-#limit-message,
 #selected-container table tr:nth-child(even) {
 	background-color: #e6e6e6;
 }
@@ -327,6 +326,12 @@ h5 {
 .search-result p {
 	display: inline-block;
 	margin: 0;
+}
+
+#limit-message {
+	margin: 0 .625rem;
+	padding: .625rem 0;
+	border-top: 1px solid #e6e6e6;
 }
 
 /* Selected search result */

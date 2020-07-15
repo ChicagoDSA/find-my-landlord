@@ -236,8 +236,11 @@ h5 {
 
 /* Search results list */
 
-#search-results-container {
+#search-results-container * {
 	line-height: 12px;
+}
+
+#search-results-container {
 	padding: 0;
 	overflow: hidden;
 }

@@ -212,20 +212,6 @@ h5 {
 	margin: 0;
 }
 
-/* Font boosting */
-
-#search-results-counter {
-	max-height: 999999px;
-}
-
-.search-result {
-	max-height: 999999px;
-}
-
-#limit-message {
-	max-height: 999999px;
-}
-
 /* Search input */
 
 #search-input-container {

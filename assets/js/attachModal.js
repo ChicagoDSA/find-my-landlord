@@ -53,9 +53,9 @@ function attachModal(element, title, modalContent) {
 		close.addEventListener("keypress",
 			function(e) {
 				// Enter key
-			    if (e.keyCode == 13) {
-			        e.target.click();
-			    };
+				if (e.keyCode == 13) {
+					e.target.click();
+				};
 			}
 		);
 
@@ -71,9 +71,9 @@ function attachModal(element, title, modalContent) {
 	element.addEventListener("keypress",
 		function(e) {
 			// Enter key
-		    if (e.keyCode == 13) {
-		        e.target.click();
-		    };
+			if (e.keyCode == 13) {
+				e.target.click();
+			};
 		}
 	);
 };
@@ -84,7 +84,6 @@ function disableFocus(element) {
 	for (var i = 0; i < elements.length; i++) {
 		var currentElement = elements[i];
 		// Is focus enabled?
-		// if (currentElement.getAttribute("tabindex") == 0)
 		if (currentElement.getAttribute("tabindex") == 0 || currentElement.nodeName == "A" || currentElement.nodeName == "INPUT" || currentElement.nodeName == "BUTTON") {
 			// Disable focus
 			currentElement.classList.add("disabled-focus");
@@ -93,17 +92,20 @@ function disableFocus(element) {
 	};
 };
 
-function hasClass(element, className) {
-    return (" " + element.className + " ").indexOf(" " + className+ " ") > -1;
+function hasClass(e, c) {
+     return (" " + e.className + " ").indexOf(" "+c+" ") > -1;
 };
 
 function restoreFocus(element) {
 	// Get elements in container
-	var elements = document.getElementById(element).getElementsByClassName("disabled-focus");
+	var elements = document.getElementById(element).getElementsByTagName("*");
 	for (var i = 0; i < elements.length; i++) {
 		var currentElement = elements[i];
-		currentElement.classList.remove("disabled-focus");
-		currentElement.tabIndex = 0;
+		// Does element have disabled class?
+		if (hasClass(currentElement, "disabled-focus") == true) {
+			currentElement.classList.remove("disabled-focus");
+			currentElement.tabIndex = 0;
+		};
 	};
 };
 

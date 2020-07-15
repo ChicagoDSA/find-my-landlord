@@ -215,15 +215,15 @@ h5 {
 /* Font boosting */
 
 #search-results-counter {
-	min-height: 1px;
+	max-height: 999999px;
 }
 
 .search-result {
-	min-height: 1px;
+	max-height: 999999px;
 }
 
 #limit-message {
-	min-height: 1px;
+	max-height: 999999px;
 }
 
 /* Search input */

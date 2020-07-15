@@ -64,8 +64,6 @@ function renderResults(features) {
 		searchResultsContainer.style.display = "block";
 		// Show counter
 		searchResultsCounter.style.display = "block";
-		// Restore scrollbar
-		searchResultsList.style.overflowY = "scroll";
 
 		if (features.length > searchResultsLimit) {
 			// More results than limit
@@ -94,8 +92,6 @@ function renderResults(features) {
 		searchResultsContainer.style.display = "block";
 		// Show counter
 		searchResultsCounter.style.display = "block";
-		// Hide scrollbar
-		searchResultsList.style.overflowY = "hidden";
 
 		// Create elements
 		var headline = document.createElement("h4");
@@ -108,7 +104,7 @@ function renderResults(features) {
 
 		// Add content to containers
 		searchResultsCounter.appendChild(headline);
-		searchResultsList.appendChild(description);
+		searchResultsContainer.appendChild(description);
 	};
 };
 

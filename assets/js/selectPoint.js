@@ -118,8 +118,6 @@ function renderFilteredDescription(feature, otherProperties) {
 	searchResultsContainer.style.display = "block";
 	// Hide counter
 	searchResultsCounter.style.display = "none";
-	// Hide scrollbar
-	searchResultsList.style.overflowY = "hidden";
 
 	// Create elements
 	var container = document.createElement("div");

@@ -212,6 +212,20 @@ h5 {
 	margin: 0;
 }
 
+/* Font boosting */
+
+#search-results-counter {
+	min-height: 1px;
+}
+
+.search-result {
+	min-height: 1px;
+}
+
+#limit-message {
+	min-height: 1px;
+}
+
 /* Search input */
 
 #search-input-container {

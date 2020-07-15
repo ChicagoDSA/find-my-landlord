@@ -189,7 +189,7 @@ function renderFilteredDescription(feature, otherProperties) {
 	dataInfoLink.tabIndex = 0; // Allow text to be focused
 	dataInfoLink.innerText = "How was this data collected?";
 	container.appendChild(dataInfoLink);
-	attachModal(dataInfoLink);
+	attachModal(dataInfoLink, "How was this data collected?", dataInfoContent);
 
 	if (downloadButton) {
 		if (checkIE() == true) {

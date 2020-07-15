@@ -44,8 +44,12 @@ body, input, button {
 }
 
 a {
-    color: #1e6bb8;
     text-decoration: none;
+}
+
+#data-info-link,
+a {
+    color: #1e6bb8;
 }
 
 a:hover {

@@ -24,8 +24,7 @@
 
 /* disable font boosting on mobile browsers */
 body * {
-  max-height: 1000000em; /* Chrome for Android */
-  -moz-text-size-adjust: none; /* Firefox Mobile */
+	text-size-adjust: none;
 }
 
 /* Global elements */

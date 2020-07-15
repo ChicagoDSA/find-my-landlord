@@ -43,6 +43,19 @@ body, input, button {
 	line-height: 1.5;
 }
 
+a {
+    color: #1e6bb8;
+    text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+h5 {
+	margin: 1rem 0 1rem 0;
+}
+
 /* Map */
 
 #marker {
@@ -58,6 +71,7 @@ body, input, button {
 
 /* Focus */
 
+a:focus,
 #title:focus,
 #search-input:focus,
 .search-result:focus,
@@ -68,6 +82,7 @@ body, input, button {
 	outline: 2px dashed #0099ff;
 }
 
+a:focus,
 .empty-container button:focus,
 #data-info-link:focus,
 #clear:focus,
@@ -120,6 +135,11 @@ body, input, button {
 #search-input,
 .empty-container table tr:nth-child(even) {
 	background-color: #e6e6e6;
+}
+
+.empty-container table tr td:first-child,
+h5 {
+	color: #808080;
 }
 
 #clear,
@@ -246,7 +266,6 @@ body, input, button {
 
 .empty-container table tr td:first-child {
 	width: 10rem;
-	color: #808080;
 }
 
 .empty-container button {
@@ -346,10 +365,6 @@ body, input, button {
 	width: 32rem;
 	max-height: 60%;
 	overflow: auto;
-}
-
-#modal-content p:first-of-type {
-	margin-top: 10px;
 }
 
 #modal-content p:last-child {

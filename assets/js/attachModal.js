@@ -79,15 +79,12 @@ function attachModal(element, title, modalContent) {
 };
 
 function disableFocus(element) {
-	console.log("disable target"+element);
 	// Get elements in container
 	var elements = document.getElementById(element).getElementsByTagName("*");
 	for (var i = 0; i < elements.length; i++) {
 		var currentElement = elements[i];
-		console.log("disable candidate"+currentElement);
 		// Is focus enabled?
 		if (currentElement.tabIndex == 0) {
-			console.log("disabling"+currentElement);
 			// Disable focus
 			currentElement.classList.add("disabled-focus");
 			currentElement.tabIndex = -1;
@@ -100,15 +97,12 @@ function hasClass(element, className) {
 };
 
 function restoreFocus(element) {
-	console.log("restore target"+element);
 	// Get elements in container
 	var elements = document.getElementById(element).getElementsByTagName("*");
 	for (var i = 0; i < elements.length; i++) {
 		var currentElement = elements[i];
-		console.log("restore candidate"+currentElement);
 		// Is focus disabled?
 		if (hasClass(currentElement, "disabled-focus")) {
-			console.log("restoring"+currentElement);
 			// Enable focus
 			currentElement.classList.remove("disabled-focus");
 			currentElement.tabIndex = 0;

@@ -236,8 +236,8 @@ h5 {
 
 /* Search results list */
 
-#search-results-container * {
-	line-height: 12px;
+#search-results-counter, .search-result {
+	line-height: 24px;
 }
 
 #search-results-container {

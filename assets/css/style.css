@@ -70,9 +70,9 @@ h5 {
 /* Map */
 
 #marker {
-	margin-top: -22px;
-	width: 50px;
-	height: 50px;
+	margin-top: -1.375em;
+	width: 3.125rem;
+	height: 3.125rem;
 }
 
 #marker svg {
@@ -121,7 +121,7 @@ a:focus,
 #search-input,
 #search-results-container,
 #legend {
-	padding: 10px;
+	padding: .625rem;
 }
 
 #search-results-container,
@@ -135,6 +135,12 @@ a:focus,
 #modal-content,
 #legend {
 	box-shadow: 0 2px 4px rgba(0, 0, 0, .25);
+}
+
+#clear img,
+#modal-close img,
+#modal-close {
+	top: .4375rem;
 }
 
 #search-input-container,
@@ -156,17 +162,16 @@ h5 {
 #clear,
 #modal-close {
 	position: absolute;
-	right: 5px;
-	width: 30px;
-	height: 30px;
+	right: .3125rem;
+	width: 1.875rem;
+	height: 1.875rem;
 	cursor: pointer;
 }
 
 #clear img,
 #modal-close img {
 	position: absolute;
-	top: 7px;
-	right: 7px;
+	right: .4375rem;
 }
 
 #search-results-counter h4,
@@ -176,7 +181,7 @@ h5 {
 
 .empty-container h3,
 #legend h4 {
-	margin: 0 0 10px;
+	margin: 0 0 .625rem;
 }
 
 .property-details-link,
@@ -201,7 +206,7 @@ h5 {
 
 #top-container {
 	position: relative;
-	margin: 10px 10px 0 10px;
+	margin: .625rem .625rem 0 .625rem;
 	width: 30rem;
 }
 
@@ -222,7 +227,7 @@ h5 {
 /* Search input */
 
 #search-input-container {
-	padding: 20px;
+	padding: 1.25rem;
 	z-index: 3;
 }
 
@@ -238,7 +243,7 @@ h5 {
 
 #clear {
 	display: none;
-	top: 5px;
+	top: .3125rem;
 }
 
 /* Search results list */
@@ -249,7 +254,7 @@ h5 {
 }
 
 #search-results-counter {
-	padding: 5px 10px;
+	padding: .3125rem .625rem;
 	color: #fff;
 	background-color: #808080;
 }
@@ -266,7 +271,7 @@ h5 {
 
 #limit-message,
 .search-result {
-	padding: 10px;
+	padding: .625rem;
 }
 
 .search-result {
@@ -292,11 +297,11 @@ h5 {
 /* Selected search result */
 
 .empty-container {
-	margin: 10px;
+	margin: .625rem;
 }
 
 .empty-container table {
-	margin-bottom: 10px;
+	margin-bottom: .625rem;
 	border-collapse: collapse;
 }
 
@@ -310,7 +315,7 @@ h5 {
 
 .empty-container button {
 	width: 100%;
-	padding: 5px 10px;
+	padding: .3125rem .625rem;
 	font-weight: bold;
 	border: none;
 	background-color: #bfbfbf;
@@ -320,16 +325,16 @@ h5 {
 
 .button-hover:hover {
 	text-decoration: underline;
-	box-shadow: 0 5px 10px rgba(0 , 0, 0, .25);
+	box-shadow: 0 .3125rem .625rem rgba(0 , 0, 0, .25);
 }
 
 #bottom-links {
-	margin-top: 10px;
+	margin-top: .625rem;
 }
 
 .property-details-link {
 	display: inline-block;
-	margin-top: 10px;
+	margin-top: .625rem;
 	cursor: pointer;
 }
 
@@ -367,21 +372,17 @@ h5 {
 
 #modal-content,
 #modal-title {
-	padding: 10px;
+	padding: .625rem;
 }
 
 #modal-title {
-	margin: -10px -10px 0 -10px;
+	margin: -.625rem -.625rem 0 -.625rem;
 	color: #fff;
 	background-color: #000;
 }
 
 #modal-title h3 {
 	margin: 0;
-}
-
-#modal-close {
-	top: 7px;
 }
 
 #modal-content {
@@ -393,7 +394,7 @@ h5 {
 }
 
 #modal-content p:first-of-type {
-	margin-top: 10px;
+	margin-top: .625rem;
 }
 
 #modal-content p:last-child {
@@ -404,16 +405,16 @@ h5 {
 
 #legend {
 	width: 12rem;
-	margin: 0 10px 10px 0;
+	margin: 0 .625rem .625rem 0;
 	margin-left: auto;
 	pointer-events: auto;
 }
 
 #legend div span {
 	display: inline-block;
-	width: 10px;
-	height: 10px;
-	margin-right: 5px;
+	width: .625rem;
+	height: .625rem;
+	margin-right: .3125rem;
 	border: 1px solid #000; /* Fallback */
 	border: 1px solid rgba(0, 0, 0, .5);
 	border-radius: 50%;

@@ -7,6 +7,13 @@ function resetSearchResults() {
 	// Clear counter and list HTML
 	searchResultsCounter.innerHTML = "";
 	searchResultsList.innerHTML = "";
+
+	var selectedContainer = document.getElementById("selected-container");
+
+	if (selectedContainer) {
+		// Remove selected building
+		selectedContainer.parentNode.removeChild(selectedContainer);
+	};
 };
 
 function resetPointStyles(feature) {

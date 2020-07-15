@@ -127,7 +127,7 @@ function renderFilteredDescription(feature, otherProperties) {
 	var bottomLinks = document.createElement("div");
 
 	// Set values
-	container.className = "empty-container";
+	container.id = "selected-container";
 	bottomLinks.id = "bottom-links";
 
 	// Affiliated entity
@@ -190,7 +190,7 @@ function renderFilteredDescription(feature, otherProperties) {
 	};
 
 	// Add content to containers
-	searchResultsList.appendChild(container);
+	searchResultsContainer.appendChild(container);
 	container.insertBefore(infoTable, container.firstChild);
 
 	// Style row backgronds

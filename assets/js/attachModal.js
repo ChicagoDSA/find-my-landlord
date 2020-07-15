@@ -84,7 +84,8 @@ function disableFocus(element) {
 	for (var i = 0; i < elements.length; i++) {
 		var currentElement = elements[i];
 		// Is focus enabled?
-		if (currentElement.getAttribute("tabindex") == 0) {
+		// if (currentElement.getAttribute("tabindex") == 0)
+		if (currentElement.tabIndex == 0) {
 			// Disable focus
 			currentElement.classList.add("disabled-focus");
 			currentElement.tabIndex = -1;

@@ -215,7 +215,7 @@ h5 {
 /* Font boosting */
 
 #search-results-counter {
-	height: 10px;
+	height: auto;
 }
 
 .search-result {

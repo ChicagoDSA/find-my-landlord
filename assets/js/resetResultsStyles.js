@@ -3,6 +3,8 @@ function resetSearchResults() {
 	searchResultsContainer.style.display = "none";
 	// Hide counter
 	searchResultsCounter.style.display = "none";
+	// Hide list
+	searchResultsList.style.display = "none";
 
 	// Clear counter and list HTML
 	searchResultsCounter.innerHTML = "";

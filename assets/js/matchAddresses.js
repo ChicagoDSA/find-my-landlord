@@ -64,6 +64,8 @@ function renderResults(features) {
 		searchResultsContainer.style.display = "block";
 		// Show counter
 		searchResultsCounter.style.display = "block";
+		// Show list
+		searchResultsList.style.display = "block";
 
 		if (features.length > searchResultsLimit) {
 			// More results than limit

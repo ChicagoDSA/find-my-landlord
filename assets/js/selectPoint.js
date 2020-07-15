@@ -118,6 +118,8 @@ function renderFilteredDescription(feature, otherProperties) {
 	searchResultsContainer.style.display = "block";
 	// Hide counter
 	searchResultsCounter.style.display = "none";
+	// Hide list
+	searchResultsList.style.display = "none";
 
 	// Create elements
 	var container = document.createElement("div");

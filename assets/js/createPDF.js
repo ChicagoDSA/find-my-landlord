@@ -27,7 +27,7 @@ function createPDF(title, list) {
 				list[i].properties["Property Address"],
 				list[i].properties["Community Area"],
 				list[i].properties["Affiliated With"],
-				list.length,
+				list[i].properties["Properties Held by Affiliated With"],
 				list[i].properties["Taxpayer"]
 			];
 			rows.push(temp);

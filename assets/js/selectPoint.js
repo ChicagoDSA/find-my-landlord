@@ -5,13 +5,13 @@ function selectPoint(feature) {
 	// Proceed if selection has an affliated with
 	if (typeof affiliatedWith !== "undefined") {
 		// Build list of buildings with the same affliated with
-		var allPropertiesOwned = json.features.filter(function(e) {
-			var currentAffiliatedWith = e.properties["Affiliated With"];
+		var otherProperties = json.features.filter(function(e) {
+			var otherPropertiesAffiliatedWith = e.properties["Affiliated With"];
 
 			// Ignore properties with no affliated with
-			if(typeof currentAffiliatedWith !== "undefined") {
+			if(typeof otherPropertiesAffiliatedWith !== "undefined") {
 				// Return feature when trimmed input is found in buildings array
-				return currentAffiliatedWith.indexOf(affiliatedWith) > -1;
+				return otherPropertiesAffiliatedWith.indexOf(affiliatedWith) > -1;
 			};
 		});
 	};
@@ -21,11 +21,11 @@ function selectPoint(feature) {
 	renderClearButton(address);
 	centerMap(feature.geometry.coordinates);
 	resetPointStyles(feature);
-	renderFilteredPoints(feature, allPropertiesOwned);
-	renderFilteredDescription(feature, allPropertiesOwned);
+	renderFilteredPoints(feature, otherProperties);
+	renderFilteredDescription(feature, otherProperties);
 };
 
-function renderFilteredPoints(feature, allPropertiesOwned) {
+function renderFilteredPoints(feature, otherProperties) {
 	var propertyIndex = feature.properties["Property Index Number"];
 	var affiliatedWith = feature.properties["Affiliated With"];
 	
@@ -98,13 +98,17 @@ function renderFilteredPoints(feature, allPropertiesOwned) {
 	addFilteredLayer("selectedPoint", selectedPoint, defaultColors, 1);
 };
 
-function renderFilteredDescription(feature, allPropertiesOwned) {
-	console.log(allPropertiesOwned.length+"hey");
-
+function renderFilteredDescription(feature, otherProperties) {
 	var address = feature.properties["Property Address"];
 	var affiliatedWith = feature.properties["Affiliated With"];
+	var owned = feature.properties["Properties Held by Affiliated With"];
 	var taxpayer = feature.properties["Taxpayer"];
 	var additionalDetails = feature.properties["Additional Details"];
+
+	// Handle stray datapoints
+	if (owned < 1 || owned == "") {
+		owned = 1;
+	};
 
 	// Clear counter and list HTML
 	searchResultsCounter.innerHTML = "";
@@ -151,7 +155,7 @@ function renderFilteredDescription(feature, allPropertiesOwned) {
 	var ownedValue = document.createElement("td");
 
 	ownedLabel.innerHTML = "Properties owned:";
-	ownedValue.innerHTML = allPropertiesOwned.length;
+	ownedValue.innerHTML = owned;
 
 	infoTable.appendChild(ownedRow);
 	ownedRow.appendChild(ownedLabel);
@@ -224,7 +228,7 @@ function renderFilteredDescription(feature, allPropertiesOwned) {
 			
 			// Add button listener
 			downloadButton.onclick = function(){
-				createPDF(affiliatedWith, allPropertiesOwned);
+				createPDF(affiliatedWith, otherProperties);
 			};
 		};
 	};

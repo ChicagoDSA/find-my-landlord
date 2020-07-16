@@ -93,14 +93,7 @@ h5 {
 
 /* Focus */
 
-a:focus,
-#title:focus,
-#search-input:focus,
-.search-result:focus,
-#selected-container button:focus,
-.property-details-link:focus,
-#clear:focus,
-#modal-close:focus {
+*:focus {
 	outline: 2px dashed #0099ff;
 }
 

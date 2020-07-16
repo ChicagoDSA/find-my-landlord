@@ -146,8 +146,8 @@ h5 {
 }
 
 #search-results-counter h4,
-#selected-container p,
-#no-results-container p {
+#no-results-container p,
+#selected-container p {
 	margin: 0;
 }
 
@@ -162,8 +162,8 @@ h5 {
 	color: #808080;
 }
 
-#selected-container,
-#no-results-container {
+#no-results-container,
+#selected-container {
 	margin: .625rem;
 }
 

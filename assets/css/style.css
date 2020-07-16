@@ -104,14 +104,6 @@ a:focus,
 	outline: 2px dashed #0099ff;
 }
 
-a:focus,
-#selected-container button:focus,
-.property-details-link:focus,
-#clear:focus,
-#modal-close:focus {
-	outline-offset: 0;
-}
-
 #title:focus,
 #search-input:focus,
 .search-result:focus {

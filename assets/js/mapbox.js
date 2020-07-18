@@ -58,7 +58,7 @@ var searchResultsList = document.getElementById("search-results-list");
 // Set map defaults
 var map = new mapboxgl.Map({
 		container: "map",
-		style: "mapbox://styles/mapbox/dark-v10?optimize=true",
+		style: "mapbox://styles/lucienlizlepiorz/ckcs7uysp0uou1inb877kmk3o",
 		center: [-87.695787, 41.881302], // Fred Hampton mural
 		zoom: 10,
 		attributionControl: false
@@ -113,15 +113,15 @@ map.on("load", function() {
 		if (this.status >= 200 && this.status < 400) {
 			json = JSON.parse(this.response);
 
-			addFilteredLayer("propertyData", json, defaultColors, defaultOpacity);
+			// addFilteredLayer("propertyData", json, defaultColors, defaultOpacity);
 			
 			// Show input once loaded
 			searchInputContainer.style.display = "block";
 
 			// Add listeners
-			searchInput.addEventListener("keypress", matchAddresses);
+			// searchInput.addEventListener("keypress", matchAddresses);
 			// Fix for IE clear button
-			searchInput.addEventListener("input", matchAddresses);
+			// searchInput.addEventListener("input", matchAddresses);
 		};
 	};
 	request.send();

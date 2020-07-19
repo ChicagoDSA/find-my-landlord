@@ -1,6 +1,32 @@
 function selectPoint(feature) {
-	var address = feature.properties["Property Address"];
-	var affiliatedWith = feature.properties["Affiliated With"];
+	var address = feature["Property Address"];
+	var propertyID = feature["Property Index Number"];
+	console.log(propertyID);
+
+	var query = featuresRef
+			.where("properties.Property Index Number", "==", "1612109008")
+			.get()
+		    .then(function(querySnapshot) {
+		        querySnapshot.forEach(function(doc) {
+		        	console.log(doc.data().properties["Affiliated With"]);
+
+					var affiliatedWith = doc.data().properties["Affiliated With"];
+
+					// Set UI
+					searchInput.value = address;
+					renderClearButton(address);
+					centerMap(doc.data().geometry.coordinates);
+					resetSelectedInfo(doc.data());
+					resetSelectedMarker(doc.data());
+					// renderFilteredPoints(feature, allPropertiesOwned);
+					// renderFilteredDescription(feature, allPropertiesOwned);
+					renderSelectedInfo(doc.data());
+					renderSelectedMarker(doc.data());
+		        });
+		    })
+		    .catch(function(error) {
+		        console.log("Error getting documents: ", error);
+		    })
 
 	/*
 	// Proceed if selection has an affliated with
@@ -17,17 +43,6 @@ function selectPoint(feature) {
 		});
 	};
 	*/
-
-	// Set UI
-	searchInput.value = address;
-	renderClearButton(address);
-	centerMap(feature.geometry.coordinates);
-	resetSelectedInfo(feature);
-	resetSelectedMarker(feature);
-	// renderFilteredPoints(feature, allPropertiesOwned);
-	// renderFilteredDescription(feature, allPropertiesOwned);
-	renderSelectedInfo(feature);
-	renderSelectedMarker(feature);
 };
 
 function renderFilteredPoints(feature, allPropertiesOwned) {

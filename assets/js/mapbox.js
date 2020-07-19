@@ -46,6 +46,8 @@ var defaultRadius = [
 ];
 
 // Data
+var url = "assets/data/keys.json";
+var json = [];
 var buildingAtPoint = null;
 
 // Page elements
@@ -108,37 +110,47 @@ map.addControl(navigationControl, "top-right");
 var marker;
 
 map.on("load", function() {
-	// Set source data
-	map.addSource("propertyData", {
-		type: "vector",
-		url: "mapbox://lucienlizlepiorz.ddpjhgng",
-		promoteId: "Property Address"
-	});
-	
-	// Add features
-	map.addLayer({
-		"id": "features",
-		"type": "circle",
-		"source": "propertyData",
-		"source-layer": "features",
-		"paint": {
-			"circle-radius": defaultRadius,
-			"circle-color": defaultColors,
-			"circle-opacity": defaultOpacity
-		},
-	});
+	// Load search keys
+	var request = new XMLHttpRequest();
+	request.open("GET", url, true);
+	request.onload = function() {
+		if (this.status >= 200 && this.status < 400) {
+			json = JSON.parse(this.response);
 
-	setHoverState("propertyData", "features");
-	
-	// Remove persisted value
-	searchInput.value = "";
-	// Show search
-	searchInputContainer.style.display = "block";
+			// Set source data
+			map.addSource("propertyData", {
+				type: "vector",
+				url: "mapbox://lucienlizlepiorz.ddpjhgng",
+				promoteId: "Property Address"
+			});
+			
+			// Add features
+			map.addLayer({
+				"id": "features",
+				"type": "circle",
+				"source": "propertyData",
+				"source-layer": "features",
+				"paint": {
+					"circle-radius": defaultRadius,
+					"circle-color": defaultColors,
+					"circle-opacity": defaultOpacity
+				},
+			});
 
-	// Add listeners
-	searchInput.addEventListener("keypress", matchAddresses);
-	// Fix for IE clear button
-	searchInput.addEventListener("input", matchAddresses);
+			setHoverState("propertyData", "features");
+			
+			// Remove persisted value
+			searchInput.value = "";
+			// Show search
+			searchInputContainer.style.display = "block";
+
+			// Add listeners
+			searchInput.addEventListener("keypress", matchAddresses);
+			// Fix for IE clear button
+			searchInput.addEventListener("input", matchAddresses);	
+		};
+	};
+	request.send();
 });
 
 function addFilteredLayer (name, data, color, opacity) {

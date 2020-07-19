@@ -1,4 +1,4 @@
-var searchResultsLimit = 10;
+var searchResultsLimit = 50;
 
 function matchAddresses(e) {
 	var value = e.target.value.trim().toLowerCase();
@@ -15,27 +15,21 @@ function matchAddresses(e) {
 	if (value != "") {
 		// Create empty array of results
 		var results = [];
-		console.log(results.length);
 
-		const text = value;
-		const end = text.replace(/.$/, c => String.fromCharCode(c.charCodeAt(0) + 1));
+		for (var i = 0; i < json.length && results.length < searchResultsLimit+1; i++) {
+			// Address at current index
+	        var address = json[i]["Property Address"].trim().toLowerCase();
+	    	// Check if this address includes the input text
+	        if (address.indexOf(value) > -1) {
+	        	// Add feature to results array
+	        	results.push(json[i]);
+	        };
+	    };
 
-		var query = featuresRef
-			.where("properties.Property Address", ">=", text)
-		    .where("properties.Property Address", "<", end)
-		    .limit(searchResultsLimit+1)
-			.get()
-		    .then(function(querySnapshot) {
-		        querySnapshot.forEach(function(doc) {
-		            results.push(doc.data());
-		        });
-		        console.log("search results populated");
-		        resetSearchResults();
-		        renderResults(results);
-		    })
-		    .catch(function(error) {
-		        console.log("Error getting documents: ", error);
-		    });
+		// Render list
+		console.log("search results populated");
+		renderResults(results);
+		console.log(results);
 	};
 };
 
@@ -121,7 +115,7 @@ function renderResults(features) {
 
 function createListItem(feature) {
 	var item = document.createElement("li");
-	var address = feature.properties["Property Address"];
+	var address = feature["Property Address"];
 
 	item.className = "search-result";
 	item.tabIndex = 0;

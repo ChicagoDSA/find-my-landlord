@@ -2,6 +2,7 @@ function selectPoint(feature) {
 	var address = feature.properties["Property Address"];
 	var affiliatedWith = feature.properties["Affiliated With"];
 
+	/*
 	// Proceed if selection has an affliated with
 	if (typeof affiliatedWith !== "undefined") {
 		// Build list of buildings with the same affliated with
@@ -15,14 +16,16 @@ function selectPoint(feature) {
 			};
 		});
 	};
+	*/
 
 	// Set UI
 	searchInput.value = address;
 	renderClearButton(address);
 	centerMap(feature.geometry.coordinates);
-	resetPointStyles(feature);
-	renderFilteredPoints(feature, allPropertiesOwned);
-	renderFilteredDescription(feature, allPropertiesOwned);
+	resetSelectedPoint(feature);
+	// renderFilteredPoints(feature, allPropertiesOwned);
+	// renderFilteredDescription(feature, allPropertiesOwned);
+	renderFilteredDescription(feature);
 };
 
 function renderFilteredPoints(feature, allPropertiesOwned) {
@@ -98,7 +101,8 @@ function renderFilteredPoints(feature, allPropertiesOwned) {
 	addFilteredLayer("selectedPoint", selectedPoint, defaultColors, 1);
 };
 
-function renderFilteredDescription(feature, allPropertiesOwned) {
+// function renderFilteredDescription(feature, allPropertiesOwned) {
+function renderFilteredDescription(feature) {
 	var address = feature.properties["Property Address"];
 	var affiliatedWith = feature.properties["Affiliated With"];
 	var owned = feature.properties["Properties Held by Affiliated With"];
@@ -145,8 +149,9 @@ function renderFilteredDescription(feature, allPropertiesOwned) {
 		affiliatedWithRow.appendChild(affiliatedWithValue);
 
 		// Download
-		var downloadButton = document.createElement("button");
-		container.appendChild(downloadButton);
+		var downloadButton;
+		// var downloadButton = document.createElement("button");
+		// container.appendChild(downloadButton);
 	};
 	
 	// Property count
@@ -225,7 +230,7 @@ function renderFilteredDescription(feature, allPropertiesOwned) {
 			downloadButton.innerHTML = "Download all "+affiliatedWith+" data";
 			downloadButton.style.backgroundColor = setColors(feature);
 			downloadButton.classList.add("button-hover");
-			
+
 			// Add button listener
 			downloadButton.onclick = function(){
 				createPDF(affiliatedWith, allPropertiesOwned);

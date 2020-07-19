@@ -106,6 +106,11 @@ map.addControl(navigationControl, "top-right");
 var marker;
 
 map.on("load", function() {
+	searchInputContainer.style.display = "block";
+
+	setHoverState("features");
+
+	/*
 	// Load GeoJSON
 	var request = new XMLHttpRequest();
 	request.open("GET", url, true);
@@ -113,18 +118,19 @@ map.on("load", function() {
 		if (this.status >= 200 && this.status < 400) {
 			json = JSON.parse(this.response);
 
-			// addFilteredLayer("propertyData", json, defaultColors, defaultOpacity);
+			addFilteredLayer("propertyData", json, defaultColors, defaultOpacity);
 			
 			// Show input once loaded
 			searchInputContainer.style.display = "block";
 
 			// Add listeners
-			// searchInput.addEventListener("keypress", matchAddresses);
+			searchInput.addEventListener("keypress", matchAddresses);
 			// Fix for IE clear button
-			// searchInput.addEventListener("input", matchAddresses);
+			searchInput.addEventListener("input", matchAddresses);
 		};
 	};
 	request.send();
+	*/
 
 	// Remove persisted value
 	searchInput.value = "";
@@ -161,11 +167,12 @@ function setHoverState (layer) {
 	var buildingID = null;
 
 	map.on("mousemove", layer, function(e) {
-	    var featuresAtPoint = map.queryRenderedFeatures(e.point);
-		buildingAtPoint = getBuildingAtPoint(featuresAtPoint, layer);
+		var featuresAtPoint = map.queryRenderedFeatures(e.point, { layers: [layer] });
+		buildingAtPoint = featuresAtPoint[0];
 
 		if (buildingAtPoint) {
 			map.getCanvas().style.cursor = "pointer";
+			/*
 			// Remove existing state
 			if (buildingID) {
 				map.removeFeatureState({
@@ -173,30 +180,34 @@ function setHoverState (layer) {
 					id: buildingID
 				});
 			};
+			*/
 			
 			// Set new ID
-		    buildingID = buildingAtPoint.id;
-		    
-		    // Hover to true
-		    map.setFeatureState({
-		      source: layer,
-		      id: buildingID
-		    }, {
-		    	hover: true
-		    });
-	    } else {
-	    	// Clear var
+			buildingID = featuresAtPoint[0].properties["Property Address"];
+			
+			/*
+			// Hover to true
+			map.setFeatureState({
+			  source: layer,
+			  id: buildingID
+			}, {
+				hover: true
+			});
+			*/
+		} else {
+			// Clear var
 			buildingAtPoint = null;
 		};
 	});
 
 	map.on("click", layer, function(e) {
-   		if (buildingAtPoint) {
-   			selectPoint(buildingAtPoint);
-   		};
+		if (buildingAtPoint) {
+			selectPoint(buildingAtPoint);
+		};
 	});
 
 	map.on("mouseleave", layer, function() {
+		/*
 		// Hover to false
 		if (buildingID) {
 			map.setFeatureState({
@@ -206,6 +217,7 @@ function setHoverState (layer) {
 				hover: false
 			});
 		}
+		 */
 		
 		// Clear var
 		buildingID = null;

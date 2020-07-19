@@ -18,7 +18,7 @@ function resetSearchResults() {
 	};
 };
 
-function resetPointStyles(feature) {
+function resetSelectedPoint(feature) {
 	var selectedContainer = document.getElementById("selected-container");
 
 	if (selectedContainer) {
@@ -32,6 +32,7 @@ function resetPointStyles(feature) {
 		markerContainer = null;
 	};
 
+	/*
 	// Restore layer with complete dataset
 	map.setLayoutProperty("propertyData", "visibility", "visible");
 
@@ -48,4 +49,5 @@ function resetPointStyles(feature) {
 		map.removeLayer("otherPoints");
 		map.removeSource("otherPoints");
 	};
+	*/
 };

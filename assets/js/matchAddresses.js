@@ -1,4 +1,4 @@
-var searchResultsLimit = 50;
+var searchResultsLimit = 10;
 
 function matchAddresses(e) {
 	var value = e.target.value.trim().toLowerCase();
@@ -23,7 +23,7 @@ function matchAddresses(e) {
 		var query = featuresRef
 			.where("properties.Property Address", ">=", text)
 		    .where("properties.Property Address", "<", end)
-		    .limit(5)
+		    .limit(searchResultsLimit)
 			.get()
 		    .then(function(querySnapshot) {
 		        querySnapshot.forEach(function(doc) {

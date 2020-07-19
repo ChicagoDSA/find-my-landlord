@@ -30,6 +30,7 @@ function matchAddresses(e) {
 		            results.push(doc.data());
 		        });
 		        console.log("search results populated");
+		        resetSearchResults();
 		        renderResults(results);
 		    })
 		    .catch(function(error) {

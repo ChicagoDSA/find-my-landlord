@@ -40,7 +40,7 @@ var defaultRadius = [
 	],
 	22, ["case",
 		["boolean", ["feature-state", "hover"], false],
-		360,
+		320,
 		120
 	]
 ];
@@ -134,6 +134,11 @@ map.on("load", function() {
 	searchInput.value = "";
 	// Show search
 	searchInputContainer.style.display = "block";
+
+	// Add listeners
+	searchInput.addEventListener("keypress", matchAddresses);
+	// Fix for IE clear button
+	searchInput.addEventListener("input", matchAddresses);
 });
 
 function addFilteredLayer (name, data, color, opacity) {

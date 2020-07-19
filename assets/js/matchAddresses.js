@@ -7,26 +7,34 @@ function matchAddresses(e) {
 	renderClearButton(value);
 	// Reset rendered objects
 	resetSearchResults();
-	// Reset points
-	resetPointStyles();
+	// Reset description
+	resetSelectedInfo();
+	// Reset marker
+	resetSelectedMarker();
 
 	if (value != "") {
 		// Create empty array of results
 		var results = [];
+		console.log(results.length);
 
-		for (var i = 0; i < json.features.length && results.length < searchResultsLimit+1; i++) {
-			// Address at current index
-	        var address = json.features[i].properties["Property Address"].trim().toLowerCase();
-	    	// Check if this address includes the input text
-	        if (address.indexOf(value) > -1) {
-	        	// Add feature to results array
-	        	results.push(json.features[i]);
-	        };
-	    };
+		const text = value;
+		const end = text.replace(/.$/, c => String.fromCharCode(c.charCodeAt(0) + 1));
 
-		// Render list
-		console.log("search results populated");
-		renderResults(results);
+		var query = featuresRef
+			.where("properties.Property Address", ">=", text)
+		    .where("properties.Property Address", "<", end)
+		    .limit(5)
+			.get()
+		    .then(function(querySnapshot) {
+		        querySnapshot.forEach(function(doc) {
+		            results.push(doc.data());
+		        });
+		        console.log("search results populated");
+		        renderResults(results);
+		    })
+		    .catch(function(error) {
+		        console.log("Error getting documents: ", error);
+		    });
 	};
 };
 

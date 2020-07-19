@@ -22,10 +22,12 @@ function selectPoint(feature) {
 	searchInput.value = address;
 	renderClearButton(address);
 	centerMap(feature.geometry.coordinates);
-	resetSelectedPoint(feature);
+	resetSelectedInfo(feature);
+	resetSelectedMarker(feature);
 	// renderFilteredPoints(feature, allPropertiesOwned);
 	// renderFilteredDescription(feature, allPropertiesOwned);
-	renderFilteredDescription(feature);
+	renderSelectedInfo(feature);
+	renderSelectedMarker(feature);
 };
 
 function renderFilteredPoints(feature, allPropertiesOwned) {
@@ -102,7 +104,7 @@ function renderFilteredPoints(feature, allPropertiesOwned) {
 };
 
 // function renderFilteredDescription(feature, allPropertiesOwned) {
-function renderFilteredDescription(feature) {
+function renderSelectedInfo(feature) {
 	var address = feature.properties["Property Address"];
 	var affiliatedWith = feature.properties["Affiliated With"];
 	var owned = feature.properties["Properties Held by Affiliated With"];
@@ -237,4 +239,32 @@ function renderFilteredDescription(feature) {
 			};
 		};
 	};
+};
+
+function renderSelectedMarker(feature) {
+	var request = new XMLHttpRequest();
+	request.open("GET", "assets/images/marker.svg", true);
+	request.onload = function() {
+		if (this.status >= 200 && this.status < 400) {
+			var svg = this.response;
+
+			// Create marker
+			markerContainer = document.createElement("div");
+			markerContainer.id = "marker";
+
+			// Add SVG to marker
+			markerContainer.innerHTML = svg;
+			markerContainer.children[0].getElementById("outline").setAttribute("stroke", black);
+			markerContainer.children[0].getElementById("shape").setAttribute("fill", setColors(feature));
+			
+			// Add to map
+			// Validate coordinates
+			if (feature.geometry.coordinates.length == 2) {
+				marker = new mapboxgl.Marker(markerContainer)
+					.setLngLat(feature.geometry.coordinates)
+					.addTo(map);
+			};
+		};
+	};
+	request.send();
 };

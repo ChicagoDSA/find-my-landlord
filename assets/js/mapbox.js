@@ -2,32 +2,16 @@
 mapboxgl.accessToken = "pk.eyJ1IjoibHVjaWVubGl6bGVwaW9yeiIsImEiOiJja2M2YTN3dG8wYmZlMnp0ZXBzZzJuM3JsIn0.n6bA8boNS3LQW1izwa6MKg";
 
 // Vars
-var defaultRadius = [
-	"interpolate",
-	["exponential", 1.75],
-	["zoom"],
-	8, ["case",
-		["boolean", ["feature-state", "hover"], false],
-		10,
-		2
-	],
-	12, ["case",
-		["boolean", ["feature-state", "hover"], false],
-		12,
-		4
-	],
-	22, ["case",
-		["boolean", ["feature-state", "hover"], false],
-		360,
-		180
-	]
-];
 var yellow = "#ffff00";
 var red = "#ff4d4d";
 var pink = "#ff00ff";
 var green = "#33cc33";
 var gray = "#808080";
 var black = "#000";
+var defaultOpacity = .5;
+var highlightZoom = 12;
+
+// Change colors based on landlord size
 var defaultColors = [
 	"case",
 	["<", ["get", "Properties Held by Affiliated With"], 5],
@@ -38,12 +22,30 @@ var defaultColors = [
 	red,
 	yellow
 ];
-var defaultOpacity = .5;
-var highlightZoom = 12;
+
+// Scale radius based on zoom, hover
+var defaultRadius = [
+	"interpolate",
+	["exponential", 1.75],
+	["zoom"],
+	8, ["case",
+		["boolean", ["feature-state", "hover"], false],
+		10,
+		2
+	],
+	16, ["case",
+		["boolean", ["feature-state", "hover"], false],
+		12,
+		4
+	],
+	22, ["case",
+		["boolean", ["feature-state", "hover"], false],
+		360,
+		120
+	]
+];
 
 // Data
-var url = "assets/data/features.geojson";
-var json = [];
 var buildingAtPoint = null;
 
 // Page elements
@@ -58,7 +60,7 @@ var searchResultsList = document.getElementById("search-results-list");
 // Set map defaults
 var map = new mapboxgl.Map({
 		container: "map",
-		style: "mapbox://styles/lucienlizlepiorz/ckcs7uysp0uou1inb877kmk3o",
+		style: "mapbox://styles/mapbox/dark-v10?optimize=true",
 		center: [-87.695787, 41.881302], // Fred Hampton mural
 		zoom: 10,
 		attributionControl: false
@@ -106,40 +108,38 @@ map.addControl(navigationControl, "top-right");
 var marker;
 
 map.on("load", function() {
-	searchInputContainer.style.display = "block";
+	// Set source data
+	map.addSource("propertyData", {
+		type: "vector",
+		url: "mapbox://lucienlizlepiorz.ddpjhgng",
+		promoteId: "Property Address"
+	});
+	
+	// Add features
+	map.addLayer({
+		"id": "features",
+		"type": "circle",
+		"source": "propertyData",
+		"source-layer": "features",
+		"paint": {
+			"circle-radius": defaultRadius,
+			"circle-color": defaultColors,
+			"circle-opacity": defaultOpacity
+		},
+	});
 
-	setHoverState("features");
-
-	/*
-	// Load GeoJSON
-	var request = new XMLHttpRequest();
-	request.open("GET", url, true);
-	request.onload = function() {
-		if (this.status >= 200 && this.status < 400) {
-			json = JSON.parse(this.response);
-
-			addFilteredLayer("propertyData", json, defaultColors, defaultOpacity);
-			
-			// Show input once loaded
-			searchInputContainer.style.display = "block";
-
-			// Add listeners
-			searchInput.addEventListener("keypress", matchAddresses);
-			// Fix for IE clear button
-			searchInput.addEventListener("input", matchAddresses);
-		};
-	};
-	request.send();
-	*/
-
+	setHoverState("propertyData", "features");
+	
 	// Remove persisted value
 	searchInput.value = "";
+	// Show search
+	searchInputContainer.style.display = "block";
 });
 
 function addFilteredLayer (name, data, color, opacity) {
 	// Set source data
 	map.addSource(name, {
-		type: "geojson",
+		type: "vector",
 		data: data,
 		promoteId: "Property Index Number"
 	});
@@ -149,6 +149,7 @@ function addFilteredLayer (name, data, color, opacity) {
 		"id": name,
 		"type": "circle",
 		"source": name,
+		"source-layer": "features",
 		"paint": {
 			"circle-radius": defaultRadius,
 			"circle-color": color,
@@ -158,42 +159,39 @@ function addFilteredLayer (name, data, color, opacity) {
 
 	// Hover unselected layers
 	if (name != "selectedPoint") {
-		setHoverState(name);
+		setHoverState(name, name);
 	}
 };
 
-function setHoverState (layer) {
+function setHoverState (source, layer) {
 	// Declared here to fix duplicates
 	var buildingID = null;
 
 	map.on("mousemove", layer, function(e) {
 		var featuresAtPoint = map.queryRenderedFeatures(e.point, { layers: [layer] });
-		buildingAtPoint = featuresAtPoint[0];
+		buildingAtPoint = getBuildingAtPoint(featuresAtPoint, source);
 
 		if (buildingAtPoint) {
 			map.getCanvas().style.cursor = "pointer";
-			/*
 			// Remove existing state
 			if (buildingID) {
 				map.removeFeatureState({
-					source: layer,
-					id: buildingID
+					source: source,
+					sourceLayer: layer
 				});
 			};
-			*/
 			
 			// Set new ID
 			buildingID = featuresAtPoint[0].properties["Property Address"];
 			
-			/*
 			// Hover to true
 			map.setFeatureState({
-			  source: layer,
+			  source: source,
+			  sourceLayer: layer,
 			  id: buildingID
 			}, {
 				hover: true
 			});
-			*/
 		} else {
 			// Clear var
 			buildingAtPoint = null;
@@ -207,17 +205,16 @@ function setHoverState (layer) {
 	});
 
 	map.on("mouseleave", layer, function() {
-		/*
 		// Hover to false
 		if (buildingID) {
 			map.setFeatureState({
-				source: layer,
+				source: source,
+				sourceLayer: layer,
 				id: buildingID
 			}, {
 				hover: false
 			});
 		}
-		 */
 		
 		// Clear var
 		buildingID = null;

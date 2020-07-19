@@ -23,7 +23,7 @@ function matchAddresses(e) {
 		var query = featuresRef
 			.where("properties.Property Address", ">=", text)
 		    .where("properties.Property Address", "<", end)
-		    .limit(searchResultsLimit)
+		    .limit(searchResultsLimit+1)
 			.get()
 		    .then(function(querySnapshot) {
 		        querySnapshot.forEach(function(doc) {

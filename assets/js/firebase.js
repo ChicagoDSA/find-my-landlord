@@ -1,6 +1,6 @@
 var firebaseConfig = {
 	apiKey: "AIzaSyDpw9sXTjVLIMuUEjEGxGHFbZzldiWaXOQ",
-	databaseURL: "https://find-my-landlord.firebaseio.com",
+	authDomain: "find-my-landlord.firebaseapp.com",
 	projectId: "find-my-landlord",
 };
 

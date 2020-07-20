@@ -31,7 +31,6 @@ function matchAddresses(e) {
 		// Render list
 		console.log("search results populated");
 		renderResults(results);
-		console.log(results);
 	};
 };
 

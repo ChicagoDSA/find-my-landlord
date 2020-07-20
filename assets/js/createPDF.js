@@ -22,13 +22,13 @@ function createPDF(title, list) {
 
 	// Create rows
 	(function () {
-		for (var i = 0; i < list.length; i++) {
+		for (var i = 0; i < list.features.length; i++) {
 	        var temp = [
-				list[i].properties["Property Address"],
-				list[i].properties["Community Area"],
-				list[i].properties["Affiliated With"],
-				list[i].properties["Properties Held by Affiliated With"],
-				list[i].properties["Taxpayer"]
+				list.features[i].properties["Property Address"],
+				list.features[i].properties["Community Area"],
+				list.features[i].properties["Affiliated With"],
+				list.features[i].properties["Properties Held by Affiliated With"],
+				list.features[i].properties["Taxpayer"]
 			];
 			rows.push(temp);
 	    };

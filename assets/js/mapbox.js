@@ -40,8 +40,8 @@ var defaultRadius = [
 	],
 	22, ["case",
 		["boolean", ["feature-state", "hover"], false],
-		320,
-		120
+		360,
+		180
 	]
 ];
 
@@ -137,7 +137,7 @@ map.on("load", function() {
 				},
 			});
 
-			setHoverState("propertyData", "features");
+			setHoverState("propertyData", "vector", "features");
 			
 			// Remove persisted value
 			searchInput.value = "";
@@ -156,7 +156,7 @@ map.on("load", function() {
 function addFilteredLayer (name, data, color, opacity) {
 	// Set source data
 	map.addSource(name, {
-		type: "vector",
+		type: "geojson",
 		data: data,
 		promoteId: "Property Index Number"
 	});
@@ -166,7 +166,6 @@ function addFilteredLayer (name, data, color, opacity) {
 		"id": name,
 		"type": "circle",
 		"source": name,
-		"source-layer": "features",
 		"paint": {
 			"circle-radius": defaultRadius,
 			"circle-color": color,
@@ -174,13 +173,11 @@ function addFilteredLayer (name, data, color, opacity) {
 		},
 	});
 
-	// Hover unselected layers
-	if (name != "selectedPoint") {
-		setHoverState(name, name);
-	}
+	// Style hover
+	setHoverState(name, name);
 };
 
-function setHoverState (source, layer) {
+function setHoverState (source, type, layer) {
 	// Declared here to fix duplicates
 	var buildingID = null;
 
@@ -192,23 +189,39 @@ function setHoverState (source, layer) {
 			map.getCanvas().style.cursor = "pointer";
 			// Remove existing state
 			if (buildingID) {
-				map.removeFeatureState({
-					source: source,
-					sourceLayer: layer
-				});
+				if (type == "vector") {
+					map.removeFeatureState({
+						source: source,
+						sourceLayer: layer
+					});
+				} else {
+					map.removeFeatureState({
+						source: layer,
+						id: buildingID
+					});
+				};
 			};
 			
 			// Set new ID
 			buildingID = featuresAtPoint[0].properties["Property Address"];
 			
 			// Hover to true
-			map.setFeatureState({
-			  source: source,
-			  sourceLayer: layer,
-			  id: buildingID
-			}, {
-				hover: true
-			});
+			if (type == "vector") {
+				map.setFeatureState({
+					source: source,
+					sourceLayer: layer,
+					id: buildingID
+				}, {
+					hover: true
+				});
+			} else {
+				map.setFeatureState({
+					source: layer,
+					id: buildingID
+				}, {
+					hover: true
+				});
+			};
 		} else {
 			// Clear var
 			buildingAtPoint = null;
@@ -224,14 +237,23 @@ function setHoverState (source, layer) {
 	map.on("mouseleave", layer, function() {
 		// Hover to false
 		if (buildingID) {
-			map.setFeatureState({
-				source: source,
-				sourceLayer: layer,
-				id: buildingID
-			}, {
-				hover: false
-			});
-		}
+			if (type == "vector") {
+				map.setFeatureState({
+					source: source,
+					sourceLayer: layer,
+					id: buildingID
+				}, {
+					hover: false
+				});
+			} else {
+				map.setFeatureState({
+					source: layer,
+					id: buildingID
+				}, {
+					hover: false
+				});
+			};
+		};
 		
 		// Clear var
 		buildingID = null;

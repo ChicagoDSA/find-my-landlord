@@ -18,23 +18,29 @@ function resetSearchResults() {
 	};
 };
 
-function resetSelectedInfo(feature) {
+function resetSelectedInfo() {
 	var selectedContainer = document.getElementById("selected-container");
 
 	if (selectedContainer) {
 		// Remove selected building
 		selectedContainer.parentNode.removeChild(selectedContainer);
 	};
+	
+	// Restore layer with complete dataset
+	map.setPaintProperty("features", "circle-opacity", defaultOpacity);
+	map.setPaintProperty("features", "circle-color", defaultColors);
+	
+	// Remove selected layers
+	if (map.getLayer("otherPropertiesOwned")) {
+		map.removeLayer("otherPropertiesOwned");
+		map.removeSource("otherPropertiesOwned");
+	};
+	if (map.getLayer("selectedProperty")) {
+		map.removeLayer("selectedProperty");
+		map.removeSource("selectedProperty");
+	};
 
 	/*
-	// Restore layer with complete dataset
-	map.setLayoutProperty("propertyData", "visibility", "visible");
-
-	// Remove selected layers
-	if (map.getLayer("selectedPoint")) {
-		map.removeLayer("selectedPoint");
-		map.removeSource("selectedPoint");
-	};
 	if (map.getLayer("relatedPoints")) {
 		map.removeLayer("relatedPoints");
 		map.removeSource("relatedPoints");
@@ -46,7 +52,7 @@ function resetSelectedInfo(feature) {
 	*/
 };
 
-function resetSelectedMarker(feature) {	
+function resetSelectedMarker() {	
 	if (markerContainer) {
 		// Remove marker
 		markerContainer.parentNode.removeChild(markerContainer);

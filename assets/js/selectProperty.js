@@ -23,92 +23,72 @@ function loadProperty(feature) {
 };
 
 function renderSelectedUI(address, coordinates, feature) {
+	// Update search input
 	searchInput.value = address;
 	renderClearButton(address);
+	// Center map
 	centerMap(feature.geometry.coordinates);
-	resetSelectedInfo(feature);
-	resetSelectedMarker(feature);
-	// renderFilteredPoints(feature, allPropertiesOwned);
-	// renderFilteredDescription(feature, allPropertiesOwned);
-	renderSelectedInfo(feature);
-	renderSelectedMarker(feature);
+	// Reset UI
+	resetSelectedInfo();
+	resetSelectedMarker();
+	// Render updates
+	renderFilteredPoints(feature);
 };
 
-function renderFilteredPoints(feature, allPropertiesOwned) {
-	var propertyIndex = feature.properties["Property Index Number"];
+function renderFilteredPoints(feature) {
+	var propertyAddress = feature.properties["Property Address"];
 	var affiliatedWith = feature.properties["Affiliated With"];
-	
-	// Create empty GeoJSON objects
-	var otherPoints = {
-	  "type": "FeatureCollection",
-	  "features": []
-	};
-	var relatedPoints= {
-	  "type": "FeatureCollection",
-	  "features": []
-	};
-	var selectedPoint= {
+
+	var allPropertiesOwned = {
 	  "type": "FeatureCollection",
 	  "features": []
 	};
 
-	// Hide layer with complete dataset
-	map.setLayoutProperty("propertyData", "visibility", "none");
+	var otherPropertiesOwned = {
+	  "type": "FeatureCollection",
+	  "features": []
+	};
 
-	for (var i = 0; i < json.features.length; i++) {
-		var objAtIndex = json.features[i].properties["Property Index Number"]; 
-		if (propertyIndex === objAtIndex) {
-			// Selected building
-			// Add feature to GeoJSON object
-			selectedPoint.features.push(json.features[i]);
+	var selectedProperty = {
+	  "type": "FeatureCollection",
+	  "features": []
+	};
 
-			var selectedBuilding = json.features[i];
+	var query = featuresRef
+		.where("properties.Affiliated With", "==", affiliatedWith)
+		.get()
+	    .then(function(querySnapshot) {
+	        querySnapshot.forEach(function(doc) {
+				// Add all matches to the set
+				allPropertiesOwned.features.push(doc.data());
 
-			var request = new XMLHttpRequest();
-			request.open("GET", "assets/images/marker.svg", true);
-			request.onload = function() {
-				if (this.status >= 200 && this.status < 400) {
-					var svg = this.response;
-
-					// Create marker
-					markerContainer = document.createElement("div");
-					markerContainer.id = "marker";
-
-					// Add SVG to marker
-					markerContainer.innerHTML = svg;
-					markerContainer.children[0].getElementById("outline").setAttribute("stroke", black);
-					markerContainer.children[0].getElementById("shape").setAttribute("fill", setColors(selectedBuilding));
-					
-					// Add to map
-					// Validate coordinates
-					if (selectedBuilding.geometry.coordinates.length == 2) {
-						marker = new mapboxgl.Marker(markerContainer)
-							.setLngLat(selectedBuilding.geometry.coordinates)
-							.addTo(map);
-					};
+				if (doc.data().properties["Property Address"] == propertyAddress) {
+					// Add selected property to one set
+					selectedProperty.features.push(doc.data());
+				} else {
+					// Add other properties to a different set
+					otherPropertiesOwned.features.push(doc.data());
 				};
-			};
-			request.send();
-		} else if (json.features[i].properties["Affiliated With"] == affiliatedWith) {
-			// Building with the same affliated with
-			// Add feature to GeoJSON object
-			relatedPoints.features.push(json.features[i]);
-		}
-		else {
-			// All other buildings
-			// Add feature to GeoJSON object
-			otherPoints.features.push(json.features[i]);
-		};
-	};
+	        });
+	    })
+	    .then(function() {
+	    	// Data is loaded
+	    	map.setPaintProperty("features", "circle-opacity", .25);
+			map.setPaintProperty("features", "circle-color", black);
 
-	// Render layers
-	addFilteredLayer("otherPoints", otherPoints, black, defaultOpacity);
-	addFilteredLayer("relatedPoints", relatedPoints, defaultColors, defaultOpacity);
-	addFilteredLayer("selectedPoint", selectedPoint, defaultColors, 1);
+	    	addFilteredLayer("otherPropertiesOwned", otherPropertiesOwned, defaultColors, 1);
+	    	addFilteredLayer("selectedProperty", selectedProperty, defaultColors, 1);
+
+	    	// Show UI
+	    	renderSelectedInfo(feature, allPropertiesOwned);
+			renderSelectedMarker(feature);
+	    })
+	    .catch(function(error) {
+	        console.log("Error getting documents: ", error);
+	    })
 };
 
-// function renderFilteredDescription(feature, allPropertiesOwned) {
-function renderSelectedInfo(feature) {
+function renderSelectedInfo(feature, allPropertiesOwned) {
 	var address = feature.properties["Property Address"];
 	var affiliatedWith = feature.properties["Affiliated With"];
 	var owned = feature.properties["Properties Held by Affiliated With"];
@@ -156,8 +136,8 @@ function renderSelectedInfo(feature) {
 
 		// Download
 		var downloadButton;
-		// var downloadButton = document.createElement("button");
-		// container.appendChild(downloadButton);
+		var downloadButton = document.createElement("button");
+		container.appendChild(downloadButton);
 	};
 	
 	// Property count

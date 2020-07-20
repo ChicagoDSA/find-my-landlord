@@ -47,7 +47,8 @@ function renderClearButton(value) {
 			// Reset UI
 			searchInput.value = "";
 			resetSearchResults();
-			resetPointStyles();
+			resetSelectedInfo();
+			resetSelectedMarker();
 		};
 		// Accessibility
 		clearButton.addEventListener("keypress",

@@ -18,12 +18,14 @@ function matchAddresses(e) {
 
 		for (var i = 0; i < json.length && results.length < searchResultsLimit+1; i++) {
 			// Address at current index
-	        var address = json[i]["Property Address"].trim().toLowerCase();
-	    	// Check if this address includes the input text
-	        if (address.indexOf(value) > -1) {
-	        	// Add feature to results array
-	        	results.push(json[i]);
-	        };
+			if (json[i]["Property Address"]) {
+				var address = json[i]["Property Address"].trim().toLowerCase();
+		    	// Check if this address includes the input text
+		        if (address.indexOf(value) > -1) {
+		        	// Add feature to results array
+		        	results.push(json[i]);
+		        };
+			};
 	    };
 
 		// Render list

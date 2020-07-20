@@ -4,31 +4,31 @@ function selectPoint(feature) {
 	console.log(propertyID);
 
 	var query = featuresRef
-			.where("properties.Property Index Number", "==", "1612109008")
-			.get()
-		    .then(function(querySnapshot) {
-		        querySnapshot.forEach(function(doc) {
-		        	console.log(doc.data().properties["Affiliated With"]);
+		.where("properties.Property Index Number", "==", String(propertyID))
+		.get()
+	    .then(function(querySnapshot) {
+	        querySnapshot.forEach(function(doc) {
+	        	console.log(doc.data().properties["Affiliated With"]);
 
-					var affiliatedWith = doc.data().properties["Affiliated With"];
+				var affiliatedWith = doc.data().properties["Affiliated With"];
 
-					// Set UI
-					searchInput.value = address;
-					renderClearButton(address);
-					centerMap(doc.data().geometry.coordinates);
-					resetSelectedInfo(doc.data());
-					resetSelectedMarker(doc.data());
-					// renderFilteredPoints(feature, allPropertiesOwned);
-					// renderFilteredDescription(feature, allPropertiesOwned);
-					renderSelectedInfo(doc.data());
-					renderSelectedMarker(doc.data());
-		        });
-		    })
-		    .catch(function(error) {
-		        console.log("Error getting documents: ", error);
-		    })
+				// Set UI
+				searchInput.value = address;
+				renderClearButton(address);
+				centerMap(doc.data().geometry.coordinates);
+				resetSelectedInfo(doc.data());
+				resetSelectedMarker(doc.data());
+				// renderFilteredPoints(feature, allPropertiesOwned);
+				// renderFilteredDescription(feature, allPropertiesOwned);
+				renderSelectedInfo(doc.data());
+				renderSelectedMarker(doc.data());
+	        });
+	    })
+	    .catch(function(error) {
+	        console.log("Error getting documents: ", error);
+	    })
 
-	/*
+	
 	// Proceed if selection has an affliated with
 	if (typeof affiliatedWith !== "undefined") {
 		// Build list of buildings with the same affliated with
@@ -42,7 +42,6 @@ function selectPoint(feature) {
 			};
 		});
 	};
-	*/
 };
 
 function renderFilteredPoints(feature, allPropertiesOwned) {

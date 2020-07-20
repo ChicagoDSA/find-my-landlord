@@ -217,7 +217,7 @@ function setHoverState (source, layer) {
 
 	map.on("click", layer, function(e) {
 		if (buildingAtPoint) {
-			selectPoint(buildingAtPoint);
+			selectProperty(buildingAtPoint);
 		};
 	});
 

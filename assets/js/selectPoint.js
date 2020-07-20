@@ -1,4 +1,35 @@
-function selectPoint(feature) {
+function selectProperty(feature) {
+	var address = feature.properties["Property Address"];
+	var affiliatedWith = feature.properties["Affiliated With"];
+
+	/*
+	// Proceed if selection has an affliated with
+	if (typeof affiliatedWith !== "undefined") {
+		// Build list of buildings with the same affliated with
+		var allPropertiesOwned = json.features.filter(function(e) {
+			var currentAffiliatedWith = e.properties["Affiliated With"];
+			// Ignore properties with no affliated with
+			if(typeof currentAffiliatedWith !== "undefined") {
+				// Return feature when trimmed input is found in buildings array
+				return currentAffiliatedWith.indexOf(affiliatedWith) > -1;
+			};
+		});
+	};
+	*/
+
+	// Set UI
+	searchInput.value = address;
+	renderClearButton(address);
+	centerMap(feature.geometry.coordinates);
+	resetSelectedInfo(feature);
+	resetSelectedMarker(feature);
+	// renderFilteredPoints(feature, allPropertiesOwned);
+	// renderFilteredDescription(feature, allPropertiesOwned);
+	renderSelectedInfo(feature);
+	renderSelectedMarker(feature);
+};
+
+function loadProperty(feature) {
 	var address = feature["Property Address"];
 	var propertyID = feature["Property Index Number"];
 	console.log(propertyID);

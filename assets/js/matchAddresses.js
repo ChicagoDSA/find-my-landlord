@@ -136,7 +136,7 @@ function createListItem(feature) {
 
 	// Add click event
 	item.onclick = function(){
-		selectPoint(feature);
+		loadProperty(feature);
 	};
 	// Accessibility
 	item.addEventListener("keypress",

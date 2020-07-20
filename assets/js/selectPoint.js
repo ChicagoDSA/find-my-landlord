@@ -1,23 +1,28 @@
 function selectProperty(feature) {
 	var address = feature.properties["Property Address"];
 	var affiliatedWith = feature.properties["Affiliated With"];
+	renderSelectedUI(address, feature.geometry.coordinates, feature);
+};
 
-	/*
-	// Proceed if selection has an affliated with
-	if (typeof affiliatedWith !== "undefined") {
-		// Build list of buildings with the same affliated with
-		var allPropertiesOwned = json.features.filter(function(e) {
-			var currentAffiliatedWith = e.properties["Affiliated With"];
-			// Ignore properties with no affliated with
-			if(typeof currentAffiliatedWith !== "undefined") {
-				// Return feature when trimmed input is found in buildings array
-				return currentAffiliatedWith.indexOf(affiliatedWith) > -1;
-			};
-		});
-	};
-	*/
+function loadProperty(feature) {
+	var address = feature["Property Address"];
+	var propertyID = feature["Property Index Number"];
 
-	// Set UI
+	var query = featuresRef
+		.where("properties.Property Index Number", "==", String(propertyID))
+		.get()
+	    .then(function(querySnapshot) {
+	        querySnapshot.forEach(function(doc) {
+				var affiliatedWith = doc.data().properties["Affiliated With"];
+				renderSelectedUI(address, doc.data().geometry.coordinates, doc.data());
+	        });
+	    })
+	    .catch(function(error) {
+	        console.log("Error getting documents: ", error);
+	    })
+};
+
+function renderSelectedUI(address, coordinates, feature) {
 	searchInput.value = address;
 	renderClearButton(address);
 	centerMap(feature.geometry.coordinates);
@@ -27,52 +32,6 @@ function selectProperty(feature) {
 	// renderFilteredDescription(feature, allPropertiesOwned);
 	renderSelectedInfo(feature);
 	renderSelectedMarker(feature);
-};
-
-function loadProperty(feature) {
-	var address = feature["Property Address"];
-	var propertyID = feature["Property Index Number"];
-	console.log(propertyID);
-
-	var query = featuresRef
-		.where("properties.Property Index Number", "==", String(propertyID))
-		.get()
-	    .then(function(querySnapshot) {
-	        querySnapshot.forEach(function(doc) {
-	        	console.log(doc.data().properties["Affiliated With"]);
-
-				var affiliatedWith = doc.data().properties["Affiliated With"];
-
-				// Set UI
-				searchInput.value = address;
-				renderClearButton(address);
-				centerMap(doc.data().geometry.coordinates);
-				resetSelectedInfo(doc.data());
-				resetSelectedMarker(doc.data());
-				// renderFilteredPoints(feature, allPropertiesOwned);
-				// renderFilteredDescription(feature, allPropertiesOwned);
-				renderSelectedInfo(doc.data());
-				renderSelectedMarker(doc.data());
-	        });
-	    })
-	    .catch(function(error) {
-	        console.log("Error getting documents: ", error);
-	    })
-
-	
-	// Proceed if selection has an affliated with
-	if (typeof affiliatedWith !== "undefined") {
-		// Build list of buildings with the same affliated with
-		var allPropertiesOwned = json.features.filter(function(e) {
-			var currentAffiliatedWith = e.properties["Affiliated With"];
-
-			// Ignore properties with no affliated with
-			if(typeof currentAffiliatedWith !== "undefined") {
-				// Return feature when trimmed input is found in buildings array
-				return currentAffiliatedWith.indexOf(affiliatedWith) > -1;
-			};
-		});
-	};
 };
 
 function renderFilteredPoints(feature, allPropertiesOwned) {

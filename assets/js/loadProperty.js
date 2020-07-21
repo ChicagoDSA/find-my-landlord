@@ -86,7 +86,7 @@ function renderFilteredPoints(feature) {
 		map.setPaintProperty("features", "circle-color", black);
 
 		// Add layers
-		addFilteredLayer("selectedProperty", selectedProperty, defaultRadius, defaultColors, 1);
+		addFilteredLayer("selectedProperty", selectedProperty, selectedRadius, defaultColors, 1);
 
 		// Show UI
 		renderSelectedInfo(feature, allPropertiesOwned);
@@ -184,9 +184,14 @@ function renderSelectedInfo(feature, allPropertiesOwned) {
 
 	// Style row backgronds
 	var infoTable = document.getElementById("info-table");
-	var rows = infoTable.querySelectorAll("tr:nth-child(even)");
+	var rows = infoTable.querySelectorAll("tr[style*='display: block;']");
+	console.log(rows.length);
 	for (var r = 0; r < rows.length; r++) {
-		rows[r].style.backgroundColor = setRowColors(feature);
+		if (r % 2 == 0) {
+			rows[r].style.backgroundColor = white;
+		} else {
+			rows[r].style.backgroundColor = setRowColors(feature);
+		}
 	};
 
 	// Data info

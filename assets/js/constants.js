@@ -23,6 +23,7 @@ var pink = "#ff00ff";
 var green = "#33cc33";
 var gray = "#808080";
 var black = "#000";
+var white = "#fff";
 
 // Map defaults
 var defaultOpacity = .5;
@@ -79,8 +80,8 @@ var selectedRadius = [
 	],
 	22, ["case",
 		["boolean", ["feature-state", "hover"], false],
-		720,
-		360
+		360,
+		180
 	]
 ];
 

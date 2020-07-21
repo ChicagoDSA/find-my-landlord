@@ -25,7 +25,7 @@ legendLess5.innerHTML = "<span style='background-color: "+green+"'></span>Less t
 
 // Add attribution control
 var attributionControl = new mapboxgl.AttributionControl({
-	customAttribution: "<a href='https://github.com/ChicagoDSA/rental-property-owners'>View this project on GitHub</a>"
+	customAttribution: "<a href='https://github.com/ChicagoDSA/find-my-landlord'>View this project on GitHub</a>"
 });
 map.addControl(attributionControl);
 

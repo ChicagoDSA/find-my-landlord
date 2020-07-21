@@ -1,64 +1,3 @@
-// Map setup
-mapboxgl.accessToken = "pk.eyJ1IjoibHVjaWVubGl6bGVwaW9yeiIsImEiOiJja2M2YTN3dG8wYmZlMnp0ZXBzZzJuM3JsIn0.n6bA8boNS3LQW1izwa6MKg";
-
-// Vars
-var yellow = "#ffff00";
-var red = "#ff4d4d";
-var pink = "#ff00ff";
-var green = "#33cc33";
-var gray = "#808080";
-var black = "#000";
-var defaultOpacity = .5;
-var highlightZoom = 12;
-
-// Change colors based on landlord size
-var defaultColors = [
-	"case",
-	["<", ["get", "Properties Held by Affiliated With"], 5],
-	green,
-	["<", ["get", "Properties Held by Affiliated With"], 50],
-	pink,
-	["<", ["get", "Properties Held by Affiliated With"], 200],
-	red,
-	yellow
-];
-
-// Scale radius based on zoom, hover
-var defaultRadius = [
-	"interpolate",
-	["exponential", 1.75],
-	["zoom"],
-	8, ["case",
-		["boolean", ["feature-state", "hover"], false],
-		10,
-		2
-	],
-	16, ["case",
-		["boolean", ["feature-state", "hover"], false],
-		12,
-		4
-	],
-	22, ["case",
-		["boolean", ["feature-state", "hover"], false],
-		360,
-		180
-	]
-];
-
-// Data
-var url = "assets/data/keys.json";
-var json = [];
-var buildingAtPoint = null;
-
-// Page elements
-var markerContainer = null;
-var searchInputContainer = document.getElementById("search-input-container");
-var searchInput = document.getElementById("search-input");
-var clearButton = document.getElementById("clear");
-var searchResultsContainer = document.getElementById("search-results-container");
-var searchResultsCounter = document.getElementById("search-results-counter");
-var searchResultsList = document.getElementById("search-results-list");
-
 // Set map defaults
 var map = new mapboxgl.Map({
 		container: "map",
@@ -67,10 +6,6 @@ var map = new mapboxgl.Map({
 		zoom: 10,
 		attributionControl: false
 	});
-
-// Get bottom-right control
-var bottomRightClass = document.getElementsByClassName("mapboxgl-ctrl-bottom-right");
-var bottomRightControl = bottomRightClass[0];
 
 // Create legend
 var legendContainer = document.createElement("div");
@@ -94,6 +29,10 @@ var attributionControl = new mapboxgl.AttributionControl({
 });
 map.addControl(attributionControl);
 
+// Get map control
+var bottomRightClass = document.getElementsByClassName("mapboxgl-ctrl-bottom-right");
+var bottomRightControl = bottomRightClass[0];
+
 // Add legend inside control
 bottomRightControl.insertBefore(legendContainer, bottomRightControl.firstChild);
 legendContainer.appendChild(legendTitle);
@@ -105,9 +44,6 @@ legendContainer.appendChild(legendLess5);
 // Add navigation
 var navigationControl = new mapboxgl.NavigationControl();
 map.addControl(navigationControl, "top-right");
-
-// Store marker
-var marker;
 
 map.on("load", function() {
 	// Load search keys
@@ -230,7 +166,7 @@ function setHoverState (source, type, layer) {
 
 	map.on("click", layer, function(e) {
 		if (buildingAtPoint) {
-			selectProperty(buildingAtPoint);
+			// loadProperty(buildingAtPoint.id);
 		};
 	});
 

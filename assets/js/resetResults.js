@@ -1,10 +1,10 @@
 function resetSearchResults() {
-	// Hide container
-	searchResultsContainer.style.display = "none";
 	// Hide counter
 	searchResultsCounter.style.display = "none";
 	// Hide list
 	searchResultsList.style.display = "none";
+	// Hide selected property
+	selectedContainer.style.display = "none";
 
 	// Clear counter and list HTML
 	searchResultsCounter.innerHTML = "";
@@ -18,14 +18,7 @@ function resetSearchResults() {
 	};
 };
 
-function resetSelectedInfo() {
-	var selectedContainer = document.getElementById("selected-container");
-
-	if (selectedContainer) {
-		// Remove selected building
-		selectedContainer.parentNode.removeChild(selectedContainer);
-	};
-	
+function resetSelectedInfo() {	
 	// Restore layer with complete dataset
 	map.setPaintProperty("features", "circle-opacity", defaultOpacity);
 	map.setPaintProperty("features", "circle-color", defaultColors);
@@ -39,17 +32,6 @@ function resetSelectedInfo() {
 		map.removeLayer("selectedProperty");
 		map.removeSource("selectedProperty");
 	};
-
-	/*
-	if (map.getLayer("relatedPoints")) {
-		map.removeLayer("relatedPoints");
-		map.removeSource("relatedPoints");
-	};
-	if (map.getLayer("otherPoints")) {
-		map.removeLayer("otherPoints");
-		map.removeSource("otherPoints");
-	};
-	*/
 };
 
 function resetSelectedMarker() {	

@@ -53,7 +53,30 @@
 			<div id="search-results-container">
 				<div id="search-results-counter"></div>
 				<ul id="search-results-list"></ul>
+				<div id="selected-container">
+					<table id="info-table">
+						<tr id="affiliated-row">
+							<td id="affiliated-label">Affiliated with:</td>
+							<td id="affiliated-value"></td>
+						</tr>
+						<tr id="owned-row">
+							<td id="owned-label">Properties owned:</td>
+							<td id="owned-value"></td>
+						</tr>
+						<tr id="taxpayer-row">
+							<td id="taxpayer-label">Property taxpayer:</td>
+							<td id="taxpayer-value"></td>
+						</tr>
+					</table>
+					<button id="download-button" class="button-hover"></button>
+					<div id="bottom-links">
+						<p id="data-info-link" class="property-details-link" tabindex="0">How was this data collected?</p>
+						<p id="additional-details-link" class="property-details-link" tabindex="0">Additional property details</p>
+						<div style="clear: both;"></div>
+					</div>
+				</div>
 			</div>
+
 		</div>
 
 		<!-- Database -->
@@ -61,6 +84,9 @@
 
 		<!-- IE helper -->
 		<script src="assets/js/checkIE.js"></script>
+
+		<!-- Constants -->
+		<script src="assets/js/constants.js"></script>
 
 		<!-- Map rendering -->
 		<script src="assets/js/mapbox.js"></script>
@@ -73,7 +99,7 @@
 		<script src="assets/js/matchAddresses.js"></script>
 		<script src="assets/js/modalContent.js"></script>
 		<script src="assets/js/attachModal.js"></script>
-		<script src="assets/js/selectProperty.js"></script>
+		<script src="assets/js/loadProperty.js"></script>
 		<script src="assets/js/createPDF.js"></script>
 	</body>
 </html>      

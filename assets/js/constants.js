@@ -47,6 +47,28 @@ var defaultRadius = [
 	]
 ];
 
+// Selected and related properties
+var selectedRadius = [
+	"interpolate",
+	["exponential", 1.75],
+	["zoom"],
+	8, ["case",
+		["boolean", ["feature-state", "hover"], false],
+		20,
+		4
+	],
+	16, ["case",
+		["boolean", ["feature-state", "hover"], false],
+		24,
+		8
+	],
+	22, ["case",
+		["boolean", ["feature-state", "hover"], false],
+		720,
+		360
+	]
+];
+
 // Data
 var url = "assets/data/searchIndex.json";
 var json = [];

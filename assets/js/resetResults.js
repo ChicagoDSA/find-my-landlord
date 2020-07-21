@@ -23,6 +23,9 @@ function resetSelectedInfo() {
 	map.setPaintProperty("features", "circle-opacity", defaultOpacity);
 	map.setPaintProperty("features", "circle-color", defaultColors);
 	
+	// Remove filters
+	map.setFilter("features", null);
+	
 	// Remove selected layers
 	if (map.getLayer("otherPropertiesOwned")) {
 		map.removeLayer("otherPropertiesOwned");

@@ -30,20 +30,23 @@ function renderFilteredPoints(feature) {
 	var propertyAddress = feature.properties["Property Address"];
 	var affiliatedWith = feature.properties["Affiliated With"];
 
+	// Hide selected, related properties on base layer
+	map.setFilter("features", ["!=", "Affiliated With", affiliatedWith]);
+
+	// Create placeholder arrays
 	var allPropertiesOwned = {
 	  "type": "FeatureCollection",
 	  "features": []
 	};
-
 	var otherPropertiesOwned = {
 	  "type": "FeatureCollection",
 	  "features": []
 	};
-
 	var selectedProperty = {
 	  "type": "FeatureCollection",
 	  "features": []
 	};
+
 	selectedProperty.features.push(feature);
 
 	if (affiliatedWith != "") {
@@ -62,11 +65,13 @@ function renderFilteredPoints(feature) {
 				});
 			})
 			.then(function() {
+				// Set styles
 				map.setPaintProperty("features", "circle-opacity", .25);
 				map.setPaintProperty("features", "circle-color", black);
 
-				// Data is loaded
-				addFilteredLayer("otherPropertiesOwned", otherPropertiesOwned, defaultColors, 1);
+				// Add layers
+				addFilteredLayer("otherPropertiesOwned", otherPropertiesOwned, selectedRadius, defaultColors, .5);
+				addFilteredLayer("selectedProperty", selectedProperty, selectedRadius, defaultColors, 1);
 
 				// Show UI
 				renderSelectedInfo(feature, allPropertiesOwned);
@@ -76,10 +81,14 @@ function renderFilteredPoints(feature) {
 				console.log("Error getting documents: ", error);
 			})
 	} else {
+		// Set styles
 		map.setPaintProperty("features", "circle-opacity", .25);
 		map.setPaintProperty("features", "circle-color", black);
 
-		addFilteredLayer("selectedProperty", selectedProperty, defaultColors, 1);
+		// Add layers
+		addFilteredLayer("selectedProperty", selectedProperty, defaultRadius, defaultColors, 1);
+
+		// Show UI
 		renderSelectedInfo(feature, allPropertiesOwned);
 		renderSelectedMarker(feature);
 	}

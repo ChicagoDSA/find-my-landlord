@@ -89,7 +89,7 @@ map.on("load", function() {
 	request.send();
 });
 
-function addFilteredLayer (name, data, color, opacity) {
+function addFilteredLayer (name, data, radius, color, opacity) {
 	// Set source data
 	map.addSource(name, {
 		type: "geojson",
@@ -103,14 +103,14 @@ function addFilteredLayer (name, data, color, opacity) {
 		"type": "circle",
 		"source": name,
 		"paint": {
-			"circle-radius": defaultRadius,
+			"circle-radius": radius,
 			"circle-color": color,
 			"circle-opacity": opacity
 		},
 	});
 
 	// Style hover
-	setHoverState(name, name);
+	setHoverState(name, "geojson", name);
 };
 
 function setHoverState (source, type, layer) {
@@ -140,7 +140,7 @@ function setHoverState (source, type, layer) {
 			
 			// Set new ID
 			buildingID = featuresAtPoint[0].properties["Property Address"];
-			
+
 			// Hover to true
 			if (type == "vector") {
 				map.setFeatureState({

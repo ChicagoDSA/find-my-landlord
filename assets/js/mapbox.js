@@ -57,7 +57,7 @@ map.on("load", function() {
 			map.addSource("propertyData", {
 				type: "vector",
 				url: "mapbox://lucienlizlepiorz.ddpjhgng",
-				promoteId: "Property Address"
+				promoteId: propertyAddressColumn
 			});
 			
 			// Add features
@@ -94,7 +94,7 @@ function addFilteredLayer (name, data, radius, color, opacity) {
 	map.addSource(name, {
 		type: "geojson",
 		data: data,
-		promoteId: "Property Index Number"
+		promoteId: propertyIndexColumn
 	});
 
 	// Add to map
@@ -139,7 +139,7 @@ function setHoverState (source, type, layer) {
 			};
 			
 			// Set new ID
-			buildingID = featuresAtPoint[0].properties["Property Address"];
+			buildingID = featuresAtPoint[0].properties[propertyAddressColumn];
 
 			// Hover to true
 			if (type == "vector") {

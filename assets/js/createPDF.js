@@ -24,11 +24,11 @@ function createPDF(title, list) {
 	(function () {
 		for (var i = 0; i < list.features.length; i++) {
 	        var temp = [
-				list.features[i].properties["Property Address"],
-				list.features[i].properties["Community Area"],
-				list.features[i].properties["Affiliated With"],
-				list.features[i].properties["Properties Held by Affiliated With"],
-				list.features[i].properties["Taxpayer"]
+				list.features[i].properties[propertyAddressColumn],
+				list.features[i].properties[communityAreaColumn],
+				list.features[i].properties[affiliatedWithColumn],
+				list.features[i].properties[ownedColumn],
+				list.features[i].properties[taxpayerColumn]
 			];
 			rows.push(temp);
 	    };

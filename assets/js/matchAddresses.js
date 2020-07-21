@@ -18,8 +18,8 @@ function matchAddresses(e) {
 
 		for (var i = 0; i < json.length && results.length < searchResultsLimit+1; i++) {
 			// Address at current index
-			if (json[i]["Property Address"]) {
-				var address = json[i]["Property Address"].trim().toLowerCase();
+			if (json[i][propertyAddressColumn]) {
+				var address = json[i][propertyAddressColumn].trim().toLowerCase();
 		    	// Check if this address includes the input text
 		        if (address.indexOf(value) > -1) {
 		        	// Add feature to results array
@@ -117,7 +117,7 @@ function renderResults(features) {
 
 function createListItem(feature) {
 	var item = document.createElement("li");
-	var address = feature["Property Address"];
+	var address = feature[propertyAddressColumn];
 
 	item.className = "search-result";
 	item.tabIndex = 0;
@@ -136,7 +136,7 @@ function createListItem(feature) {
 
 	// Add click event
 	item.onclick = function(){
-		loadProperty(feature["Property Index Number"]);
+		loadProperty(feature[propertyIndexColumn]);
 	};
 	// Accessibility
 	item.addEventListener("keypress",

@@ -1,5 +1,5 @@
 function setColors(feature) {
-	var count = feature.properties["Properties Held by Affiliated With"];
+	var count = feature.properties[ownedColumn];
 
 	if (count < 5) {
 		return green;
@@ -16,7 +16,7 @@ function setColors(feature) {
 };
 
 function setRowColors(feature) {
-	var count = feature.properties["Properties Held by Affiliated With"];
+	var count = feature.properties[ownedColumn];
 
 	if (count < 5) {
 		return "rgba(51, 204, 51, .1)";

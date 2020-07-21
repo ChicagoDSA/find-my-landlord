@@ -1,3 +1,18 @@
+// Column headers
+var propertyAddressColumn = "Property Address";
+var communityAreaColumn = "Community Area";
+var propertyIndexColumn = "Property Index Number";
+var taxpayerColumn = "Taxpayer";
+var taxpayerMatchCodeColumn = "Taxpayer Match Code";
+var affiliatedWithColumn = "Affiliated With";
+var ownedColumn = "Properties Held by Affiliated With";
+var additionalDetailsColumn = "Additional Details";
+
+// Data
+var url = "assets/data/searchIndex.json";
+var json = [];
+var buildingAtPoint = null;
+
 // Mapbox key
 mapboxgl.accessToken = "pk.eyJ1IjoibHVjaWVubGl6bGVwaW9yeiIsImEiOiJja2M2YTN3dG8wYmZlMnp0ZXBzZzJuM3JsIn0.n6bA8boNS3LQW1izwa6MKg";
 
@@ -16,11 +31,11 @@ var highlightZoom = 12;
 // Change colors based on landlord size
 var defaultColors = [
 	"case",
-	["<", ["get", "Properties Held by Affiliated With"], 5],
+	["<", ["get", ownedColumn], 5],
 	green,
-	["<", ["get", "Properties Held by Affiliated With"], 50],
+	["<", ["get", ownedColumn], 50],
 	pink,
-	["<", ["get", "Properties Held by Affiliated With"], 200],
+	["<", ["get", ownedColumn], 200],
 	red,
 	yellow
 ];
@@ -68,11 +83,6 @@ var selectedRadius = [
 		360
 	]
 ];
-
-// Data
-var url = "assets/data/searchIndex.json";
-var json = [];
-var buildingAtPoint = null;
 
 // Custom UI
 var markerContainer = null;

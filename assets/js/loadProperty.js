@@ -1,6 +1,6 @@
 function loadProperty(id) {
 	var query = featuresRef
-		.where("properties.Property Index Number", "==", String(id))
+		.where("properties."+propertyIndexColumn, "==", String(id))
 		.get()
 		.then(function(querySnapshot) {
 			querySnapshot.forEach(function(doc) {
@@ -13,7 +13,7 @@ function loadProperty(id) {
 };
 
 function renderSelectedUI(feature) {
-	var address = feature.properties["Property Address"];
+	var address = feature.properties[propertyAddressColumn];
 	// Update search input
 	searchInput.value = address;
 	renderClearButton(address);
@@ -27,11 +27,11 @@ function renderSelectedUI(feature) {
 };
 
 function renderFilteredPoints(feature) {
-	var propertyAddress = feature.properties["Property Address"];
-	var affiliatedWith = feature.properties["Affiliated With"];
+	var propertyAddress = feature.properties[propertyAddressColumn];
+	var affiliatedWith = feature.properties[affiliatedWithColumn];
 
 	// Hide selected, related properties on base layer
-	map.setFilter("features", ["!=", "Affiliated With", affiliatedWith]);
+	map.setFilter("features", ["!=", affiliatedWithColumn, affiliatedWith]);
 
 	// Create placeholder arrays
 	var allPropertiesOwned = {
@@ -51,14 +51,14 @@ function renderFilteredPoints(feature) {
 
 	if (affiliatedWith != "") {
 		var query = featuresRef
-			.where("properties.Affiliated With", "==", affiliatedWith)
+			.where("properties."+affiliatedWithColumn, "==", affiliatedWith)
 			.get()
 			.then(function(querySnapshot) {
 				querySnapshot.forEach(function(doc) {
 					// Add all matches to the set
 					allPropertiesOwned.features.push(doc.data());
 
-					if (doc.data().properties["Property Address"] != propertyAddress) {
+					if (doc.data().properties[propertyAddressColumn] != propertyAddress) {
 						// Add other properties to a different set
 						otherPropertiesOwned.features.push(doc.data());
 					};
@@ -95,11 +95,11 @@ function renderFilteredPoints(feature) {
 };
 
 function renderSelectedInfo(feature, allPropertiesOwned) {
-	var address = feature.properties["Property Address"];
-	var affiliatedWith = feature.properties["Affiliated With"];
-	var owned = feature.properties["Properties Held by Affiliated With"];
-	var taxpayer = feature.properties["Taxpayer"];
-	var additionalDetails = feature.properties["Additional Details"];
+	var address = feature.properties[propertyAddressColumn];
+	var affiliatedWith = feature.properties[affiliatedWithColumn];
+	var owned = feature.properties[ownedColumn];
+	var taxpayer = feature.properties[taxpayerColumn];
+	var additionalDetails = feature.properties[additionalDetailsColumn];
 
 	// Handle stray datapoints
 	if (owned < 1 || owned == "") {

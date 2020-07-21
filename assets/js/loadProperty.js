@@ -185,7 +185,6 @@ function renderSelectedInfo(feature, allPropertiesOwned) {
 	// Style row backgronds
 	var infoTable = document.getElementById("info-table");
 	var rows = infoTable.querySelectorAll("tr[style*='display: block;']");
-	console.log(rows.length);
 	for (var r = 0; r < rows.length; r++) {
 		if (r % 2 == 0) {
 			rows[r].style.backgroundColor = white;

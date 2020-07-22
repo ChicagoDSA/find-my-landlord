@@ -1,6 +1,6 @@
 function loadProperty(id) {
 	var query = featuresRef
-		.where("properties."+propertyIndexColumn, "==", String(id))
+		.where("properties.Property Index Number", "==", String(id))
 		.get()
 		.then(function(querySnapshot) {
 			querySnapshot.forEach(function(doc) {

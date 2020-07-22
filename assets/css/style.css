@@ -344,7 +344,7 @@ h5 {
 	cursor: pointer;
 }
 
-.button-hover:hover {
+#selected-container button:hover {
 	text-decoration: underline;
 	box-shadow: 0 .3125rem .625rem rgba(0 , 0, 0, .25);
 }

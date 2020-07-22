@@ -1,6 +1,6 @@
 function loadProperty(id) {
 	var query = featuresRef
-		.where("properties.Property Index Number", "==", String(id))
+		.where("properties."+propertyIndexColumn, "==", String(id))
 		.get()
 		.then(function(querySnapshot) {
 			querySnapshot.forEach(function(doc) {
@@ -131,24 +131,16 @@ function renderSelectedInfo(feature, allPropertiesOwned) {
 		// Set value
 		var affiliatedWithValue = document.getElementById("affiliated-value");
 		affiliatedWithValue.innerText = affiliatedWith;
+		
 		// Also show download button
-		downloadButton.style.display = "block";
-		// Render different button for Internet Explorer
-		if (checkIE() == true) {
-			// Show unsupported message
-			downloadButton.innerHTML = "Internet Explorer doesn't support data downloads, try Chrome!";
-			downloadButton.disabled = true;
-			downloadButton.style.cursor = "auto";
-		} else {
-			// Set button text and style
-			downloadButton.innerHTML = "Download all "+affiliatedWith+" data";
-			downloadButton.style.backgroundColor = setColors(feature);
-			downloadButton.classList.add("button-hover");
-
-			// Add button listener
-			downloadButton.onclick = function(){
-				createPDF(affiliatedWith, allPropertiesOwned);
-			};
+		downloadButton.style.display = "block";		
+		// Set button text and style
+		downloadButton.innerHTML = "Download all "+affiliatedWith+" data";
+		downloadButton.style.backgroundColor = setColors(feature);
+		downloadButton.classList.add("button-hover");
+		// Add button listener
+		downloadButton.onclick = function(){
+			createPDF(affiliatedWith, allPropertiesOwned);
 		};
 	} else {
 		// Hide row

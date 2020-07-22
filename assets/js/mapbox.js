@@ -74,11 +74,18 @@ map.on("load", function() {
 			});
 
 			setHoverState("propertyData", "vector", "features");
-			
-			// Remove persisted value
-			searchInput.value = "";
-			// Show search
-			searchInputContainer.style.display = "block";
+
+			if (checkIE() == true) {
+				// Show unsupported message
+				searchInput.value = "Internet Explorer isn't supported. Try Chrome!";
+				searchInput.disabled = true;
+				searchInputContainer.style.display = "block";
+			} else {
+				// Remove persisted value
+				searchInput.value = "";
+				// Show search
+				searchInputContainer.style.display = "block";
+			};
 
 			// Add listeners
 			searchInput.addEventListener("keypress", matchAddresses);

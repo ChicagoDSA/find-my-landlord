@@ -7,13 +7,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<!-- Google Cloud Firebase -->
-		<!-- Only load if not IE -->
-		<!--[if !IE]>
-			<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
-			<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-analytics.js"></script>
-			<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-auth.js"></script>
-			<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-firestore.js"></script>
-		<![endif]-->
+		<script type="text/javascript">
+			// Only load if not IE
+			if(!/MSIE \d|Trident.*rv:/.test(navigator.userAgent))
+				document.write("<script src='https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js'><\/script>");
+				document.write("<script src='https://www.gstatic.com/firebasejs/7.16.1/firebase-analytics.js'><\/script>");
+				document.write("<script src='https://www.gstatic.com/firebasejs/7.16.1/firebase-auth.js'><\/script>");
+				document.write("<script src='https://www.gstatic.com/firebasejs/7.16.1/firebase-firestore.js'><\/script>");
+		</script>
 	
 		<!-- jsPDF -->
 		<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
@@ -39,10 +40,10 @@
 	</head>
 
 	<body>
-  		<div id="map"></div>
+		<div id="map"></div>
 
-  		<div id="top-container">
-  			<a id="title" href>
+		<div id="top-container">
+			<a id="title" href>
 				<h2>Find My Landlord</h2>
 			</a>
 			<div id="search-input-container">

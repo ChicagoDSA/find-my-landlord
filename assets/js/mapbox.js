@@ -75,6 +75,7 @@ map.on("load", function() {
 
 			setHoverState("propertyData", "vector", "features");
 
+			// Disable search if IE
 			if (checkIE() == true) {
 				// Show unsupported message
 				searchInput.value = "Internet Explorer isn't supported. Try Chrome!";

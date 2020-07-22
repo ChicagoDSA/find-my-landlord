@@ -30,9 +30,6 @@ function renderFilteredPoints(feature) {
 	var propertyAddress = feature.properties[propertyAddressColumn];
 	var affiliatedWith = feature.properties[affiliatedWithColumn];
 
-	// Hide selected, related properties on base layer
-	map.setFilter("features", ["!=", affiliatedWithColumn, affiliatedWith]);
-
 	// Create placeholder arrays
 	var allPropertiesOwned = {
 	  "type": "FeatureCollection",
@@ -50,6 +47,9 @@ function renderFilteredPoints(feature) {
 	selectedProperty.features.push(feature);
 
 	if (affiliatedWith != "") {
+		// Hide selected, related properties on base layer
+		map.setFilter("features", ["!=", affiliatedWithColumn, affiliatedWith]);
+
 		var query = featuresRef
 			.where("properties."+affiliatedWithColumn, "==", affiliatedWith)
 			.get()
@@ -81,6 +81,9 @@ function renderFilteredPoints(feature) {
 				console.log("Error getting documents: ", error);
 			})
 	} else {
+		// Hide selected, related properties on base layer
+		map.setFilter("features", ["!=", propertyAddressColumn, propertyAddress]);
+
 		// Set styles
 		map.setPaintProperty("features", "circle-opacity", .25);
 		map.setPaintProperty("features", "circle-color", black);

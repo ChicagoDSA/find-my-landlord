@@ -9,12 +9,13 @@
 		<!-- Google Cloud Firebase -->
 		<script type="text/javascript">
 			// Only load if not IE
-			if(!/MSIE \d|Trident.*rv:/.test(navigator.userAgent))
+			if (!/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
 				console.log("not IE");
 				document.write("<script src='https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js'><\/script>");
 				document.write("<script src='https://www.gstatic.com/firebasejs/7.16.1/firebase-analytics.js'><\/script>");
 				document.write("<script src='https://www.gstatic.com/firebasejs/7.16.1/firebase-auth.js'><\/script>");
 				document.write("<script src='https://www.gstatic.com/firebasejs/7.16.1/firebase-firestore.js'><\/script>");
+			};
 		</script>
 	
 		<!-- jsPDF -->

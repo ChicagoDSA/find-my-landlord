@@ -1,5 +1,5 @@
-# Cook County Rental Properties
-[Chicago DSA](https://www.chicagodsa.org/), the [Lift the Ban Coalition](https://www.ltbcoalition.org/), and local allies have partnered to provide tenants the ability to:
+# Find My Landlord
+[Chicago DSA](https://www.chicagodsa.org/), the [Lift the Ban Coalition](https://www.ltbcoalition.org/), and local allies have partnered to provide Cook County tenants the ability to:
 - Look up any registered rental property in Cook County
 - View the rental's owner, browse related properties, and download these as a PDF
 - Explore the density of mega-landlord properties across neighborhoods

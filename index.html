@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Find My Landlord: a Chicago DSA production</title>
-		<meta name="description" content="Who owns your building? Find your landlord and find their properties.">
+		<meta name="description" content="You rent in Cook County. Who owns your building? Find your landlord and find their properties.">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<!-- Google Cloud Firebase -->
@@ -41,6 +41,8 @@
 		<div id="top-container">
 			<a id="title" href>
 				<h2>Find My Landlord</h2>
+				<p id="data-attribution">Data: Cook County Assessor</p>
+				<div style="clear: both;"></div>
 			</a>
 			<div id="search-input-container">
 				<input
@@ -48,7 +50,7 @@
 					name="search"
 					type="text"
 					spellcheck="false"
-					placeholder="Enter your address in Cook County"
+					placeholder="Search by address"
 				/>
 				<div id="clear" tabindex="0"><img src="assets/images/times.svg" /></div>
 			</div>

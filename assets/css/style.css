@@ -221,15 +221,24 @@ h5 {
 /* Site title */
 
 #title {
-	display: block;
+	display: table;
 	position: relative;
+	padding: 10px;
+	width: 100%;
 	text-decoration: none;
 	color: #fff;
 	background-color: #000;
 }
 
-#title h2 {
+#title * {
+	display: table-cell;
 	margin: 0;
+	vertical-align: baseline;
+}
+
+#data-attribution {
+	font-size: .75rem;
+	text-align: right;
 }
 
 /* Search input */
@@ -462,5 +471,17 @@ h5 {
 	#modal-content {
 		width: auto;
 		margin: 6rem 20px;
+	}
+}
+
+@media screen and (max-width: 22.5rem) {
+	#title,
+	#title *  {
+		display: block;
+		
+	}
+
+	#data-attribution {
+		text-align: left;
 	}
 }

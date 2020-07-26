@@ -1,11 +1,12 @@
 // Column headers
 var propertyAddressColumn = "Property Address";
 var communityAreaColumn = "Community Area";
+var unitColumn = "Unit Count from Department of Buildings";
 var propertyIndexColumn = "Property Index Number";
 var taxpayerColumn = "Taxpayer";
 var taxpayerMatchCodeColumn = "Taxpayer Match Code";
 var affiliatedWithColumn = "Affiliated With";
-var ownedColumn = "Properties Held by Affiliated With";
+var ownedColumn = "Properties Held by Taxpayer Match Code";
 var additionalDetailsColumn = "Additional Details";
 
 // Data
@@ -31,6 +32,18 @@ var highlightZoom = 12;
 
 // Change colors based on landlord size
 var defaultColors = [
+	"case",
+	["<", ["get", "Properties Held by Affiliated With"], 5],
+	green,
+	["<", ["get", "Properties Held by Affiliated With"], 50],
+	pink,
+	["<", ["get", "Properties Held by Affiliated With"], 200],
+	red,
+	yellow
+];
+
+// Need to remove
+var altColors = [
 	"case",
 	["<", ["get", ownedColumn], 5],
 	green,

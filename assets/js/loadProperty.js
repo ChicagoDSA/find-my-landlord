@@ -49,7 +49,7 @@ function renderFilteredPoints(feature) {
 	if (affiliatedWith != "") {
 		// Hide selected, related properties on base layer
 		map.setFilter("features", ["!=", affiliatedWithColumn, affiliatedWith]);
-
+		
 		var query = featuresRef
 			.where("properties."+affiliatedWithColumn, "==", affiliatedWith)
 			.get()
@@ -70,8 +70,8 @@ function renderFilteredPoints(feature) {
 				map.setPaintProperty("features", "circle-color", black);
 
 				// Add layers
-				addFilteredLayer("otherPropertiesOwned", otherPropertiesOwned, selectedRadius, defaultColors, .5);
-				addFilteredLayer("selectedProperty", selectedProperty, selectedRadius, defaultColors, 1);
+				addFilteredLayer("otherPropertiesOwned", otherPropertiesOwned, selectedRadius, altColors, .5);
+				addFilteredLayer("selectedProperty", selectedProperty, selectedRadius, altColors, 1);
 
 				// Show UI
 				renderSelectedInfo(feature, allPropertiesOwned);
@@ -89,7 +89,7 @@ function renderFilteredPoints(feature) {
 		map.setPaintProperty("features", "circle-color", black);
 
 		// Add layers
-		addFilteredLayer("selectedProperty", selectedProperty, selectedRadius, defaultColors, 1);
+		addFilteredLayer("selectedProperty", selectedProperty, selectedRadius, altColors, 1);
 
 		// Show UI
 		renderSelectedInfo(feature, allPropertiesOwned);

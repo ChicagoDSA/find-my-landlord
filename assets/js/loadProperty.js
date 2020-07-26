@@ -3,13 +3,26 @@ function loadProperty(id) {
 		.where("properties."+propertyIndexColumn, "==", String(id))
 		.get()
 		.then(function(querySnapshot) {
-			querySnapshot.forEach(function(doc) {
-				renderSelectedUI(doc.data());
-			});
+			if (querySnapshot.docs.length == 0) {
+				// No database matches found
+				resetSearchResults();
+				var title = "Database error";
+				var message = "Sorry, we couldn't look up that property's details. Try again in an hour, or <a href='mailto:'mailto:tenantscdsa@gmail.com'>contact us</a>."
+				showSearchMessage(title, message);
+			} else {
+				querySnapshot.forEach(function(doc) {
+					renderSelectedUI(doc.data());
+				});
+			};
 		})
 		.catch(function(error) {
-			console.log("Error getting documents: ", error);
-		})
+			console.log("Error getting property details: ", error);
+			// All other errors
+			resetSearchResults();
+			var title = "Database error";
+			var message = "Sorry, we couldn't connect to our database. Try again in an hour, or <a href='mailto:'mailto:tenantscdsa@gmail.com'>contact us</a>."
+			showSearchMessage(title, message);
+		});
 };
 
 function renderSelectedUI(feature) {
@@ -72,14 +85,19 @@ function renderFilteredPoints(feature) {
 				// Add layers
 				addFilteredLayer("otherPropertiesOwned", otherPropertiesOwned, selectedRadius, altColors, .5);
 				addFilteredLayer("selectedProperty", selectedProperty, selectedRadius, altColors, 1);
-
+			
 				// Show UI
 				renderSelectedInfo(feature, allPropertiesOwned);
 				renderSelectedMarker(feature);
 			})
 			.catch(function(error) {
-				console.log("Error getting documents: ", error);
-			})
+				console.log("Error getting affiliated properties: ", error);
+				// Couldn't get affiliated properties, couldn't show UI
+				resetSearchResults();
+				var title = "Database error";
+				var message = "Sorry, we couldn't connect to our database. Try again in an hour, or <a href='mailto:'mailto:tenantscdsa@gmail.com'>contact us</a>."
+				showSearchMessage(title, message);
+			});
 	} else {
 		// Hide selected, related properties on base layer
 		map.setFilter("features", ["!=", propertyAddressColumn, propertyAddress]);
@@ -90,11 +108,11 @@ function renderFilteredPoints(feature) {
 
 		// Add layers
 		addFilteredLayer("selectedProperty", selectedProperty, selectedRadius, altColors, 1);
-
+	
 		// Show UI
 		renderSelectedInfo(feature, allPropertiesOwned);
 		renderSelectedMarker(feature);
-	}
+	};
 };
 
 function renderSelectedInfo(feature, allPropertiesOwned) {

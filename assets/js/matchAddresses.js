@@ -95,24 +95,30 @@ function renderResults(features) {
 	    };
 	} else if (features.length == 0 && searchInput.value != "") {
 		// No results found
-		// Show container
-		searchResultsContainer.style.display = "block";
-		// Show counter
-		searchResultsCounter.style.display = "block";
-
-		// Create elements
-		var headline = document.createElement("h4");
-		var description = document.createElement("p");
-
-		// Set values
-		headline.innerHTML = "No search results";
-		description.id = "no-results-container";
-		description.innerHTML = "Sorry, we couldn't find that address. Try something like <b>634 E 50th Pl</b>.";
-
-		// Add content to containers
-		searchResultsCounter.appendChild(headline);
-		searchResultsContainer.appendChild(description);
+		var title = "No search results";
+		var message = "Sorry, we couldn't find that address. Try something like <b>634 E 50th Pl</b>."
+		showSearchMessage(title, message);
 	};
+};
+
+function showSearchMessage(title, message) {
+	// Show container
+	searchResultsContainer.style.display = "block";
+	// Show counter
+	searchResultsCounter.style.display = "block";
+
+	// Create elements
+	var headline = document.createElement("h4");
+	var description = document.createElement("p");
+
+	// Set values
+	headline.innerHTML = title;
+	description.id = "no-results-container";
+	description.innerHTML = message;
+
+	// Add content to containers
+	searchResultsCounter.appendChild(headline);
+	searchResultsContainer.appendChild(description);
 };
 
 function createListItem(feature) {
@@ -136,6 +142,7 @@ function createListItem(feature) {
 
 	// Add click event
 	item.onclick = function(){
+		// Query database
 		loadProperty(feature[propertyIndexColumn]);
 	};
 	// Accessibility

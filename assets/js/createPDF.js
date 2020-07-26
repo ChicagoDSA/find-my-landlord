@@ -38,7 +38,7 @@ function createPDF(title, list) {
 
 	// Create table
 	doc.autoTable({
-		styles: { font: "ManifoldDSA" },
+		styles: {font: "ManifoldDSA"},
 		columns: col,
 		body: rows,
 		didDrawPage: function (data) {

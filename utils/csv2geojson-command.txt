@@ -1,0 +1,1 @@
+csv2geojson --numeric-fields "Properties Held by Taxpayer Match Code","Relative Size","Unit Count from Department of Buildings" findmylandlord_final.csv > features.geojson

@@ -9,7 +9,7 @@ var ownedColumn = "Properties Held by Affiliated With";
 var additionalDetailsColumn = "Additional Details";
 
 // Data
-var url = "assets/data/searchIndex.json";
+var url = "assets/data/search-index.json";
 var json = [];
 var buildingAtPoint = null;
 

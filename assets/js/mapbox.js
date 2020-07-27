@@ -61,9 +61,8 @@ map.on("load", function() {
 				promoteId: propertyIndexColumn
 			});
 			
-			// Add features
 			map.addLayer({
-				"id": "features",
+				"id": "allProperties",
 				"type": "circle",
 				"source": "propertyData",
 				"source-layer": "features",
@@ -71,10 +70,25 @@ map.on("load", function() {
 					"circle-radius": defaultRadius,
 					"circle-color": defaultColors,
 					"circle-opacity": defaultOpacity
+				}
+			});
+
+			map.addLayer({
+				"id": "relatedProperties",
+				"type": "circle",
+				"source": "propertyData",
+				"source-layer": "features",
+				"layout": {
+					"visibility": "none"
+				},
+				"paint": {
+					"circle-radius": selectedRadius,
+					"circle-color": defaultColors,
+					"circle-opacity": .25
 				},
 			});
 
-			setHoverState("propertyData", "vector", "features");
+			setHoverState("propertyData", "features", "allProperties");
 
 			// Disable search if IE
 			if (checkIE() == true) {
@@ -124,82 +138,57 @@ function addFilteredLayer (name, data, radius, color, opacity) {
 	};
 };
 
-function setHoverState (source, type, layer) {
+function setHoverState (sourceData, sourceLayer, hoverLayer) {
 	// Declared here to fix duplicates
 	var buildingID = null;
 
-	map.on("mousemove", layer, function(e) {
-		var featuresAtPoint = map.queryRenderedFeatures(e.point, { layers: [layer] });
-		buildingAtPoint = getBuildingAtPoint(featuresAtPoint, source);
+	map.on("mousemove", hoverLayer, function(e) {
+		var featuresAtPoint = map.queryRenderedFeatures(e.point, { layers: [hoverLayer] });
+		buildingAtPoint = getBuildingAtPoint(featuresAtPoint, sourceData);
 
 		if (buildingAtPoint) {
 			map.getCanvas().style.cursor = "pointer";
 			// Remove existing state
 			if (buildingID) {
-				if (type == "vector") {
-					map.removeFeatureState({
-						source: source,
-						sourceLayer: layer
-					});
-				} else {
-					map.removeFeatureState({
-						source: layer,
-						id: buildingID
-					});
-				};
+				map.removeFeatureState({
+					source: sourceData,
+					sourceLayer: sourceLayer
+				});
 			};
 			
 			// Set new ID
 			buildingID = featuresAtPoint[0].properties[propertyIndexColumn];
 
 			// Hover to true
-			if (type == "vector") {
-				map.setFeatureState({
-					source: source,
-					sourceLayer: layer,
-					id: buildingID
-				}, {
-					hover: true
-				});
-			} else {
-				map.setFeatureState({
-					source: layer,
-					id: buildingID
-				}, {
-					hover: true
-				});
-			};
+			map.setFeatureState({
+				source: sourceData,
+				sourceLayer: sourceLayer,
+				id: buildingID
+			}, {
+				hover: true
+			});
 		} else {
 			// Clear var
 			buildingAtPoint = null;
 		};
 	});
 
-	map.on("click", layer, function(e) {
+	map.on("click", hoverLayer, function(e) {
 		if (buildingAtPoint) {
-			loadProperty(buildingAtPoint.id);
+			loadProperty(buildingAtPoint);
 		};
 	});
 
-	map.on("mouseleave", layer, function() {
+	map.on("mouseleave", hoverLayer, function() {
 		// Hover to false
 		if (buildingID) {
-			if (type == "vector") {
-				map.setFeatureState({
-					source: source,
-					sourceLayer: layer,
-					id: buildingID
-				}, {
-					hover: false
-				});
-			} else {
-				map.setFeatureState({
-					source: layer,
-					id: buildingID
-				}, {
-					hover: false
-				});
-			};
+			map.setFeatureState({
+				source: sourceData,
+				sourceLayer: sourceLayer,
+				id: buildingID
+			}, {
+				hover: false
+			});
 		};
 		
 		// Clear var

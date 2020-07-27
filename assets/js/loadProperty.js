@@ -1,8 +1,5 @@
-function loadProperty(id) {
-	// Reset UI
-	resetSelectedInfo();
-	resetSelectedMarker();
-	
+function searchProperty(id) {
+	// Look up ID in database
 	var query = featuresRef
 		.where("properties."+propertyIndexColumn, "==", String(id))
 		.get()
@@ -15,7 +12,8 @@ function loadProperty(id) {
 				showSearchMessage(title, message);
 			} else {
 				querySnapshot.forEach(function(doc) {
-					renderSelectedUI(doc.data());
+					// Send feature to UI
+					loadProperty(doc.data());
 				});
 			};
 		})
@@ -27,6 +25,14 @@ function loadProperty(id) {
 			var message = "Sorry, we couldn't connect to our database. Try again in an hour, or <a href='mailto:'mailto:tenantscdsa@gmail.com'>contact us</a>."
 			showSearchMessage(title, message);
 		});
+};
+
+function loadProperty(feature) {
+	// Reset UI
+	resetSelectedInfo();
+	resetSelectedMarker();
+	// Show info
+	renderSelectedUI(feature);
 };
 
 function renderSelectedUI(feature) {
@@ -47,83 +53,17 @@ function renderFilteredPoints(feature) {
 	// Show container
 	searchResultsContainer.style.display = "block";
 
-	// Create placeholder arrays
-	var allPropertiesOwned = {
-	  "type": "FeatureCollection",
-	  "features": []
-	};
-	var otherPropertiesOwned = {
-	  "type": "FeatureCollection",
-	  "features": []
-	};
-	var selectedProperty = {
-	  "type": "FeatureCollection",
-	  "features": []
-	};
-
-	selectedProperty.features.push(feature);
-
-	if (affiliatedWith != "") {
-		// Hide selected, related properties on base layer
-		map.setFilter("features", ["!=", affiliatedWithColumn, affiliatedWith]);
-		
-		var query = featuresRef
-			.where("properties."+affiliatedWithColumn, "==", affiliatedWith)
-			.get()
-			.then(function(querySnapshot) {
-				querySnapshot.forEach(function(doc) {
-					// Add all matches to the set
-					allPropertiesOwned.features.push(doc.data());
-
-					if (doc.data().properties[propertyIndexColumn] != propertyIndex) {
-						// Add other properties to a different set
-						otherPropertiesOwned.features.push(doc.data());
-					};
-				});
-			})
-			.then(function() {
-				// Set styles
-				map.setPaintProperty("features", "circle-opacity", .25);
-				map.setPaintProperty("features", "circle-color", black);
-
-				// Add layers
-				addFilteredLayer("otherPropertiesOwned", otherPropertiesOwned, selectedRadius, defaultColors, .5);
-				addFilteredLayer("selectedProperty", selectedProperty, selectedRadius, defaultColors, 1);
-			
-				// Show UI
-				renderSelectedInfo(feature, allPropertiesOwned);
-				renderSelectedMarker(feature);
-			})
-			.catch(function(error) {
-				console.log("Error getting affiliated properties: ", error);
-				// Couldn't get affiliated properties, couldn't show UI
-				resetSearchResults();
-				var title = "Database error";
-				var message = "Sorry, we couldn't connect to our database. Try again in an hour, or <a href='mailto:'mailto:tenantscdsa@gmail.com'>contact us</a>."
-				showSearchMessage(title, message);
-			});
-	} else {
-		// Hide selected, related properties on base layer
-		map.setFilter("features", ["!=", propertyIndexColumn, propertyIndex]);
-
-		// Set styles
-		map.setPaintProperty("features", "circle-opacity", .25);
-		map.setPaintProperty("features", "circle-color", black);
-
-		// Add layers
-		addFilteredLayer("selectedProperty", selectedProperty, selectedRadius, defaultColors, 1);
-	
-		// Show UI
-		renderSelectedInfo(feature, allPropertiesOwned);
-		renderSelectedMarker(feature);
-	};
+	// Show UI
+	renderSelectedInfo(feature);
+	renderSelectedMarker(feature);
 };
 
-function renderSelectedInfo(feature, allPropertiesOwned) {
+function renderSelectedInfo(feature) {
 	var address = feature.properties[propertyAddressColumn];
 	var affiliatedWith = feature.properties[affiliatedWithColumn];
 	var owned = feature.properties[ownedColumn];
 	var taxpayer = feature.properties[taxpayerColumn];
+	var taxpayerMatchCode = feature.properties[taxpayerMatchCodeColumn];
 	var additionalDetails = feature.properties[additionalDetailsColumn];
 
 	// Handle stray datapoints
@@ -153,17 +93,6 @@ function renderSelectedInfo(feature, allPropertiesOwned) {
 		// Set value
 		var affiliatedWithValue = document.getElementById("affiliated-value");
 		affiliatedWithValue.innerText = affiliatedWith;
-		
-		// Also show download button
-		downloadButton.style.display = "block";		
-		// Set button text and style
-		downloadButton.innerHTML = "Download all "+affiliatedWith+" data";
-		downloadButton.style.backgroundColor = setColors(feature);
-		downloadButton.classList.add("button-hover");
-		// Add button listener
-		downloadButton.onclick = function(){
-			createPDF(affiliatedWith, allPropertiesOwned);
-		};
 	} else {
 		// Hide row
 		affiliatedWithRow.style.display = "none";
@@ -180,6 +109,32 @@ function renderSelectedInfo(feature, allPropertiesOwned) {
 		// Set value
 		var ownedValue = document.getElementById("owned-value");
 		ownedValue.innerText = owned;
+
+		// Also show download button
+		downloadButton.style.display = "block";		
+		// Set button text and style
+		if (affiliatedWith) {
+			downloadButton.innerHTML = "Download all "+affiliatedWith+" data";
+		} else if (owned > 1) {
+			downloadButton.innerHTML = "Download data for "+owned+" taxpayer properties";
+		} else if (owned == 1) {
+			downloadButton.innerHTML = "Download data for "+owned+" taxpayer property";
+		};
+		downloadButton.style.backgroundColor = setColors(feature);
+		downloadButton.classList.add("button-hover");
+		
+		// Add button listener
+		downloadButton.onclick = function(){
+			var pdfTitle;
+			// Set PDF title
+			if (affiliatedWith) {
+				pdfTitle = affiliatedWith;
+			} else {
+				pdfTitle = taxpayer;
+			};
+			// Query database
+			downloadRelatedProperties(pdfTitle, taxpayerMatchCode);
+		};
 	} else {
 		// Hide row
 		ownedRow.style.display = "none";
@@ -255,4 +210,30 @@ function renderSelectedMarker(feature) {
 		};
 	};
 	request.send();
+};
+
+function downloadRelatedProperties(pdfTitle, taxpayerMatchCode) {
+	// Empty array
+	var allPropertiesOwned = {
+		"type": "FeatureCollection",
+		"features": []
+	};
+
+	// Get properties with same match code
+	var query = featuresRef
+		.where("properties."+taxpayerMatchCodeColumn, "==", taxpayerMatchCode)
+		.get()
+		.then(function(querySnapshot) {
+			querySnapshot.forEach(function(doc) {
+				// Add all matches to the set
+				allPropertiesOwned.features.push(doc.data());
+			});
+		})
+		.then(function() {
+			// Generate PDF
+			createPDF(pdfTitle, allPropertiesOwned);
+		})
+		.catch(function(error) {
+			console.log("Error getting related properties: ", error);
+		});
 };

@@ -143,7 +143,7 @@ function createListItem(feature) {
 	// Add click event
 	item.onclick = function(){
 		// Query database
-		loadProperty(feature[propertyIndexColumn]);
+		searchProperty(feature[propertyIndexColumn]);
 	};
 	// Accessibility
 	item.addEventListener("keypress",

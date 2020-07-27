@@ -18,23 +18,9 @@ function resetSearchResults() {
 	};
 };
 
-function resetSelectedInfo() {	
-	// Restore layer with complete dataset
-	map.setPaintProperty("features", "circle-opacity", defaultOpacity);
-	map.setPaintProperty("features", "circle-color", defaultColors);
-	
+function resetSelectedInfo() {		
 	// Remove filters
-	map.setFilter("features", null);
-	
-	// Remove selected layers
-	if (map.getLayer("otherPropertiesOwned")) {
-		map.removeLayer("otherPropertiesOwned");
-		map.removeSource("otherPropertiesOwned");
-	};
-	if (map.getLayer("selectedProperty")) {
-		map.removeLayer("selectedProperty");
-		map.removeSource("selectedProperty");
-	};
+	// map.setFilter("features", null);
 };
 
 function resetSelectedMarker() {	

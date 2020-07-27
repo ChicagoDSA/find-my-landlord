@@ -2,7 +2,7 @@ function setColors(feature) {
 	var count = feature.properties[ownedColumn];
 
 	if (count < 5) {
-		return green;
+		return blue;
 	} else if (count < 50) {
 		return pink;
 	} else if (count < 200) {
@@ -19,7 +19,7 @@ function setRowColors(feature) {
 	var count = feature.properties[ownedColumn];
 
 	if (count < 5) {
-		return "rgba(51, 204, 51, .1)";
+		return "rgba(51, 153, 255, .1)";
 	} else if (count < 50) {
 		return "rgba(255, 0, 255, .1)";
 	} else if (count < 200) {

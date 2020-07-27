@@ -1,13 +1,14 @@
 // Column headers
 var propertyAddressColumn = "Property Address";
 var communityAreaColumn = "Community Area";
-var unitColumn = "Unit Count from Department of Buildings";
 var propertyIndexColumn = "Property Index Number";
 var taxpayerColumn = "Taxpayer";
 var taxpayerMatchCodeColumn = "Taxpayer Match Code";
 var affiliatedWithColumn = "Affiliated With";
-var ownedColumn = "Properties Held by Taxpayer Match Code";
 var additionalDetailsColumn = "Additional Details";
+var ownedColumn = "Properties Held by Taxpayer Match Code";
+var unitColumn = "Unit Count from Department of Buildings";
+var relativeSizeColumn = "Relative Size";
 
 // Database reference
 var databaseCollectionName = "features";
@@ -21,7 +22,7 @@ mapboxgl.accessToken = "pk.eyJ1IjoibHVjaWVubGl6bGVwaW9yeiIsImEiOiJja2M2YTN3dG8wY
 var yellow = "#ffff00";
 var red = "#ff4d4d";
 var pink = "#ff00ff";
-var green = "#33cc33";
+var blue = "#3399ff";
 var gray = "#808080";
 var black = "#000";
 var white = "#fff";
@@ -34,7 +35,7 @@ var highlightZoom = 12;
 var defaultColors = [
 	"case",
 	["<", ["get", ownedColumn], 5],
-	green,
+	blue,
 	["<", ["get", ownedColumn], 50],
 	pink,
 	["<", ["get", ownedColumn], 200],
@@ -42,47 +43,27 @@ var defaultColors = [
 	yellow
 ];
 
-// Scale radius based on zoom, hover
+// Scale radius based on zoom, relative unit size, hover
 var defaultRadius = [
 	"interpolate",
 	["exponential", 1.75],
 	["zoom"],
-	8, ["case",
+	8, 
+	["case",
 		["boolean", ["feature-state", "hover"], false],
-		10,
-		2
+		["interpolate", ["exponential", 1.75], ["get", relativeSizeColumn], 0, 10, 1000, 20],
+		["interpolate", ["exponential", 1.75], ["get", relativeSizeColumn], 0, 2, 1000, 4]
 	],
-	16, ["case",
+	16, 
+	["case",
 		["boolean", ["feature-state", "hover"], false],
-		12,
-		4
-	],
-	22, ["case",
-		["boolean", ["feature-state", "hover"], false],
-		360,
-		180
-	]
-];
-
-// Selected and related properties
-var selectedRadius = [
-	"interpolate",
-	["exponential", 1.75],
-	["zoom"],
-	8, ["case",
-		["boolean", ["feature-state", "hover"], false],
-		20,
-		4
-	],
-	16, ["case",
-		["boolean", ["feature-state", "hover"], false],
-		24,
-		8
+		["interpolate", ["exponential", 1.75], ["get", relativeSizeColumn], 0, 12, 1000, 24],
+		["interpolate", ["exponential", 1.75], ["get", relativeSizeColumn], 0, 4, 1000, 8]
 	],
 	22, ["case",
 		["boolean", ["feature-state", "hover"], false],
-		360,
-		180
+		["interpolate", ["exponential", 1.75], ["get", relativeSizeColumn], 0, 360, 1000, 720],
+		["interpolate", ["exponential", 1.75], ["get", relativeSizeColumn], 0, 180, 1000, 360]
 	]
 ];
 

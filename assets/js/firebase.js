@@ -20,4 +20,4 @@ firebase.auth().signInAnonymously().catch(function(error) {
 });
 
 var db = firebase.firestore();
-var featuresRef = db.collection("features");
+var featuresRef = db.collection(databaseCollectionName);

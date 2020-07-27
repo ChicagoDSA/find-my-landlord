@@ -9,9 +9,11 @@ var affiliatedWithColumn = "Affiliated With";
 var ownedColumn = "Properties Held by Taxpayer Match Code";
 var additionalDetailsColumn = "Additional Details";
 
-// Data
+// Database reference
+var databaseCollectionName = "features";
+// JSON search
 var url = "assets/data/search-index.json";
-var json = [];
+// Building under cursor
 var buildingAtPoint = null;
 
 // Mapbox key

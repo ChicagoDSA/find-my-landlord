@@ -40,8 +40,11 @@ function renderSelectedUI(feature) {
 };
 
 function renderFilteredPoints(feature) {
-	var propertyAddress = feature.properties[propertyAddressColumn];
+	var propertyIndex = feature.properties[propertyIndexColumn];
 	var affiliatedWith = feature.properties[affiliatedWithColumn];
+
+	// Show container
+	searchResultsContainer.style.display = "block";
 
 	// Create placeholder arrays
 	var allPropertiesOwned = {
@@ -71,7 +74,7 @@ function renderFilteredPoints(feature) {
 					// Add all matches to the set
 					allPropertiesOwned.features.push(doc.data());
 
-					if (doc.data().properties[propertyAddressColumn] != propertyAddress) {
+					if (doc.data().properties[propertyIndexColumn] != propertyIndex) {
 						// Add other properties to a different set
 						otherPropertiesOwned.features.push(doc.data());
 					};
@@ -83,8 +86,8 @@ function renderFilteredPoints(feature) {
 				map.setPaintProperty("features", "circle-color", black);
 
 				// Add layers
-				addFilteredLayer("otherPropertiesOwned", otherPropertiesOwned, selectedRadius, altColors, .5);
-				addFilteredLayer("selectedProperty", selectedProperty, selectedRadius, altColors, 1);
+				addFilteredLayer("otherPropertiesOwned", otherPropertiesOwned, selectedRadius, defaultColors, .5);
+				addFilteredLayer("selectedProperty", selectedProperty, selectedRadius, defaultColors, 1);
 			
 				// Show UI
 				renderSelectedInfo(feature, allPropertiesOwned);
@@ -100,14 +103,14 @@ function renderFilteredPoints(feature) {
 			});
 	} else {
 		// Hide selected, related properties on base layer
-		map.setFilter("features", ["!=", propertyAddressColumn, propertyAddress]);
+		map.setFilter("features", ["!=", propertyIndexColumn, propertyIndex]);
 
 		// Set styles
 		map.setPaintProperty("features", "circle-opacity", .25);
 		map.setPaintProperty("features", "circle-color", black);
 
 		// Add layers
-		addFilteredLayer("selectedProperty", selectedProperty, selectedRadius, altColors, 1);
+		addFilteredLayer("selectedProperty", selectedProperty, selectedRadius, defaultColors, 1);
 	
 		// Show UI
 		renderSelectedInfo(feature, allPropertiesOwned);

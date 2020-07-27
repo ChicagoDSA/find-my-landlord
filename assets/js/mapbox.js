@@ -4,6 +4,7 @@ var map = new mapboxgl.Map({
 		style: "mapbox://styles/mapbox/dark-v10?optimize=true",
 		center: [-87.695787, 41.881302], // Fred Hampton mural
 		zoom: 10,
+		maxZoom: 14,
 		attributionControl: false
 	});
 
@@ -56,8 +57,8 @@ map.on("load", function() {
 			// Set source data
 			map.addSource("propertyData", {
 				type: "vector",
-				url: "mapbox://lucienlizlepiorz.ddpjhgng",
-				promoteId: propertyAddressColumn
+				tiles: [location.origin+location.pathname+"assets/data/features/{z}/{x}/{y}.pbf"],
+				promoteId: propertyIndexColumn
 			});
 			
 			// Add features
@@ -147,7 +148,7 @@ function setHoverState (source, type, layer) {
 			};
 			
 			// Set new ID
-			buildingID = featuresAtPoint[0].properties[propertyAddressColumn];
+			buildingID = featuresAtPoint[0].properties[propertyIndexColumn];
 
 			// Hover to true
 			if (type == "vector") {
@@ -174,7 +175,7 @@ function setHoverState (source, type, layer) {
 
 	map.on("click", layer, function(e) {
 		if (buildingAtPoint) {
-			// loadProperty(buildingAtPoint.id);
+			loadProperty(buildingAtPoint.id);
 		};
 	});
 

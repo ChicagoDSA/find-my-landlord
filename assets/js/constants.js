@@ -33,18 +33,6 @@ var highlightZoom = 12;
 // Change colors based on landlord size
 var defaultColors = [
 	"case",
-	["<", ["get", "Properties Held by Affiliated With"], 5],
-	green,
-	["<", ["get", "Properties Held by Affiliated With"], 50],
-	pink,
-	["<", ["get", "Properties Held by Affiliated With"], 200],
-	red,
-	yellow
-];
-
-// Need to remove
-var altColors = [
-	"case",
 	["<", ["get", ownedColumn], 5],
 	green,
 	["<", ["get", ownedColumn], 50],

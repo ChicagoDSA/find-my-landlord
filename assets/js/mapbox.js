@@ -139,6 +139,8 @@ function addFilteredLayer (name, data, radius, color, opacity) {
 };
 
 function setHoverState (sourceData, sourceLayer, hoverLayer) {
+	// Building under cursor
+	var buildingAtPoint = null;
 	// Declared here to fix duplicates
 	var buildingID = null;
 

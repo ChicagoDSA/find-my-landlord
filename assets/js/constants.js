@@ -13,8 +13,6 @@ var additionalDetailsColumn = "Additional Details";
 var databaseCollectionName = "features";
 // JSON search
 var url = "assets/data/search-index.json";
-// Building under cursor
-var buildingAtPoint = null;
 
 // Mapbox key
 mapboxgl.accessToken = "pk.eyJ1IjoibHVjaWVubGl6bGVwaW9yeiIsImEiOiJja2M2YTN3dG8wYmZlMnp0ZXBzZzJuM3JsIn0.n6bA8boNS3LQW1izwa6MKg";

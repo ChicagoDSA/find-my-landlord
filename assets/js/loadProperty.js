@@ -1,4 +1,8 @@
 function loadProperty(id) {
+	// Reset UI
+	resetSelectedInfo();
+	resetSelectedMarker();
+	
 	var query = featuresRef
 		.where("properties."+propertyIndexColumn, "==", String(id))
 		.get()
@@ -32,9 +36,6 @@ function renderSelectedUI(feature) {
 	renderClearButton(address);
 	// Center map
 	centerMap(feature.geometry.coordinates);
-	// Reset UI
-	resetSelectedInfo();
-	resetSelectedMarker();
 	// Render updates
 	renderFilteredPoints(feature);
 };

@@ -118,8 +118,10 @@ function addFilteredLayer (name, data, radius, color, opacity) {
 		},
 	});
 
-	// Style hover
-	setHoverState(name, "geojson", name);
+	if (name != "selectedProperty") {
+		// Style hover
+		setHoverState(name, "geojson", name);
+	};
 };
 
 function setHoverState (source, type, layer) {

@@ -62,8 +62,8 @@ map.on("load", function() {
 				promoteId: propertyIndexColumn
 			});
 
-			console.log("hi");
-			/*
+			console.log("bob");
+			
 			// Add features
 			map.addLayer({
 				"id": "features",
@@ -76,7 +76,7 @@ map.on("load", function() {
 					"circle-opacity": defaultOpacity
 				},
 			});
-
+/*
 			setHoverState("propertyData", "vector", "features");
 	*/
 

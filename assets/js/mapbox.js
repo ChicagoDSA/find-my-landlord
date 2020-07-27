@@ -54,14 +54,14 @@ map.on("load", function() {
 		if (this.status >= 200 && this.status < 400) {
 			json = JSON.parse(this.response);
 
-/*
+
 			// Set source data
 			map.addSource("propertyData", {
 				type: "vector",
 				tiles: [location.origin+location.pathname+"assets/data/features/{z}/{x}/{y}.pbf"],
 				promoteId: propertyIndexColumn
 			});
-			
+			/*
 			// Add features
 			map.addLayer({
 				"id": "features",

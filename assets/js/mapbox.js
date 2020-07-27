@@ -54,8 +54,7 @@ map.on("load", function() {
 		if (this.status >= 200 && this.status < 400) {
 			json = JSON.parse(this.response);
 
-			console.log([location.origin+location.pathname+"assets/data/features/{z}/{x}/{y}.pbf"]);
-
+/*
 			// Set source data
 			map.addSource("propertyData", {
 				type: "vector",
@@ -77,6 +76,7 @@ map.on("load", function() {
 			});
 
 			setHoverState("propertyData", "vector", "features");
+	*/
 
 			// Disable search if IE
 			if (checkIE() == true) {

@@ -74,6 +74,21 @@ map.on("load", function() {
 			});
 
 			map.addLayer({
+				"id": "otherProperties",
+				"type": "circle",
+				"source": "propertyData",
+				"source-layer": "features",
+				"layout": {
+					"visibility": "none"
+				},
+				"paint": {
+					"circle-radius": defaultRadius,
+					"circle-color": black,
+					"circle-opacity": .25
+				}
+			});
+
+			map.addLayer({
 				"id": "relatedProperties",
 				"type": "circle",
 				"source": "propertyData",
@@ -84,11 +99,28 @@ map.on("load", function() {
 				"paint": {
 					"circle-radius": selectedRadius,
 					"circle-color": defaultColors,
-					"circle-opacity": .25
+					"circle-opacity": defaultOpacity
+				}
+			});
+
+			map.addLayer({
+				"id": "selectedProperty",
+				"type": "circle",
+				"source": "propertyData",
+				"source-layer": "features",
+				"layout": {
+					"visibility": "none"
 				},
+				"paint": {
+					"circle-radius": selectedRadius,
+					"circle-color": defaultColors,
+					"circle-opacity": 1
+				}
 			});
 
 			setHoverState("propertyData", "features", "allProperties");
+			setHoverState("propertyData", "features", "otherProperties");
+			setHoverState("propertyData", "features", "relatedProperties");
 
 			// Disable search if IE
 			if (checkIE() == true) {
@@ -176,6 +208,18 @@ function setHoverState (sourceData, sourceLayer, hoverLayer) {
 	});
 
 	map.on("click", hoverLayer, function(e) {
+		// Hover to false
+		if (buildingID) {
+			map.setFeatureState({
+				source: sourceData,
+				sourceLayer: sourceLayer,
+				id: buildingID
+			}, {
+				hover: false
+			});
+		};
+
+		// Select property
 		if (buildingAtPoint) {
 			loadProperty(buildingAtPoint);
 		};

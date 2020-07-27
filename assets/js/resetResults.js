@@ -20,7 +20,16 @@ function resetSearchResults() {
 
 function resetSelectedInfo() {		
 	// Remove filters
-	// map.setFilter("features", null);
+	map.setLayoutProperty("allProperties", "visibility", "visible");
+
+	map.setLayoutProperty("otherProperties", "visibility", "none");
+	map.setFilter("otherProperties", null);
+
+	map.setLayoutProperty("relatedProperties", "visibility", "none");
+	map.setFilter("relatedProperties", null);
+
+	map.setLayoutProperty("selectedProperty", "visibility", "none");
+	map.setFilter("selectedProperty", null);
 };
 
 function resetSelectedMarker() {	

@@ -49,6 +49,7 @@ function renderSelectedUI(feature) {
 function renderFilteredPoints(feature) {
 	var propertyIndex = feature.properties[propertyIndexColumn];
 	var affiliatedWith = feature.properties[affiliatedWithColumn];
+	var taxpayerMatchCode = feature.properties[taxpayerMatchCodeColumn];
 
 	// Show container
 	searchResultsContainer.style.display = "block";
@@ -56,6 +57,17 @@ function renderFilteredPoints(feature) {
 	// Show UI
 	renderSelectedInfo(feature);
 	renderSelectedMarker(feature);
+
+	map.setLayoutProperty("allProperties", "visibility", "none");
+
+	map.setLayoutProperty("otherProperties", "visibility", "visible");
+	map.setFilter("otherProperties", ["!=", taxpayerMatchCodeColumn, taxpayerMatchCode]);
+
+	map.setLayoutProperty("relatedProperties", "visibility", "visible");
+	map.setFilter("relatedProperties", ["all", ["==", taxpayerMatchCodeColumn, taxpayerMatchCode], ["!=", propertyIndexColumn, propertyIndex]]);
+
+	map.setLayoutProperty("selectedProperty", "visibility", "visible");
+	map.setFilter("selectedProperty", ["==", propertyIndexColumn, propertyIndex]);
 };
 
 function renderSelectedInfo(feature) {

@@ -61,6 +61,8 @@ map.on("load", function() {
 				tiles: [location.origin+location.pathname+"assets/data/features/{z}/{x}/{y}.pbf"],
 				promoteId: propertyIndexColumn
 			});
+
+			console.log("hi");
 			/*
 			// Add features
 			map.addLayer({

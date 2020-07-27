@@ -48,7 +48,6 @@ function renderSelectedUI(feature) {
 
 function renderFilteredPoints(feature) {
 	var propertyIndex = feature.properties[propertyIndexColumn];
-	var affiliatedWith = feature.properties[affiliatedWithColumn];
 	var taxpayerMatchCode = feature.properties[taxpayerMatchCodeColumn];
 
 	// Show container

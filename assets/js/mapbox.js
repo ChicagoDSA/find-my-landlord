@@ -4,7 +4,7 @@ var map = new mapboxgl.Map({
 		style: "mapbox://styles/mapbox/dark-v10?optimize=true",
 		center: [-87.695787, 41.881302], // Fred Hampton mural
 		zoom: 10,
-		maxZoom: 14,
+		maxZoom: 18,
 		attributionControl: false
 	});
 

@@ -4,7 +4,6 @@ var map = new mapboxgl.Map({
 		style: "mapbox://styles/mapbox/dark-v10?optimize=true",
 		center: [-87.695787, 41.881302], // Fred Hampton mural
 		zoom: 10,
-		maxZoom: 17,
 		attributionControl: false
 	});
 
@@ -57,6 +56,7 @@ map.on("load", function() {
 			// Set source data
 			map.addSource("propertyData", {
 				type: "vector",
+				maxzoom: 14, // Allows overzoom
 				tiles: [location.origin+location.pathname+"assets/data/features/{z}/{x}/{y}.pbf"],
 				promoteId: propertyIndexColumn
 			});

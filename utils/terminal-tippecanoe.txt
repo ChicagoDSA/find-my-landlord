@@ -1,1 +1,1 @@
-tippecanoe -e features --no-tile-compression --drop-densest-as-needed --extend-zooms-if-still-dropping --base-zoom=14 -z17 features.geojson
+tippecanoe -e features --no-tile-compression features.geojson

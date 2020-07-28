@@ -1,7 +1,7 @@
 // Set map defaults
 var map = new mapboxgl.Map({
 		container: "map",
-		style: "mapbox://styles/mapbox/dark-v10?optimize=true",
+		style: "mapbox://styles/lucienlizlepiorz/ckd61fpi915jk1ioyhcpvd10y",
 		center: [-87.695787, 41.881302], // Fred Hampton mural
 		zoom: 10,
 		attributionControl: false

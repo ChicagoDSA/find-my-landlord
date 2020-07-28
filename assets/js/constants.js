@@ -62,7 +62,7 @@ var defaultRadius = [
 	],
 	22, ["case",
 		["boolean", ["feature-state", "hover"], false],
-		["interpolate", ["exponential", 1.75], ["get", relativeSizeColumn], 0, 360, 1000, 720],
+		["interpolate", ["exponential", 1.75], ["get", relativeSizeColumn], 0, 200, 1000, 400],
 		["interpolate", ["exponential", 1.75], ["get", relativeSizeColumn], 0, 180, 1000, 360]
 	]
 ];

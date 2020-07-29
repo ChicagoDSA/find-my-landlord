@@ -18,7 +18,7 @@ function resetSearchResults() {
 	};
 };
 
-function resetSelectedInfo() {		
+function resetMap() {		
 	// Restore default layer
 	map.setFilter("allProperties", null);
 	map.setPaintProperty("allProperties", "circle-opacity", defaultOpacity);
@@ -28,9 +28,8 @@ function resetSelectedInfo() {
 		map.removeLayer("relatedProperties");
 		map.removeSource("relatedProperties");
 	};
-};
 
-function resetSelectedMarker() {	
+	// Remove marker
 	if (markerContainer) {
 		// Remove marker
 		markerContainer.parentNode.removeChild(markerContainer);

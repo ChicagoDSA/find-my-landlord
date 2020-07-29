@@ -34,13 +34,11 @@ function searchRelatedProperties(taxpayerMatchCode) {
 
 	return new Promise(function(resolve, reject) {
 		if (sessionStorage.getItem(taxpayerMatchCode)) {
-			console.log("loading from sessionStorage");
 			// Get array from sessionStorage
 			allPropertiesOwned = JSON.parse(sessionStorage.getItem(taxpayerMatchCode));
 			// Return array
 			resolve(allPropertiesOwned);
 		} else {
-			console.log("loading from database");
 			// Get array from database
 			// Get properties with same match code
 			var query = featuresRef

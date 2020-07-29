@@ -7,10 +7,8 @@ function matchAddresses(e) {
 	renderClearButton(value);
 	// Reset rendered objects
 	resetSearchResults();
-	// Reset description
-	resetSelectedInfo();
-	// Reset marker
-	resetSelectedMarker();
+	// Reset UI
+	resetMap();
 
 	if (value != "") {
 		// Create empty array of results
@@ -47,8 +45,7 @@ function renderClearButton(value) {
 			// Reset UI
 			searchInput.value = "";
 			resetSearchResults();
-			resetSelectedInfo();
-			resetSelectedMarker();
+			resetMap();
 		};
 		// Accessibility
 		clearButton.addEventListener("keypress",
@@ -146,8 +143,7 @@ function createListItem(feature) {
 			try {
 				var selected = await searchProperty(feature[propertyIndexColumn]);
 				// Reset UI
-				resetSelectedInfo();
-				resetSelectedMarker();
+				resetMap();
 				// Update it
 				renderSelectedUI(selected);
 			} catch {

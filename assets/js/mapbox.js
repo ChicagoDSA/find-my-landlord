@@ -221,7 +221,11 @@ function setHoverState (sourceData, sourceLayer, hoverLayer) {
 
 		// Select property
 		if (buildingAtPoint) {
-			loadProperty(buildingAtPoint);
+			// Reset UI
+			resetSelectedInfo();
+			resetSelectedMarker();
+			// Update it
+			renderSelectedUI(buildingAtPoint);
 		};
 	});
 

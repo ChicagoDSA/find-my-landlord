@@ -20,13 +20,13 @@ function matchAddresses(e) {
 			// Address at current index
 			if (json[i][propertyAddressColumn]) {
 				var address = json[i][propertyAddressColumn].trim().toLowerCase();
-		    	// Check if this address includes the input text
-		        if (address.indexOf(value) > -1) {
-		        	// Add feature to results array
-		        	results.push(json[i]);
-		        };
+				// Check if this address includes the input text
+				if (address.indexOf(value) > -1) {
+					// Add feature to results array
+					results.push(json[i]);
+				};
 			};
-	    };
+		};
 
 		// Render list
 		console.log("search results populated");
@@ -54,9 +54,9 @@ function renderClearButton(value) {
 		clearButton.addEventListener("keypress",
 			function(e) {
 				// Enter key
-			    if (e.keyCode == 13) {
-			        e.target.click();
-			    };
+				if (e.keyCode == 13) {
+					e.target.click();
+				};
 			}
 		);
 	};
@@ -91,8 +91,8 @@ function renderResults(features) {
 		// Add ListItems
 		for (var i = 0; i < searchResultsLimit && i < features.length; i++) {
 			// Address at current index
-	        createListItem(features[i]);
-	    };
+			createListItem(features[i]);
+		};
 	} else if (features.length == 0 && searchInput.value != "") {
 		// No results found
 		var title = "No search results";
@@ -142,16 +142,31 @@ function createListItem(feature) {
 
 	// Add click event
 	item.onclick = function(){
-		// Query database
-		searchProperty(feature[propertyIndexColumn]);
+		async function render() {
+			try {
+				var selected = await searchProperty(feature[propertyIndexColumn]);
+				// Reset UI
+				resetSelectedInfo();
+				resetSelectedMarker();
+				// Update it
+				renderSelectedUI(selected);
+			} catch {
+				// Show error message
+				resetSearchResults();
+				var title = "Database error";
+				var message = "Sorry, we couldn't look up that property's details. Try again in an hour, or <a href='mailto:'mailto:tenantscdsa@gmail.com'>contact us</a>."
+				showSearchMessage(title, message);
+			};	
+		};
+		render();
 	};
 	// Accessibility
 	item.addEventListener("keypress",
 		function(e) {
 			// Enter key
-		    if (e.keyCode == 13) {
-		        e.target.click();
-		    };
+			if (e.keyCode == 13) {
+				e.target.click();
+			};
 		}
 	);
 };

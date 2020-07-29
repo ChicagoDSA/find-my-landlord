@@ -33,10 +33,10 @@ function searchRelatedProperties(taxpayerMatchCode) {
 	};
 
 	return new Promise(function(resolve, reject) {
-		if (localStorage.getItem(taxpayerMatchCode)) {
-			console.log("loading from localStorage");
-			// Get array from localStorage
-			allPropertiesOwned = JSON.parse(localStorage.getItem(taxpayerMatchCode));
+		if (sessionStorage.getItem(taxpayerMatchCode)) {
+			console.log("loading from sessionStorage");
+			// Get array from sessionStorage
+			allPropertiesOwned = JSON.parse(sessionStorage.getItem(taxpayerMatchCode));
 			// Return array
 			resolve(allPropertiesOwned);
 		} else {
@@ -58,8 +58,8 @@ function searchRelatedProperties(taxpayerMatchCode) {
 					};
 				})
 				.then(function() {
-					// Save to localStorage
-					localStorage.setItem(taxpayerMatchCode, JSON.stringify(allPropertiesOwned));
+					// Save to sessionStorage
+					sessionStorage.setItem(taxpayerMatchCode, JSON.stringify(allPropertiesOwned));
 					// Return array
 					resolve(allPropertiesOwned);
 				})

@@ -19,17 +19,15 @@ function resetSearchResults() {
 };
 
 function resetSelectedInfo() {		
-	// Remove filters
-	map.setLayoutProperty("allProperties", "visibility", "visible");
+	// Restore default layer
+	map.setFilter("allProperties", null);
+	map.setPaintProperty("allProperties", "circle-opacity", defaultOpacity);
 
-	map.setLayoutProperty("otherProperties", "visibility", "none");
-	map.setFilter("otherProperties", null);
-
-	map.setLayoutProperty("relatedProperties", "visibility", "none");
-	map.setFilter("relatedProperties", null);
-
-	map.setLayoutProperty("selectedProperty", "visibility", "none");
-	map.setFilter("selectedProperty", null);
+	// Remove related layer
+	if (map.getLayer("relatedProperties")) {
+		map.removeLayer("relatedProperties");
+		map.removeSource("relatedProperties");
+	};
 };
 
 function resetSelectedMarker() {	

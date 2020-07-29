@@ -73,54 +73,7 @@ map.on("load", function() {
 				}
 			});
 
-			map.addLayer({
-				"id": "otherProperties",
-				"type": "circle",
-				"source": "propertyData",
-				"source-layer": "features",
-				"layout": {
-					"visibility": "none"
-				},
-				"paint": {
-					"circle-radius": defaultRadius,
-					"circle-color": defaultColors,
-					"circle-opacity": .15
-				}
-			});
-
-			map.addLayer({
-				"id": "relatedProperties",
-				"type": "circle",
-				"source": "propertyData",
-				"source-layer": "features",
-				"layout": {
-					"visibility": "none"
-				},
-				"paint": {
-					"circle-radius": defaultRadius,
-					"circle-color": defaultColors,
-					"circle-opacity": .75
-				}
-			});
-
-			map.addLayer({
-				"id": "selectedProperty",
-				"type": "circle",
-				"source": "propertyData",
-				"source-layer": "features",
-				"layout": {
-					"visibility": "none"
-				},
-				"paint": {
-					"circle-radius": defaultRadius,
-					"circle-color": defaultColors,
-					"circle-opacity": 1
-				}
-			});
-
 			setHoverState("propertyData", "features", "allProperties");
-			setHoverState("propertyData", "features", "otherProperties");
-			setHoverState("propertyData", "features", "relatedProperties");
 
 			// Disable search if IE
 			if (checkIE() == true) {
@@ -144,7 +97,7 @@ map.on("load", function() {
 	request.send();
 });
 
-function addFilteredLayer (name, data, radius, color, opacity) {
+function addLayer (name, data, radius, color, opacity) {
 	// Set source data
 	map.addSource(name, {
 		type: "geojson",
@@ -164,10 +117,8 @@ function addFilteredLayer (name, data, radius, color, opacity) {
 		},
 	});
 
-	if (name != "selectedProperty") {
-		// Style hover
-		setHoverState(name, "geojson", name);
-	};
+	// Style hover
+	setHoverState(data, null, name);
 };
 
 function setHoverState (sourceData, sourceLayer, hoverLayer) {
@@ -178,29 +129,55 @@ function setHoverState (sourceData, sourceLayer, hoverLayer) {
 
 	map.on("mousemove", hoverLayer, function(e) {
 		var featuresAtPoint = map.queryRenderedFeatures(e.point, { layers: [hoverLayer] });
-		buildingAtPoint = getBuildingAtPoint(featuresAtPoint, sourceData);
+		if (sourceLayer != null) {
+			// Vector source
+			buildingAtPoint = getBuildingAtPoint(featuresAtPoint, sourceData);
+		} else {
+			// GeoJSON source
+			buildingAtPoint = getBuildingAtPoint(featuresAtPoint, hoverLayer);
+		};
 
 		if (buildingAtPoint) {
 			map.getCanvas().style.cursor = "pointer";
 			// Remove existing state
 			if (buildingID) {
-				map.removeFeatureState({
-					source: sourceData,
-					sourceLayer: sourceLayer
-				});
+				if (sourceLayer != null) {
+					// Vector source
+					map.removeFeatureState({
+						source: sourceData,
+						sourceLayer: sourceLayer
+					});
+				} else {
+					// GeoJSON source
+					map.removeFeatureState({
+						source: hoverLayer,
+						id: buildingID
+					});
+				};
 			};
 			
 			// Set new ID
 			buildingID = featuresAtPoint[0].properties[propertyIndexColumn];
 
 			// Hover to true
-			map.setFeatureState({
-				source: sourceData,
-				sourceLayer: sourceLayer,
-				id: buildingID
-			}, {
-				hover: true
-			});
+			if (sourceLayer != null) {
+				// Vector source
+				map.setFeatureState({
+					source: sourceData,
+					sourceLayer: sourceLayer,
+					id: buildingID
+				}, {
+					hover: true
+				});
+			} else {
+				// GeoJSON source
+				map.setFeatureState({
+					source: hoverLayer,
+					id: buildingID
+				}, {
+					hover: true
+				});
+			};
 		} else {
 			// Clear var
 			buildingAtPoint = null;
@@ -210,13 +187,24 @@ function setHoverState (sourceData, sourceLayer, hoverLayer) {
 	map.on("click", hoverLayer, function(e) {
 		// Hover to false
 		if (buildingID) {
-			map.setFeatureState({
-				source: sourceData,
-				sourceLayer: sourceLayer,
-				id: buildingID
-			}, {
-				hover: false
-			});
+			if (sourceLayer != null) {
+				// Vector source
+				map.setFeatureState({
+					source: sourceData,
+					sourceLayer: sourceLayer,
+					id: buildingID
+				}, {
+					hover: false
+				});
+			} else {
+				// GeoJSON source
+				map.setFeatureState({
+					source: hoverLayer,
+					id: buildingID
+				}, {
+					hover: false
+				});
+			};	
 		};
 
 		// Select property
@@ -232,13 +220,24 @@ function setHoverState (sourceData, sourceLayer, hoverLayer) {
 	map.on("mouseleave", hoverLayer, function() {
 		// Hover to false
 		if (buildingID) {
-			map.setFeatureState({
-				source: sourceData,
-				sourceLayer: sourceLayer,
-				id: buildingID
-			}, {
-				hover: false
-			});
+			if (sourceLayer != null) {
+				// Vector source
+				map.setFeatureState({
+					source: sourceData,
+					sourceLayer: sourceLayer,
+					id: buildingID
+				}, {
+					hover: false
+				});
+			} else {
+				// GeoJSON source
+				map.setFeatureState({
+					source: hoverLayer,
+					id: buildingID
+				}, {
+					hover: false
+				});
+			};	
 		};
 		
 		// Clear var

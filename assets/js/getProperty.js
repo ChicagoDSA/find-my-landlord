@@ -33,29 +33,41 @@ function searchRelatedProperties(taxpayerMatchCode) {
 	};
 
 	return new Promise(function(resolve, reject) {
-		// Get properties with same match code
-		var query = featuresRef
-			.where("properties."+taxpayerMatchCodeColumn, "==", taxpayerMatchCode)
-			.get()
-			.then(function(querySnapshot) {
-				if (querySnapshot.docs.length == 0) {
-					console.log("No related properties found");
+		if (localStorage.getItem(taxpayerMatchCode)) {
+			console.log("loading from localStorage");
+			// Get array from localStorage
+			allPropertiesOwned = JSON.parse(localStorage.getItem(taxpayerMatchCode));
+			// Return array
+			resolve(allPropertiesOwned);
+		} else {
+			console.log("loading from database");
+			// Get array from database
+			// Get properties with same match code
+			var query = featuresRef
+				.where("properties."+taxpayerMatchCodeColumn, "==", taxpayerMatchCode)
+				.get()
+				.then(function(querySnapshot) {
+					if (querySnapshot.docs.length == 0) {
+						console.log("No related properties found");
+						reject();
+					} else {
+						querySnapshot.forEach(function(doc) {
+							// Add all matches to the set
+							allPropertiesOwned.features.push(doc.data());
+						});
+					};
+				})
+				.then(function() {
+					// Save to localStorage
+					localStorage.setItem(taxpayerMatchCode, JSON.stringify(allPropertiesOwned));
+					// Return array
+					resolve(allPropertiesOwned);
+				})
+				.catch(function(error) {
+					console.log("Error getting related properties: ", error);
 					reject();
-				} else {
-					querySnapshot.forEach(function(doc) {
-						// Add all matches to the set
-						allPropertiesOwned.features.push(doc.data());
-					});
-				};
-			})
-			.then(function() {
-				// Return array
-				resolve(allPropertiesOwned);
-			})
-			.catch(function(error) {
-				console.log("Error getting related properties: ", error);
-				reject();
-			});
+				});
+		};
 	});
 };
 
@@ -68,8 +80,8 @@ function renderSelectedUI(feature) {
 	centerMap(feature.geometry.coordinates);
 	// Render updates
 	renderSelectedMap(feature);
-	renderSelectedInfo(feature);
 	renderSelectedMarker(feature);
+	renderSelectedInfo(feature);
 };
 
 function renderSelectedMap(feature) {
@@ -78,17 +90,51 @@ function renderSelectedMap(feature) {
 
 	// Show container
 	searchResultsContainer.style.display = "block";
+	// Hide all properties with same owner
+	map.setFilter("allProperties", ["!=", taxpayerMatchCodeColumn, taxpayerMatchCode]);
+	map.setPaintProperty("allProperties", "circle-opacity", .15);
 
-	map.setLayoutProperty("allProperties", "visibility", "none");
+	// Query database
+	async function load() {
+		try {
+			var properties = await searchRelatedProperties(taxpayerMatchCode);
+			// Show properties on map
+			addLayer("relatedProperties", properties, defaultRadius, defaultColors, .75);
+			// And hide current property
+			map.setFilter("relatedProperties", ["!=", propertyIndexColumn, propertyIndex]);
+		} catch (err) {
+			console.log("Async function to search related properties failed");
+		};	
+	};
+	load();
+};
 
-	map.setLayoutProperty("otherProperties", "visibility", "visible");
-	map.setFilter("otherProperties", ["!=", taxpayerMatchCodeColumn, taxpayerMatchCode]);
+function renderSelectedMarker(feature) {
+	var request = new XMLHttpRequest();
+	request.open("GET", "assets/images/marker.svg", true);
+	request.onload = function() {
+		if (this.status >= 200 && this.status < 400) {
+			var svg = this.response;
 
-	map.setLayoutProperty("relatedProperties", "visibility", "visible");
-	map.setFilter("relatedProperties", ["all", ["==", taxpayerMatchCodeColumn, taxpayerMatchCode], ["!=", propertyIndexColumn, propertyIndex]]);
+			// Create marker
+			markerContainer = document.createElement("div");
+			markerContainer.id = "marker";
 
-	map.setLayoutProperty("selectedProperty", "visibility", "visible");
-	map.setFilter("selectedProperty", ["==", propertyIndexColumn, propertyIndex]);
+			// Add SVG to marker
+			markerContainer.innerHTML = svg;
+			markerContainer.children[0].getElementById("outline").setAttribute("stroke", black);
+			markerContainer.children[0].getElementById("shape").setAttribute("fill", setColors(feature));
+			
+			// Add to map
+			// Validate coordinates
+			if (feature.geometry.coordinates.length == 2) {
+				marker = new mapboxgl.Marker(markerContainer)
+					.setLngLat(feature.geometry.coordinates)
+					.addTo(map);
+			};
+		};
+	};
+	request.send();
 };
 
 function renderSelectedInfo(feature) {
@@ -169,6 +215,7 @@ function renderSelectedInfo(feature) {
 			async function load() {
 				try {
 					var properties = await searchRelatedProperties(taxpayerMatchCode);
+					// Create PDF
 					createPDF(pdfTitle, properties);
 				} catch (err) {
 					console.log("Async function to search related properties failed");
@@ -223,32 +270,4 @@ function renderSelectedInfo(feature) {
 		// Hide link
 		additionalDetailsLink.style.display = "none";
 	};
-};
-
-function renderSelectedMarker(feature) {
-	var request = new XMLHttpRequest();
-	request.open("GET", "assets/images/marker.svg", true);
-	request.onload = function() {
-		if (this.status >= 200 && this.status < 400) {
-			var svg = this.response;
-
-			// Create marker
-			markerContainer = document.createElement("div");
-			markerContainer.id = "marker";
-
-			// Add SVG to marker
-			markerContainer.innerHTML = svg;
-			markerContainer.children[0].getElementById("outline").setAttribute("stroke", black);
-			markerContainer.children[0].getElementById("shape").setAttribute("fill", setColors(feature));
-			
-			// Add to map
-			// Validate coordinates
-			if (feature.geometry.coordinates.length == 2) {
-				marker = new mapboxgl.Marker(markerContainer)
-					.setLngLat(feature.geometry.coordinates)
-					.addTo(map);
-			};
-		};
-	};
-	request.send();
 };

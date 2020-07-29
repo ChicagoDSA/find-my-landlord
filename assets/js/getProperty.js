@@ -215,6 +215,12 @@ function renderSelectedInfo(feature) {
 					var properties = await searchRelatedProperties(taxpayerMatchCode);
 					// Create PDF
 					createPDF(pdfTitle, properties);
+					// Log event
+					firebase.analytics().logEvent("PDF-downloaded", { 
+						property_address: address,
+						taxpayer: taxpayer,
+						affiliated_with: affiliatedWith,
+					});
 				} catch (err) {
 					console.log("Async function to search related properties failed");
 				};	

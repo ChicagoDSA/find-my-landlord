@@ -67,30 +67,6 @@ var defaultRadius = [
 	]
 ];
 
-// Scale radius based on zoom, relative unit size, hover
-var selectedRadius = [
-	"interpolate",
-	["exponential", 1.75],
-	["zoom"],
-	8, 
-	["case",
-		["boolean", ["feature-state", "hover"], false],
-		["interpolate", ["exponential", 1.75], ["get", relativeSizeColumn], 0, 10, 1000, 20],
-		["interpolate", ["exponential", 1.75], ["get", relativeSizeColumn], 0, 2, 1000, 4]
-	],
-	16, 
-	["case",
-		["boolean", ["feature-state", "hover"], false],
-		["interpolate", ["exponential", 1.75], ["get", relativeSizeColumn], 0, 12, 1000, 24],
-		["interpolate", ["exponential", 1.75], ["get", relativeSizeColumn], 0, 4, 1000, 8]
-	],
-	22, ["case",
-		["boolean", ["feature-state", "hover"], false],
-		["interpolate", ["exponential", 1.75], ["get", relativeSizeColumn], 0, 200, 1000, 400],
-		["interpolate", ["exponential", 1.75], ["get", relativeSizeColumn], 0, 180, 1000, 360]
-	]
-];
-
 // Custom UI
 var markerContainer = null;
 var marker = null;

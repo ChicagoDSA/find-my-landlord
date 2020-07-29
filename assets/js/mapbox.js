@@ -213,6 +213,12 @@ function setHoverState (sourceData, sourceLayer, hoverLayer) {
 			resetMap();
 			// Update it
 			renderSelectedUI(buildingAtPoint);
+			// Log event
+			firebase.analytics().logEvent("map-point-clicked", { 
+				property_address: buildingAtPoint.properties[propertyAddressColumn],
+				taxpayer: buildingAtPoint.properties[taxpayerColumn],
+				affiliated_with: buildingAtPoint.properties[affiliatedWithColumn],
+			});
 		};
 	});
 

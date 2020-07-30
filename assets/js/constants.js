@@ -71,6 +71,7 @@ var defaultRadius = [
 ];
 
 // Custom UI
+var selectedBounds = null;
 var markerContainer = null;
 var marker = null;
 var searchInputContainer = document.getElementById("search-input-container");

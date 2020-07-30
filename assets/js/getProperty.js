@@ -74,8 +74,6 @@ function renderSelectedUI(feature) {
 	// Update search input
 	searchInput.value = address;
 	renderClearButton(address);
-	// Center map
-	centerMap(feature.geometry.coordinates);
 	// Render updates
 	renderSelectedMap(feature);
 	renderSelectedMarker(feature);
@@ -102,6 +100,20 @@ function renderSelectedMap(feature) {
 				addLayer("relatedProperties", properties, defaultRadius, dsaYellow, .75);
 				// And hide current property
 				map.setFilter("relatedProperties", ["!=", propertyIndexColumn, propertyIndex]);
+
+				if (properties.features.length > 1) {
+					// Show all features on map
+					// Create bounds
+					selectedBounds = new mapboxgl.LngLatBounds();
+					properties.features.forEach(function(feature) {
+						selectedBounds.extend(feature.geometry.coordinates);
+					});
+					// Fit them
+					fitBounds();
+				} else {
+					// Center map on single point
+					centerMap(feature.geometry.coordinates);
+				};
 			} catch (err) {
 				console.log("Async function to search related properties failed");
 			};	

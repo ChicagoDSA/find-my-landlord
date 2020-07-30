@@ -89,8 +89,10 @@ map.on("load", function() {
 				searchInput.value = "";
 				// Show search
 				searchInputContainer.style.display = "block";
-				// Add input listener
+				// Add input listeners
 				searchInput.addEventListener("keypress", matchAddresses);
+				// Registers backspace
+				searchInput.addEventListener("input", matchAddresses);	
 				// Allow hover and click
 				setHoverState("propertyData", "features", "allProperties");
 			};

@@ -32,7 +32,7 @@ function attachModal(element, title, modalContent) {
 
 		// Attributes
 		titleText.innerText= title;
-		closeImg.src = "assets/images/times.svg";
+		closeImg.src = "assets/images/times-light.svg";
 		text.innerHTML = modalContent;
 
 		// Append elements

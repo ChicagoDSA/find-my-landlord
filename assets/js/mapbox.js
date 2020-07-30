@@ -10,18 +10,20 @@ var map = new mapboxgl.Map({
 // Create legend
 var legendContainer = document.createElement("div");
 var legendTitle = document.createElement("h4");
-var legend200plus = document.createElement("div");
-var legend50plus = document.createElement("div");
-var legend5plus = document.createElement("div");
-var legendLess5 = document.createElement("div");
+var legend100plus = document.createElement("div");
+var legend10plus = document.createElement("div");
+var legend3plus = document.createElement("div");
+var legendLess3 = document.createElement("div");
+var legendUndetermined = document.createElement("div");
 
 // Set content
 legendContainer.id = "legend";
 legendTitle.innerHTML = "Owned by a landlord with...";
-legend200plus.innerHTML = "<span style='background-color: "+yellow+"'></span>200+ properties";
-legend50plus.innerHTML = "<span style='background-color: "+red+"'></span>50+ properties";
-legend5plus.innerHTML = "<span style='background-color: "+pink+"'></span>5+ properties";
-legendLess5.innerHTML = "<span style='background-color: "+blue+"'></span>Less than 5 properties";
+legend100plus.innerHTML = "<span style='background-color: "+yellow+"'></span>100+ properties";
+legend10plus.innerHTML = "<span style='background-color: "+red+"'></span>10+ properties";
+legend3plus.innerHTML = "<span style='background-color: "+pink+"'></span>3+ properties";
+legendLess3.innerHTML = "<span style='background-color: "+blue+"'></span>1-2 properties";
+legendUndetermined.innerHTML = "<span style='background-color: "+black+"'></span>Cannot be determined";
 
 // Add attribution control
 var attributionControl = new mapboxgl.AttributionControl({
@@ -36,10 +38,11 @@ var bottomRightControl = bottomRightClass[0];
 // Add legend inside control
 bottomRightControl.insertBefore(legendContainer, bottomRightControl.firstChild);
 legendContainer.appendChild(legendTitle);
-legendContainer.appendChild(legend200plus);
-legendContainer.appendChild(legend50plus);
-legendContainer.appendChild(legend5plus);
-legendContainer.appendChild(legendLess5);
+legendContainer.appendChild(legend100plus);
+legendContainer.appendChild(legend10plus);
+legendContainer.appendChild(legend3plus);
+legendContainer.appendChild(legendLess3);
+legendContainer.appendChild(legendUndetermined);
 
 // Add navigation
 var navigationControl = new mapboxgl.NavigationControl();
@@ -74,6 +77,7 @@ map.on("load", function() {
 			});
 
 			setHoverState("propertyData", "features", "allProperties");
+			//map.setFilter("allProperties", ["!=", taxpayerMatchCodeColumn, "U-00001"]);
 
 			// Disable search if IE
 			if (checkIE() == true) {

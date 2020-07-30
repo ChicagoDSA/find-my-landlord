@@ -34,13 +34,15 @@ var highlightZoom = 12;
 // Change colors based on landlord size
 var defaultColors = [
 	"case",
-	["<", ["get", ownedColumn], 5],
-	blue,
-	["<", ["get", ownedColumn], 50],
-	pink,
-	["<", ["get", ownedColumn], 200],
+	[">=", ["get", ownedColumn], 100],
+	yellow,
+	[">=", ["get", ownedColumn], 10],
 	red,
-	yellow
+	[">=", ["get", ownedColumn], 3],
+	pink,
+	[">", ["get", ownedColumn], 0],
+	blue,
+	black
 ];
 
 // Scale radius based on zoom, relative unit size, hover
@@ -51,19 +53,19 @@ var defaultRadius = [
 	8, 
 	["case",
 		["boolean", ["feature-state", "hover"], false],
-		["interpolate", ["exponential", 1.75], ["get", relativeSizeColumn], 0, 10, 1000, 20],
-		["interpolate", ["exponential", 1.75], ["get", relativeSizeColumn], 0, 2, 1000, 4]
+		["interpolate", ["linear"], ["get", relativeSizeColumn], 0, 10, 100, 20],
+		["interpolate", ["linear"], ["get", relativeSizeColumn], 0, 2, 100, 10]
 	],
 	16, 
 	["case",
 		["boolean", ["feature-state", "hover"], false],
-		["interpolate", ["exponential", 1.75], ["get", relativeSizeColumn], 0, 12, 1000, 24],
-		["interpolate", ["exponential", 1.75], ["get", relativeSizeColumn], 0, 4, 1000, 8]
+		["interpolate", ["linear"], ["get", relativeSizeColumn], 0, 12, 100, 24],
+		["interpolate", ["linear"], ["get", relativeSizeColumn], 0, 4, 100, 20]
 	],
 	22, ["case",
 		["boolean", ["feature-state", "hover"], false],
-		["interpolate", ["exponential", 1.75], ["get", relativeSizeColumn], 0, 200, 1000, 400],
-		["interpolate", ["exponential", 1.75], ["get", relativeSizeColumn], 0, 180, 1000, 360]
+		["interpolate", ["linear"], ["get", relativeSizeColumn], 0, 200, 100, 400],
+		["interpolate", ["linear"], ["get", relativeSizeColumn], 0, 180, 100, 900]
 	]
 ];
 

@@ -85,6 +85,7 @@ function renderSelectedUI(feature) {
 function renderSelectedMap(feature) {
 	var propertyIndex = feature.properties[propertyIndexColumn];
 	var taxpayerMatchCode = feature.properties[taxpayerMatchCodeColumn];
+	var owned = feature.properties[ownedColumn];
 
 	// Show container
 	searchResultsContainer.style.display = "block";
@@ -92,19 +93,21 @@ function renderSelectedMap(feature) {
 	map.setFilter("allProperties", ["!=", taxpayerMatchCodeColumn, taxpayerMatchCode]);
 	map.setPaintProperty("allProperties", "circle-opacity", .15);
 
-	// Query database
-	async function load() {
-		try {
-			var properties = await searchRelatedProperties(taxpayerMatchCode);
-			// Show properties on map
-			addLayer("relatedProperties", properties, defaultRadius, defaultColors, .75);
-			// And hide current property
-			map.setFilter("relatedProperties", ["!=", propertyIndexColumn, propertyIndex]);
-		} catch (err) {
-			console.log("Async function to search related properties failed");
-		};	
+	if (owned) {
+		// Query database
+		async function load() {
+			try {
+				var properties = await searchRelatedProperties(taxpayerMatchCode);
+				// Show properties on map
+				addLayer("relatedProperties", properties, defaultRadius, defaultColors, .75);
+				// And hide current property
+				map.setFilter("relatedProperties", ["!=", propertyIndexColumn, propertyIndex]);
+			} catch (err) {
+				console.log("Async function to search related properties failed");
+			};	
+		};
+		load();
 	};
-	load();
 };
 
 function renderSelectedMarker(feature) {
@@ -142,11 +145,6 @@ function renderSelectedInfo(feature) {
 	var taxpayer = feature.properties[taxpayerColumn];
 	var taxpayerMatchCode = feature.properties[taxpayerMatchCodeColumn];
 	var additionalDetails = feature.properties[additionalDetailsColumn];
-
-	// Handle stray datapoints
-	if (owned < 1 || owned == "") {
-		owned = 1;
-	};
 
 	// Clear counter and list HTML
 	searchResultsCounter.innerHTML = "";
@@ -230,6 +228,8 @@ function renderSelectedInfo(feature) {
 	} else {
 		// Hide row
 		ownedRow.style.display = "none";
+		// Hide button
+		downloadButton.style.display = "none";
 	};
 
 	// Taxpayer info

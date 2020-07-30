@@ -30,7 +30,7 @@ var white = "#fff";
 
 // Map defaults
 var defaultOpacity = .5;
-var highlightZoom = 12;
+var highlightZoom = 14;
 
 // Change colors based on landlord size
 var defaultColors = [

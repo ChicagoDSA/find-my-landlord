@@ -2,8 +2,8 @@
 var map = new mapboxgl.Map({
 		container: "map",
 		style: "mapbox://styles/lucienlizlepiorz/ckd61fpi915jk1ioyhcpvd10y",
-		center: [-87.695787, 41.881302], // Fred Hampton mural
-		zoom: 10,
+		center: [-87.6441, 41.8846], // Haymarket Square
+		zoom: 12,
 		attributionControl: false
 	});
 

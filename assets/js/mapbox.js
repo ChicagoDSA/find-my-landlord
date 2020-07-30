@@ -19,10 +19,10 @@ var legendUndetermined = document.createElement("div");
 // Set content
 legendContainer.id = "legend";
 legendTitle.innerHTML = "Owned by a landlord with...";
-legend100plus.innerHTML = "<span style='background-color: "+yellow+"'></span>100+ properties";
-legend10plus.innerHTML = "<span style='background-color: "+red+"'></span>10+ properties";
-legend3plus.innerHTML = "<span style='background-color: "+pink+"'></span>3+ properties";
-legendLess3.innerHTML = "<span style='background-color: "+blue+"'></span>1-2 properties";
+legend100plus.innerHTML = "<span style='background-color: "+color4+"'></span>100+ properties";
+legend10plus.innerHTML = "<span style='background-color: "+color3+"'></span>10+ properties";
+legend3plus.innerHTML = "<span style='background-color: "+color2+"'></span>3+ properties";
+legendLess3.innerHTML = "<span style='background-color: "+color1+"'></span>1-2 properties";
 legendUndetermined.innerHTML = "<span style='background-color: "+black+"'></span>Cannot be determined";
 
 // Add attribution control

@@ -19,10 +19,10 @@ var url = "assets/data/search-index.json";
 mapboxgl.accessToken = "pk.eyJ1IjoibHVjaWVubGl6bGVwaW9yeiIsImEiOiJja2M2YTN3dG8wYmZlMnp0ZXBzZzJuM3JsIn0.n6bA8boNS3LQW1izwa6MKg";
 
 // Colors
-var yellow = "#ffff00";
-var red = "#ff4d4d";
-var pink = "#ff00ff";
-var blue = "#3399ff";
+var color4 = "#ff5722";
+var color3 = "#ffeb3b";
+var color2 = "#bbdefb";
+var color1 = "#42a5f5";
 var gray = "#808080";
 var black = "#000";
 var white = "#fff";
@@ -35,13 +35,13 @@ var highlightZoom = 12;
 var defaultColors = [
 	"case",
 	[">=", ["get", ownedColumn], 100],
-	yellow,
+	color4,
 	[">=", ["get", ownedColumn], 10],
-	red,
+	color3,
 	[">=", ["get", ownedColumn], 3],
-	pink,
+	color2,
 	[">", ["get", ownedColumn], 0],
-	blue,
+	color1,
 	black
 ];
 

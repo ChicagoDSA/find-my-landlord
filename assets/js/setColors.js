@@ -2,15 +2,31 @@ function setColors(feature) {
 	var count = feature.properties[ownedColumn];
 
 	if (count >= 100) {
-		return yellow;
+		return color4;
 	} else if (count >= 10) {
-		return red;
+		return color3;
 	} else if (count >= 3) {
-		return pink;
+		return color2;
 	} else if (count > 0) {
-		return blue;
+		return color1;
 	} else {
 		return black;
+	};
+};
+
+function setForegroundColor(feature) {
+	var count = feature.properties[ownedColumn];
+
+	if (count >= 100) {
+		return black;
+	} else if (count >= 10) {
+		return black;
+	} else if (count >= 3) {
+		return black;
+	} else if (count > 0) {
+		return black;
+	} else {
+		return white;
 	};
 };
 
@@ -18,14 +34,28 @@ function setRowColors(feature) {
 	var count = feature.properties[ownedColumn];
 
 	if (count >= 100) {
-		return "rgba(255, 255, 0, .1)";
+		return convertHex(color4, .1);
 	} else if (count >= 10) {
-		return "rgba(255, 77, 77, .1)";
+		return convertHex(color3, .1);
 	} else if (count >= 3) {
-		return "rgba(255, 0, 255, .1)";
+		return convertHex(color2, .1);
 	} else if (count > 0) {
-		return "rgba(51, 153, 255, .1)";
+		return convertHex(color1, .1);
 	} else {
-		return "rgba(0, 0, 0, .1";
+		return convertHex(black, .1);
 	};
+};
+
+function convertHex(hexCode, opacity) {
+	var hex = hexCode.replace("#", "");
+
+	if (hex.length === 3) {
+		hex += hex;
+	};
+
+	var r = parseInt(hex.substring(0, 2), 16),
+		g = parseInt(hex.substring(2, 4), 16),
+		b = parseInt(hex.substring(4, 6), 16);
+
+	return "rgba("+r+","+g+","+b+","+opacity+")";
 };

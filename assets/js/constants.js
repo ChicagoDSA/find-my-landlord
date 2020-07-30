@@ -27,6 +27,7 @@ var color2 = "#866b85";
 var color1 = "#1e1231";
 var black = "#000";
 var white = "#fff";
+var gray = "#808080";
 
 // Map defaults
 var defaultOpacity = .5;

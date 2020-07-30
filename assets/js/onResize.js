@@ -17,6 +17,7 @@ function fitBounds() {
 			right: rightPadding,
 			bottom: 40, 
 			left: 40
-		}
+		},
+		maxZoom: 16
 	});
 };

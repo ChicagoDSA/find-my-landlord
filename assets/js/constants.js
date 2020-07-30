@@ -11,7 +11,7 @@ var unitColumn = "Unit Count from Department of Buildings";
 var relativeSizeColumn = "Relative Size";
 
 // Database reference
-var databaseCollectionName = "features";
+var databaseCollectionName = "features-1596068090";
 // JSON search
 var url = "assets/data/search-index.json";
 

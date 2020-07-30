@@ -120,12 +120,6 @@ h5 {
 	padding: .625rem;
 }
 
-#search-input,
-#clear,
-#selected-container table tr:nth-child(even) {
-	background-color: #e6e6e6;
-}
-
 #search-results-container,
 #modal-content,
 #legend {
@@ -155,6 +149,11 @@ h5 {
 #search-results-container {
 	display: none;
 	position: relative;
+}
+
+#search-input,
+#clear {
+	background-color: #fde8e8;
 }
 
 #selected-container table tr td:first-child,
@@ -227,8 +226,11 @@ h5 {
 	width: 100%;
 	text-decoration: none;
 	color: #fff;
-	background-color: #000;
+	background-color: #ec1f27;
 }
+
+
+
 
 #title * {
 	display: table-cell;
@@ -273,7 +275,7 @@ h5 {
 #search-results-counter {
 	padding: .3125rem .625rem;
 	color: #fff;
-	background-color: #808080;
+	background-color: #3b2462;
 }
 
 #search-results-list {
@@ -403,7 +405,7 @@ h5 {
 #modal-title {
 	padding-right: 2.5rem;
 	color: #fff;
-	background-color: #000;
+	background-color: #3b2462;
 }
 
 #modal-title h3 {

@@ -19,11 +19,12 @@ var url = "assets/data/search-index.json";
 mapboxgl.accessToken = "pk.eyJ1IjoibHVjaWVubGl6bGVwaW9yeiIsImEiOiJja2M2YTN3dG8wYmZlMnp0ZXBzZzJuM3JsIn0.n6bA8boNS3LQW1izwa6MKg";
 
 // Colors
-var color4 = "#ff6150";
-var color3 = "#ffcb00";
-var color2 = "#54d2d2";
-var color1 = "#05172e";
-var gray = "#808080";
+var dsaRed = "#ec1f27";
+var dsaYellow = "#fad434";
+var color4 = dsaRed;
+var color3 = "#dc7270";
+var color2 = "#866b85";
+var color1 = "#1e1231";
 var black = "#000";
 var white = "#fff";
 

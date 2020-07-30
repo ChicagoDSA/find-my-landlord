@@ -99,7 +99,7 @@ function renderSelectedMap(feature) {
 			try {
 				var properties = await searchRelatedProperties(taxpayerMatchCode);
 				// Show properties on map
-				addLayer("relatedProperties", properties, defaultRadius, defaultColors, .75);
+				addLayer("relatedProperties", properties, defaultRadius, dsaYellow, .75);
 				// And hide current property
 				map.setFilter("relatedProperties", ["!=", propertyIndexColumn, propertyIndex]);
 			} catch (err) {
@@ -124,7 +124,7 @@ function renderSelectedMarker(feature) {
 			// Add SVG to marker
 			markerContainer.innerHTML = svg;
 			markerContainer.children[0].getElementById("outline").setAttribute("stroke", black);
-			markerContainer.children[0].getElementById("shape").setAttribute("fill", setColors(feature));
+			markerContainer.children[0].getElementById("shape").setAttribute("fill", dsaYellow);
 			
 			// Add to map
 			// Validate coordinates
@@ -196,8 +196,8 @@ function renderSelectedInfo(feature) {
 			downloadButton.innerHTML = "Download data for "+owned+" taxpayer property";
 		};
 		downloadButton.classList.add("button-hover");
-		downloadButton.style.color = setForegroundColor(feature);
-		downloadButton.style.backgroundColor = setColors(feature);
+		downloadButton.style.color = black;
+		downloadButton.style.backgroundColor = "#fad434";
 		
 		// Add button listener
 		downloadButton.onclick = function(){
@@ -254,7 +254,7 @@ function renderSelectedInfo(feature) {
 		if (r % 2 == 0) {
 			rows[r].style.backgroundColor = white;
 		} else {
-			rows[r].style.backgroundColor = setRowColors(feature);
+			rows[r].style.backgroundColor = "#fef4cd";
 		}
 	};
 

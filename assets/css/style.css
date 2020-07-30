@@ -50,6 +50,7 @@ body {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
+	background-color: #2f2f2f; /* landcover */
 }
 
 body, input, button, #map {

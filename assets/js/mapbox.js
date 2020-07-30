@@ -72,7 +72,9 @@ map.on("load", function() {
 				"paint": {
 					"circle-radius": defaultRadius,
 					"circle-color": defaultColors,
-					"circle-opacity": defaultOpacity
+					"circle-opacity": defaultOpacity,
+					"circle-stroke-width": 1,
+					"circle-stroke-color": "rgba(0, 0, 0, .25)",
 				}
 			});
 
@@ -117,7 +119,9 @@ function addLayer (name, data, radius, color, opacity) {
 		"paint": {
 			"circle-radius": radius,
 			"circle-color": color,
-			"circle-opacity": opacity
+			"circle-opacity": opacity,
+			"circle-stroke-width": 2,
+			"circle-stroke-color": "rgba(0, 0, 0, .25)",
 		},
 	});
 

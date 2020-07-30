@@ -19,10 +19,10 @@ var url = "assets/data/search-index.json";
 mapboxgl.accessToken = "pk.eyJ1IjoibHVjaWVubGl6bGVwaW9yeiIsImEiOiJja2M2YTN3dG8wYmZlMnp0ZXBzZzJuM3JsIn0.n6bA8boNS3LQW1izwa6MKg";
 
 // Colors
-var color4 = "#ff5722";
-var color3 = "#ffeb3b";
-var color2 = "#bbdefb";
-var color1 = "#42a5f5";
+var color4 = "#ff6150";
+var color3 = "#ffcb00";
+var color2 = "#54d2d2";
+var color1 = "#05172e";
 var gray = "#808080";
 var black = "#000";
 var white = "#fff";
@@ -42,7 +42,7 @@ var defaultColors = [
 	color2,
 	[">", ["get", ownedColumn], 0],
 	color1,
-	black
+	white
 ];
 
 // Scale radius based on zoom, relative unit size, hover

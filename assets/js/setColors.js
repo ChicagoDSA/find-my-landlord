@@ -10,7 +10,7 @@ function setColors(feature) {
 	} else if (count > 0) {
 		return color1;
 	} else {
-		return black;
+		return white;
 	};
 };
 
@@ -24,9 +24,9 @@ function setForegroundColor(feature) {
 	} else if (count >= 3) {
 		return black;
 	} else if (count > 0) {
-		return black;
-	} else {
 		return white;
+	} else {
+		return black;
 	};
 };
 
@@ -42,7 +42,7 @@ function setRowColors(feature) {
 	} else if (count > 0) {
 		return convertHex(color1, .1);
 	} else {
-		return convertHex(black, .1);
+		return convertHex(white, .1);
 	};
 };
 

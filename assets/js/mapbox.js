@@ -23,7 +23,7 @@ legend100plus.innerHTML = "<span style='background-color: "+color4+"'></span>100
 legend10plus.innerHTML = "<span style='background-color: "+color3+"'></span>10+ properties";
 legend3plus.innerHTML = "<span style='background-color: "+color2+"'></span>3+ properties";
 legendLess3.innerHTML = "<span style='background-color: "+color1+"'></span>1-2 properties";
-legendUndetermined.innerHTML = "<span style='background-color: "+black+"'></span># not determined";
+legendUndetermined.innerHTML = "<span style='background-color: "+white+"'></span># not determined";
 
 // Add attribution control
 var attributionControl = new mapboxgl.AttributionControl({

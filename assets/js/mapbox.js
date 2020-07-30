@@ -78,10 +78,7 @@ map.on("load", function() {
 				}
 			});
 
-			setHoverState("propertyData", "features", "allProperties");
-			//map.setFilter("allProperties", ["!=", taxpayerMatchCodeColumn, "U-00001"]);
-
-			// Disable search if IE
+			// Disable functionality if IE
 			if (checkIE() == true) {
 				// Show unsupported message
 				searchInput.value = "Internet Explorer isn't supported. Try Chrome!";
@@ -92,12 +89,11 @@ map.on("load", function() {
 				searchInput.value = "";
 				// Show search
 				searchInputContainer.style.display = "block";
+				// Add input listener
+				searchInput.addEventListener("keypress", matchAddresses);
+				// Allow hover and click
+				setHoverState("propertyData", "features", "allProperties");
 			};
-
-			// Add listeners
-			searchInput.addEventListener("keypress", matchAddresses);
-			// Fix for IE clear button
-			searchInput.addEventListener("input", matchAddresses);	
 		};
 	};
 	request.send();

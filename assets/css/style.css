@@ -347,8 +347,9 @@ h5 {
 	width: 100%;
 	padding: .3125rem .625rem;
 	font-weight: bold;
+	color: #000;
 	border: none;
-	background-color: #bfbfbf;
+	background-color: #fad434;
 	transition: box-shadow .4s cubic-bezier(.25, .8, .25, 1);
 	cursor: pointer;
 }

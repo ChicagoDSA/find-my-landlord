@@ -195,9 +195,6 @@ function renderSelectedInfo(feature) {
 		} else if (owned == 1) {
 			downloadButton.innerHTML = "Download data for "+owned+" taxpayer property";
 		};
-		downloadButton.classList.add("button-hover");
-		downloadButton.style.color = black;
-		downloadButton.style.backgroundColor = "#fad434";
 		
 		// Add button listener
 		downloadButton.onclick = function(){

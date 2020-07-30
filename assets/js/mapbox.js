@@ -91,8 +91,7 @@ map.on("load", function() {
 				searchInputContainer.style.display = "block";
 				// Add input listeners
 				searchInput.addEventListener("keypress", matchAddresses);
-				// Registers backspace
-				searchInput.addEventListener("input", matchAddresses);	
+				searchInput.addEventListener("input", matchAddresses); // Registers backspace
 				// Allow hover and click
 				setHoverState("propertyData", "features", "allProperties");
 			};

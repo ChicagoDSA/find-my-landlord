@@ -27,7 +27,7 @@ legendUndetermined.innerHTML = "<span style='background-color: "+white+"'></span
 
 // Add attribution control
 var attributionControl = new mapboxgl.AttributionControl({
-	customAttribution: "<a href='https://github.com/ChicagoDSA/find-my-landlord'>View this project on GitHub</a>"
+	customAttribution: "<a href='mailto:tenantscdsa@gmail.com'><b>Improve our data</b></a> | <a href='https://github.com/ChicagoDSA/find-my-landlord'>View this project on GitHub</a>"
 });
 map.addControl(attributionControl);
 

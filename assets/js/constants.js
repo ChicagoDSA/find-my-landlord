@@ -13,7 +13,8 @@ var relativeSizeColumn = "Relative Size";
 // Database reference
 var databaseCollectionName = "features-1596068090";
 // JSON search
-var url = "assets/data/search-index.json";
+var searchIndex = "assets/data/search-index.json";
+//var searchIndex = "https://find-my-landlord.nyc3.cdn.digitaloceanspaces.com/search-index.json";
 
 // Mapbox key
 mapboxgl.accessToken = "pk.eyJ1IjoibHVjaWVubGl6bGVwaW9yeiIsImEiOiJja2M2YTN3dG8wYmZlMnp0ZXBzZzJuM3JsIn0.n6bA8boNS3LQW1izwa6MKg";

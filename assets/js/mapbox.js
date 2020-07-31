@@ -51,7 +51,7 @@ map.addControl(navigationControl, "top-right");
 map.on("load", function() {
 	// Load search keys
 	var request = new XMLHttpRequest();
-	request.open("GET", url, true);
+	request.open("GET", searchIndex, true);
 	request.onload = function() {
 		if (this.status >= 200 && this.status < 400) {
 			json = JSON.parse(this.response);
@@ -61,6 +61,7 @@ map.on("load", function() {
 				type: "vector",
 				maxzoom: 14, // Allows overzoom
 				tiles: [location.origin+location.pathname+"assets/data/features/{z}/{x}/{y}.pbf"],
+				//tiles: "https://find-my-landlord.nyc3.cdn.digitaloceanspaces.com/features/{z}/{x}/{y}.pbf",
 				promoteId: propertyIndexColumn
 			});
 			

@@ -123,31 +123,26 @@ function renderSelectedMap(feature) {
 };
 
 function renderSelectedMarker(feature) {
-	var request = new XMLHttpRequest();
-	request.open("GET", "assets/images/marker.svg", true);
-	request.onload = function() {
-		if (this.status >= 200 && this.status < 400) {
-			var svg = this.response;
-
-			// Create marker
-			markerContainer = document.createElement("div");
-			markerContainer.id = "marker";
-
-			// Add SVG to marker
-			markerContainer.innerHTML = svg;
-			markerContainer.children[0].getElementById("outline").setAttribute("stroke", black);
-			markerContainer.children[0].getElementById("shape").setAttribute("fill", dsaYellow);
-			
-			// Add to map
-			// Validate coordinates
-			if (feature.geometry.coordinates.length == 2) {
-				marker = new mapboxgl.Marker(markerContainer)
-					.setLngLat(feature.geometry.coordinates)
-					.addTo(map);
-			};
-		};
+	// Create marker
+	markerContainer = document.createElement("object");
+	markerContainer.id = "marker";
+	// Add SVG to marker
+	markerContainer.setAttribute("data", "assets/images/marker.svg");
+	
+	// After loaded, change style
+	markerContainer.addEventListener("load",function() {
+		var svg = markerContainer.contentDocument;
+		svg.getElementById("outline").setAttribute("stroke", black);
+		svg.getElementById("shape").setAttribute("fill", dsaYellow);
+	}, false);
+	
+	// Add to map
+	// Validate coordinates
+	if (feature.geometry.coordinates.length == 2) {
+		marker = new mapboxgl.Marker(markerContainer)
+			.setLngLat(feature.geometry.coordinates)
+			.addTo(map);
 	};
-	request.send();
 };
 
 function renderSelectedInfo(feature) {

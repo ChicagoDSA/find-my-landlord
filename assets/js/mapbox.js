@@ -60,8 +60,7 @@ map.on("load", function() {
 			map.addSource("propertyData", {
 				type: "vector",
 				maxzoom: 14, // Allows overzoom
-				tiles: [location.origin+location.pathname+"assets/data/features/{z}/{x}/{y}.pbf"],
-				//tiles: "https://find-my-landlord.nyc3.cdn.digitaloceanspaces.com/features/{z}/{x}/{y}.pbf",
+				tiles: ["https://find-my-landlord.nyc3.cdn.digitaloceanspaces.com/features/{z}/{x}/{y}.pbf"],
 				promoteId: propertyIndexColumn
 			});
 			
@@ -99,6 +98,13 @@ map.on("load", function() {
 		};
 	};
 	request.send();
+});
+
+map.on("error", e => {
+	// Don't log empty tile errors
+	if (e && e.error.status != 403) {
+		console.error(e);
+	};
 });
 
 function addLayer (name, data, radius, color, opacity) {

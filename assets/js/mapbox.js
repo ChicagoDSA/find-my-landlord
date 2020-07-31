@@ -99,14 +99,14 @@ map.on("load", function() {
 	};
 	request.send();
 });
-/*
-map.on("error", e => {
+
+map.on("error", e => {/*
 	// Don't log empty tile errors
 	if (e && e.error.status != 403) {
 		console.error(e);
-	};
+	};*/
 });
-*/
+
 function addLayer (name, data, radius, color, opacity) {
 	// Set source data
 	map.addSource(name, {

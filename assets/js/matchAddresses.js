@@ -141,6 +141,9 @@ function createListItem(feature) {
 	item.onclick = function(){
 		async function render() {
 			try {
+				// Show spinner
+				spinner.style.display = "block";
+
 				var selected = await searchProperty(feature[propertyIndexColumn]);
 				// Reset UI
 				resetMap();
@@ -152,12 +155,18 @@ function createListItem(feature) {
 					taxpayer: selected.properties[taxpayerColumn],
 					affiliated_with: selected.properties[affiliatedWithColumn],
 				});
+
+				// Hide spinner
+				spinner.style.display = "none";
 			} catch {
 				// Show error message
 				resetSearchResults();
 				var title = "Database error";
 				var message = "Sorry, we couldn't look up that property's details. Try again in an hour, or <a href='mailto:'mailto:tenantscdsa@gmail.com'>contact us</a>."
 				showSearchMessage(title, message);
+
+				// Hide spinner
+				spinner.style.display = "none";
 			};	
 		};
 		render();

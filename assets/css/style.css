@@ -63,12 +63,12 @@ body, input, button {
 }
 
 a {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 .property-details-link,
 a {
-    color: #1e6bb8;
+	color: #1e6bb8;
 }
 
 a:hover {
@@ -94,6 +94,53 @@ h5 {
 
 .mapbox-improve-map {
 	display: none;
+}
+
+/* Loading spinner */
+
+#spinner {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 5rem;
+	height: 5rem;
+	margin-left: -2.5rem;
+	margin-top: -2.5rem;
+}
+
+#spinner div {
+	box-sizing: border-box;
+	display: block;
+	position: absolute;
+	width: 4rem;
+	height: 4rem;
+	margin: .5rem;
+	border: .25rem solid #7f7f7f;
+	border-radius: 50%;
+	border-color: #7f7f7f transparent transparent transparent;
+	animation: spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+#spinner div:nth-child(1) {
+	animation-delay: -0.45s;
+}
+
+#spinner div:nth-child(2) {
+	animation-delay: -0.3s;
+}
+
+#spinner div:nth-child(3) {
+	animation-delay: -0.15s;
+}
+
+@keyframes spinner {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
 }
 
 /* Focus */
@@ -462,6 +509,18 @@ h5 {
 
 	.mapboxgl-ctrl-group {
 		display: none;
+	}
+
+	#spinner {
+		width: 4rem;
+		height: 4rem;
+		margin-left: -2rem;
+		margin-top: -2rem;
+	}
+
+	#spinner div {
+		width: 3rem;
+		height: 3rem;
 	}
 
 	#top-container {

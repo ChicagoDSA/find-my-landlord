@@ -95,6 +95,9 @@ map.on("load", function() {
 				// Allow hover and click
 				setHoverState("propertyData", "features", "allProperties");
 			};
+
+			// Hide spinner
+			spinner.style.display = "none";
 		};
 	};
 	request.send();

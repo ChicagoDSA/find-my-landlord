@@ -95,6 +95,9 @@ function renderSelectedMap(feature) {
 		// Query database
 		async function load() {
 			try {
+				// Show spinner
+				spinner.style.display = "block";
+
 				var properties = await searchRelatedProperties(taxpayerMatchCode);
 				// Show properties on map
 				addLayer("relatedProperties", properties, defaultRadius, dsaYellow, .75);
@@ -114,8 +117,14 @@ function renderSelectedMap(feature) {
 					// Center map on single point
 					centerMap(feature.geometry.coordinates);
 				};
+				
+				// Hide spinner
+				spinner.style.display = "none";
 			} catch (err) {
 				console.log("Async function to search related properties failed");
+				
+				// Hide spinner
+				spinner.style.display = "none";
 			};	
 		};
 		load();

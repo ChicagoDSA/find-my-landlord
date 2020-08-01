@@ -75,6 +75,7 @@ var defaultRadius = [
 var selectedBounds = null;
 var markerContainer = null;
 var marker = null;
+var spinner = document.getElementById("spinner");
 var searchInputContainer = document.getElementById("search-input-container");
 var searchInput = document.getElementById("search-input");
 var clearButton = document.getElementById("clear");

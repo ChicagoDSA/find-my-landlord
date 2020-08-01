@@ -73,7 +73,10 @@ function renderSelectedUI(feature) {
 	var address = feature.properties[propertyAddressColumn];
 	// Update search input
 	searchInput.value = address;
+	// Show "x"
 	renderClearButton(address);
+	// Reset rendered objects
+	resetSearchResults();
 	// Render updates
 	renderSelectedMap(feature);
 	renderSelectedMarker(feature);

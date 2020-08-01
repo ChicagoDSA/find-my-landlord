@@ -93,7 +93,7 @@ function renderResults(features) {
 	} else if (features.length == 0 && searchInput.value != "") {
 		// No results found
 		var title = "No search results";
-		var message = "Sorry, we couldn't find that address. Try something like <b>634 E 50th Pl</b>."
+		var message = "Sorry, we couldn't find that address. If your building is large, it may have multiple addresses. Try locating it on the map.";
 		showSearchMessage(title, message);
 	};
 };

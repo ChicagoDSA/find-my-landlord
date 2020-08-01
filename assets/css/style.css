@@ -503,10 +503,6 @@ h5 {
 /* Responsive */
 
 @media screen and (max-width: 40rem) {
-	#map {
-		top: 3.125rem;
-	}
-
 	.mapboxgl-ctrl-group {
 		display: none;
 	}
@@ -527,10 +523,6 @@ h5 {
 }
 
 @media screen and (max-width: 22.5rem) {
-	#map {
-		top: 4.25rem;
-	}
-
 	#title,
 	#title *  {
 		display: block;

@@ -2,7 +2,7 @@ window.addEventListener("resize", function () {
 	if (selectedBounds) {	
 		fitBounds();
 	} else if (marker) {
-		map.jumpTo({center: marker.getLngLat()});
+		centerMap([marker.getLngLat().lng, marker.getLngLat().lat]);
 	};
 });
 

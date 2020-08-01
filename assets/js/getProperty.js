@@ -88,6 +88,8 @@ function renderSelectedMap(feature) {
 	var taxpayerMatchCode = feature.properties[taxpayerMatchCodeColumn];
 	var owned = feature.properties[ownedColumn];
 
+	// Reset bounds
+	selectedBounds = null;
 	// Show container
 	searchResultsContainer.style.display = "block";
 	// Hide all properties with same owner

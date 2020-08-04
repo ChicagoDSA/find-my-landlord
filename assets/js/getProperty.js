@@ -116,10 +116,11 @@ function renderSelectedMap(feature) {
 					properties.features.forEach(function(feature) {
 						selectedBounds.extend(feature.geometry.coordinates);
 					});
-					// Fit them
+					// Owner has more than 1 property
+					// Fit them in viewport
 					fitBounds();
 				} else {
-					// Center map on single point
+					// Owner has 1 property
 					centerMap(feature.geometry.coordinates);
 				};
 				
@@ -133,6 +134,9 @@ function renderSelectedMap(feature) {
 			};	
 		};
 		load();
+	} else {
+		// # of properties owned is null (banks, trusts) 
+		centerMap(feature.geometry.coordinates);
 	};
 };
 

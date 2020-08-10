@@ -60,7 +60,7 @@ map.on("load", function() {
 			map.addSource("propertyData", {
 				type: "vector",
 				maxzoom: 14, // Allows overzoom
-				tiles: ["https://find-my-landlord.nyc3.cdn.digitaloceanspaces.com/features/{z}/{x}/{y}.pbf"],
+				tiles: [tiles],
 				promoteId: propertyIndexColumn
 			});
 			

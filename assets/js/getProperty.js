@@ -244,6 +244,7 @@ function renderSelectedInfo(feature) {
 					});
 				} catch (err) {
 					console.log("Async function to search related properties failed");
+					downloadButton.innerHTML = "Oops, generating a PDF failed. Try again later.";
 				};	
 			};
 			load();

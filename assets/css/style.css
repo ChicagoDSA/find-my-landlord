@@ -281,13 +281,24 @@ h5 {
 	background-color: #ec1f27;
 }
 
-#title * {
-	display: table-cell;
-	margin: 0;
-	vertical-align: baseline;
+#title a {
+	color: #fff;
 }
 
-#data-attribution {
+#title h2,
+#get-help {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+#title h2,
+#get-help p {
+	margin: 0;
+}
+
+#get-help {
+	float: right;
+	width: 10rem;
 	font-size: .75rem;
 	text-align: right;
 }
@@ -523,13 +534,15 @@ h5 {
 }
 
 @media screen and (max-width: 22.5rem) {
-	#title,
-	#title *  {
+	#title h2,
+	#get-help p {
 		display: block;
-		
 	}
 
-	#data-attribution {
+	#get-help {
+		float: left;
+		width: auto;
+		margin-top: .5rem;
 		text-align: left;
 	}
 }

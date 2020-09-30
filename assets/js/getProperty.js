@@ -4,7 +4,7 @@ function searchProperty(id) {
 	return new Promise(function(resolve, reject) {
 		// Look up ID in database
 		var query = featuresRef
-			.where("properties."+propertyIndexColumn, "==", String(id))
+			.where("properties."+UIDColumn, "==", String(id))
 			.get()
 			.then(function(querySnapshot) {				
 				if (querySnapshot.docs.length == 0) {
@@ -84,7 +84,7 @@ function renderSelectedUI(feature) {
 };
 
 function renderSelectedMap(feature) {
-	var propertyIndex = feature.properties[propertyIndexColumn];
+	var propertyIndex = feature.properties[UIDColumn];
 	var taxpayerMatchCode = feature.properties[taxpayerMatchCodeColumn];
 	var owned = feature.properties[ownedColumn];
 
@@ -107,7 +107,7 @@ function renderSelectedMap(feature) {
 				// Show properties on map
 				addLayer("relatedProperties", properties, defaultRadius, dsaYellow, .75);
 				// And hide current property
-				map.setFilter("relatedProperties", ["!=", propertyIndexColumn, propertyIndex]);
+				map.setFilter("relatedProperties", ["!=", UIDColumn, propertyIndex]);
 
 				if (properties.features.length > 1) {
 					// Show all features on map

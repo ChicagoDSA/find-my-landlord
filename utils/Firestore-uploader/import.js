@@ -8,7 +8,7 @@ const serviceAccount = require("./service-key.json");
 // JSON To Firestore
 const jsonToFirestore = async () => {
 	try {
-		console.log("Initialzing Firebase");
+		console.log("Initializing Firebase");
 		await firestoreService.initializeApp(serviceAccount, firebaseConfig.databaseURL);
 		console.log("Firebase Initialized");
 

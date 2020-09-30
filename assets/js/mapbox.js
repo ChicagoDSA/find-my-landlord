@@ -61,7 +61,7 @@ map.on("load", function() {
 				type: "vector",
 				maxzoom: 14, // Allows overzoom
 				tiles: [tiles],
-				promoteId: propertyIndexColumn
+				promoteId: UIDColumn
 			});
 			
 			map.addLayer({
@@ -115,7 +115,7 @@ function addLayer (name, data, radius, color, opacity) {
 	map.addSource(name, {
 		type: "geojson",
 		data: data,
-		promoteId: propertyIndexColumn
+		promoteId: UIDColumn
 	});
 
 	// Add to map
@@ -172,7 +172,7 @@ function setHoverState (sourceData, sourceLayer, hoverLayer) {
 			};
 			
 			// Set new ID
-			buildingID = featuresAtPoint[0].properties[propertyIndexColumn];
+			buildingID = featuresAtPoint[0].properties[UIDColumn];
 
 			// Hover to true
 			if (sourceLayer != null) {

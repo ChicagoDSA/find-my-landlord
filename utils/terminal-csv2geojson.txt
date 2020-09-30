@@ -1,1 +1,1 @@
-csv2geojson --numeric-fields "Properties Held by Taxpayer Match Code","Relative Size","Unit Count from Department of Buildings","taxpayer_unit_estimate" data.csv > features.geojson
+csv2geojson --numeric-fields "Properties Held by Taxpayer Match Code","Relative Size","Unit Count from Department of Buildings" data.csv > features.geojson

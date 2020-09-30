@@ -1,1 +1,1 @@
-tippecanoe -e features --no-tile-compression features.geojson
+tippecanoe -e features --no-tile-size-limit --no-tile-compression features.geojson

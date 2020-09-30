@@ -144,7 +144,7 @@ function createListItem(feature) {
 				// Show spinner
 				spinner.style.display = "block";
 
-				var selected = await searchProperty(feature[propertyIndexColumn]);
+				var selected = await searchProperty(feature[UIDColumn]);
 				// Reset UI
 				resetMap();
 				// Update it

@@ -13,7 +13,7 @@ var relativeSizeColumn = "Relative Size";
 // Database reference
 var databaseCollectionName = "features-08-09-2020-05-48-PM";
 // JSON search
-var searchIndex = "https://find-my-landlord.nyc3.cdn.digitaloceanspaces.com/search-index-08-09-2020-05-48-PM.json";
+var searchIndex = "https://find-my-landlord.nyc3.cdn.digitaloceanspaces.com/search-index-11-15-2020-08-00-PM.json";
 // Map tiles
 var tiles = "https://find-my-landlord.nyc3.cdn.digitaloceanspaces.com/features-08-09-2020-05-48-PM/{z}/{x}/{y}.pbf";
 

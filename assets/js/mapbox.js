@@ -15,6 +15,7 @@ var legend10plus = document.createElement("div");
 var legend3plus = document.createElement("div");
 var legendLess3 = document.createElement("div");
 var legendUndetermined = document.createElement("div");
+var legendSizes = document.createElement("div");
 
 // Set content
 legendContainer.id = "legend";
@@ -24,6 +25,7 @@ legend10plus.innerHTML = "<span style='background-color: "+color3+"'></span>10+ 
 legend3plus.innerHTML = "<span style='background-color: "+color2+"'></span>3+ properties";
 legendLess3.innerHTML = "<span style='background-color: "+color1+"'></span>1-2 properties";
 legendUndetermined.innerHTML = "<span style='background-color: "+white+"'></span># not determined";
+legendSizes.innerHTML = "<b>Circle size indicates amount of units</b>"
 
 // Add attribution control
 var attributionControl = new mapboxgl.AttributionControl({
@@ -43,6 +45,7 @@ legendContainer.appendChild(legend10plus);
 legendContainer.appendChild(legend3plus);
 legendContainer.appendChild(legendLess3);
 legendContainer.appendChild(legendUndetermined);
+legendContainer.appendChild(legendSizes);
 
 // Add navigation
 var navigationControl = new mapboxgl.NavigationControl();

@@ -45,10 +45,24 @@
 				<h2><a href>Find My Landlord</a></h2>
 				<div id="get-help">
 					<p>Community stops evictions.</p>
-					<p>Get help: <a href="https://bit.ly/letsorganize">bit.ly/letsorganize</a></p>
+					<p>Get help: <a href="https://bit.ly/letsorganize" target="_blank" rel="noopener noreferrer">bit.ly/letsorganize</a></p>
+					<p><a class="about-btn">About Find My Landlord</a></p>
 				</div>
 				<div style="clear: both;"></div>
 			</div>
+			<!-- translucent text box that expands when "about link" is clicked -->
+			<div class="about-container">
+				<div class="close-btn" aria-label="close"><b>X</b></div>
+				<div>
+					<a href="https://www.chicagodsa.org/" target="_blank" rel="noopener noreferrer">Chicago DSA</a>, the <a href="https://www.ltbcoalition.org/" target="_blank" rel="noopener noreferrer">Lift the Ban Coalition</a>, and local allies have partnered to provide Chicago tenants the ability to:
+					<ul style="margin: .5rem 0; padding-left: 1rem">
+						<li>Look up any registered rental property in the City of Chicago</li>
+						<li>View the rental's owner, browse related properties, and download these as a PDF</li>
+						<li>Explore the density of mega-landlord properties across neighborhoods</li>
+					</ul>
+				</div>
+			</div>
+			<!-- also has a "close" button in the top right corner -->
 			<div id="search-input-container">
 				<input
 					id="search-input"
@@ -126,5 +140,7 @@
 		<script src="assets/js/attachModal.js"></script>
 		<script src="assets/js/getProperty.js"></script>
 		<script src="assets/js/createPDF.js"></script>
+		<!-- About box -->
+		<script src="assets/js/about.js"></script>
 	</body>
 </html>      

@@ -36,7 +36,7 @@ legendSizes.innerHTML =
 // Add attribution control
 var attributionControl = new mapboxgl.AttributionControl({
   customAttribution:
-    "<a href='mailto:tenantscdsa@gmail.com'><b>Improve our data</b></a> | <a href='https://github.com/ChicagoDSA/find-my-landlord'>View this project on GitHub</a>",
+    "<a href='mailto:tenantscdsa@gmail.com' target='_blank' rel='noopener'><b>Improve our data</b></a> | <a href='https://github.com/ChicagoDSA/find-my-landlord' target='_blank' rel='noopener'>View on Github</a>",
 });
 map.addControl(attributionControl);
 
